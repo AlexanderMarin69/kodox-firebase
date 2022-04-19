@@ -1,14 +1,12 @@
 import { createStore } from 'vuex'
+import styleModule from './style/index.js'
+import globalFunctions from './globalFunctions/index.js'
+
 
 export default createStore({
-  state: {
-  },
-  getters: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  }
+    modules: {
+        style: styleModule,
+        functions: globalFunctions,
+    }
 })
+
