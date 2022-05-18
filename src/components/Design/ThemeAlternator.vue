@@ -1,8 +1,8 @@
 ﻿<template>
     <div>
         <Toggle v-model="themeAlernatorValue"
-                on-label="🌓"
-                off-label="🌞"
+                :on-label="darkIcon"
+                :off-label="lightIcon"
                 @change="changeTheme"
                 class="toggle-red" />
     </div>
@@ -18,6 +18,8 @@
         },
         data: function () {
             return {
+                lightIcon: '<span class="material-symbols-outlined">light_mode</span>',
+                darkIcon: '<span class="material-symbols-outlined">dark_mode</span>',
                 // should be set by a computed from db
                 themeAlernatorValue: null
             }

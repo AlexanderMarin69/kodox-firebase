@@ -2,7 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\router"
+    "\\src\\components",
+    "\\src\\components\\mainContent"
   ],
   "PreviewInSolutionExplorer": false
 }

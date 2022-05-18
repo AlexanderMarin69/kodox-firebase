@@ -12,12 +12,24 @@ export default {
         },
         dark: {
             isLight: false,
-            bg: '#141618',
-            contentBg: '#222426',
-            color: '#f4f4f5',
+            bg: '#15151c',
+            contentBg: '#24252d',
+            color: '#dcdde2',
         },
         currentMode: {}
     },
     actions,
     mutations
 }
+
+
+/*
+ 
+  dark: {
+            isLight: false,
+            bg: '#15151c',
+            contentBg: '#1b1c21',
+            color: '#dcdde2',
+        },
+ 
+ */

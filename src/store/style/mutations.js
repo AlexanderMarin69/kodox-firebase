@@ -8,7 +8,7 @@
     SET_PREFFERED_THEME_OR_DEFAULT(state) {
         // get user preffered theme from userState, which is not yet implemented
         // or default 👇
-        state.currentMode = state.dark;
+        state.currentMode = state.light;
     }
 
 }

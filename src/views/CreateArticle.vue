@@ -1,247 +1,300 @@
 ﻿<template>
     <div :style="appGlobalStyle()">
-        <br />
-
-        <!-- top menu -->
-        <div class="container-fluid" style="padding-left:95px; padding-right:50px;">
-            <div class="row">
-                <div class="col-md-6 col-lg-2 mb-2">
-                    <router-link to="/" :style="appGlobalStyle() + 'font-size:25px;'">⬅️ Back</router-link>
-                </div>
-                <div class="col-md-6 col-lg-2 mb-2">
-                    <button class="btn btn-primary" :style="appGlobalStyle()" @click="showEditorButtons = !showEditorButtons">Toggle Editor Buttons</button>
-                </div>
-            </div>
-        </div>
-        <!-- top menu -->
-
-        <br />
         <!--content-->
-        <div class="container-fluid" style="padding-left:95px; padding-right:50px;">
-            <!--title-->
-            <div class="row">
-                <div class="col-md-3 col-lg-2 mb-2">
-                </div>
-                <div class="col-md-6 col-lg-8 mb-2">
-                    <div class="input-group input-group-lg">
+        <div class="wrapper mt-5">
+            <div class="container pr-5">
 
-                        <input value="Title"
-                               placeholder="Title"
-                               :style="appGlobalStyle() + 'border:0px; font-size:40px;'"
+                <!--title-->
+                <div class="row">
+                <div class="col-12 ml-4">
+                    <div class="input-group">
+                        <input placeholder="Title"
+                               v-model="article.title"
+                               :style="appGlobalStyle() + 'border:0px; font-size:35px;'"
                                type="text"
                                class="form-control"
                                aria-label="Large"
                                aria-describedby="inputGroup-sizing-sm">
                     </div>
                 </div>
-                <div class="col-md-3 col-lg-2 mb-2">
                 </div>
-            </div>
-            <!--title end-->
-            <!--description-->
-            <div class="row">
-                <div class="col-md-3 col-lg-2 mb-2">
-                </div>
-                <div class="col-md-6 col-lg-8 mb-2">
+                <!--title end-->
+                <!--description-->
+                <div class="row">
+                <div class="col-12 ml-4">
                     <div class="input-group">
-                        <textarea value="Description..."
-                                  placeholder="Description..."
-                                  :style="appGlobalStyle() + 'border:0px; font-size:25px;'"
+                        <textarea placeholder="The following example demonstrates how to merge two disparate sets. This example creates two HashSet<T> objects, and populates them with even and odd numbers, respectively."
+                                  v-model="article.description"
+                                  rows="3"
+                                  :style="appGlobalStyle() + 'border:0px; font-size:20px;'"
                                   class="form-control"
                                   aria-label="With textarea"></textarea>
                     </div>
                 </div>
-                <div class="col-md-3 col-lg-2 mb-2">
+                </div>
+                <!--description end-->
+
+                <div class="row">
+                <div class="col-12 ml-4">
+                    <div v-if="allArticleItemsByOrder.length > 0" v-for="item in allArticleItemsByOrder">
+                        <div v-if="item.type == 'text'">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-11" v-bind:class="{ active: showMoveButtons, 'col-12': !showMoveButtons }">
+                                        <!--<CustomEditor :showEditorButtons="showEditorButtons" :editor="editors.find(x => x.id == item.id).theEditor" />-->
+                                        <CustomEditor :showEditorButtons="showEditorButtons" :editor="article.texts.find(x => x.id == item.id).editor"/>
+                                    </div>
+                                    <div class="col-1" v-if="showMoveButtons">
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <!--<button style="padding-left: 26px; padding-right: 26px;" class="btn btn-sm btn-outline-primary" @click="moveCodeUp(item)">👆</button>-->
+                                        <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-primary" @click="moveCodeUp(item)">
+                                            <span class="material-symbols-outlined">
+                                                expand_less
+                                            </span>
+                                        </button>
+                                        <br />
+                                        <br />
+                                        <!--<button style="padding-left: 26px; padding-right: 26px;" class="btn btn-sm btn-outline-primary">👇</button>-->
+                                        <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-primary" @click="moveCodeDown(item)">
+                                            <span class="material-symbols-outlined">
+                                                expand_more
+                                            </span>
+                                        </button>
+                                        <br />
+                                        <br />
+                                        <!--<button style="padding-left: 26px; padding-right: 26px;" class="btn btn-sm btn-outline-danger">🗑️</button>-->
+                                        <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-danger">
+                                            <span class="material-symbols-outlined">
+                                                delete
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-if="item.type == 'code'">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-11" v-bind:class="{ active: showMoveButtons, 'col-12': !showMoveButtons }">
+                                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">{{item.lang}}</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
+                                                    <span class="material-symbols-outlined">
+                                                        add
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <!--<li class="nav-item">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">{{item.id}}</a>
+    </li>-->
+                                        </ul>
+                                        <div class="tab-content" id="myTabContent">
+                                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                                <codeBlock :code="item.code" :editId="item.id" :langTeller="item.lang" @code-changed="updateCodeBlock" />
+                                            </div>
+                                            <!--<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                                <codeBlock :code="item.code" :langTeller="item.id" />
+                                            </div>-->
+                                        </div>
+                                    </div>
+                                    <div class="col-1" v-if="showMoveButtons && item">
+                                        <br />
+                                        <br />
+                                        <!--<button style="padding-left: 26px; padding-right: 26px;" class="btn btn-sm btn-outline-primary" @click="moveCodeUp(item)">👆</button>-->
+                                        <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-primary" @click="moveCodeUp(item)">
+                                            <span class="material-symbols-outlined">
+                                                expand_less
+                                            </span>
+                                        </button>
+                                        <br />
+                                        <br />
+                                        <!--<button style="padding-left: 26px; padding-right: 26px;" class="btn btn-sm btn-outline-primary" @click="moveCodeDown">👇</button>-->
+                                        <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-primary" @click="moveCodeDown(item)">
+                                            <span class="material-symbols-outlined">
+                                                expand_more
+                                            </span>
+                                        </button>
+                                        <br />
+                                        <br />
+                                        <!--<button style="padding-left: 26px; padding-right: 26px;" class="btn btn-sm btn-outline-danger" @click="removeCode">🗑️</button>-->
+                                        <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-danger" @click="removeCode">
+                                            <span class="material-symbols-outlined">
+                                                delete
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <SkeletonLoader v-else></SkeletonLoader>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+
+                    <!--options-->
+                    <div class="row m-2">
+                        <div class="col-12 col-lg-4 text-center mt-4">
+                                <div class="option" :style="optionStyle() + 'font-size: 30px;'" @click="addTextToArticle()">
+                                    <span class="test">
+                                        Rich Text
+                                    </span>
+                                    <div class="pt-2">
+                                        <span class="material-symbols-outlined" style="vertical-align: baseline; font-size: 50px;">
+                                            format_align_left
+                                        </span>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="col-12 col-lg-4 text-center mt-4">
+                                <div class="option" :style="optionStyle() + 'font-size: 30px;'" @click="addCodeBlockToArticle()">
+                                    <span class="test">
+                                        Code Block
+                                    </span>
+                                    <div class="pt-2">
+                                        <span class="material-symbols-outlined" style="vertical-align: baseline; font-size: 50px;">
+                                            integration_instructions
+                                        </span>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="col-12 col-lg-4 text-center mt-4">
+                                <div class="option" :style="optionStyle() + 'font-size: 30px;'" @click="addBannerToArticle()">
+                                    <span class="test">
+                                        Banner
+                                    </span>
+                                    <div class="pt-2">
+                                        <span class="material-symbols-outlined" style="vertical-align: baseline; font-size: 50px;">
+                                            info
+                                        </span>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="col-12 col-lg-4 text-center mt-4">
+                                <div class="option" :style="optionStyle() + 'font-size: 30px;'" @click="addMediaToArticle()">
+                                    <span class="test">
+                                        Media
+                                    </span>
+                                    <div class="pt-2">
+                                        <span class="material-symbols-outlined" style="vertical-align: baseline; font-size: 50px;">
+                                            panorama
+                                        </span>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    <!--options end-->
+                    <br />
+                    <br />
+                    <br />
+                    <br />
                 </div>
             </div>
-            <!--description end-->
-            <br />
-            <div class="container">
-                <div v-if="editor && showEditor">
-                    <div v-if="showEditorButtons">
-                        <button :style="appGlobalStyle() + editorButtonStyle()" class="editorButton" @click="editor.chain().focus().toggleBold().run()" :class="{ 'is-active': editor.isActive('bold') }">
-                            bold
-                        </button>
-                        <button :style="appGlobalStyle() + editorButtonStyle()" class="editorButton" @click="editor.chain().focus().toggleItalic().run()">
-                            italic
-                        </button>
-                        <button :style="appGlobalStyle() + editorButtonStyle()" class="editorButton" @click="editor.chain().focus().toggleStrike().run()">
-                            strike
-                        </button>
-                        <button :style="appGlobalStyle() + editorButtonStyle()" class="editorButton" @click="editor.chain().focus().toggleCode().run()">
-                            code
-                        </button>
-                        <button :style="appGlobalStyle() + editorButtonStyle()" class="editorButton" @click="editor.chain().focus().unsetAllMarks().run()">
-                            clear marks
-                        </button>
-                        <button :style="appGlobalStyle() + editorButtonStyle()" class="editorButton" @click="editor.chain().focus().clearNodes().run()">
-                            clear nodes
-                        </button>
-                        <button :style="appGlobalStyle() + editorButtonStyle()" class="editorButton" @click="editor.chain().focus().setParagraph().run()">
-                            paragraph
-                        </button>
-                        <button :style="appGlobalStyle() + editorButtonStyle()" class="editorButton" @click="editor.chain().focus().toggleHeading({ level: 1 }).run()">
-                            h1
-                        </button>
-                        <button :style="appGlobalStyle() + editorButtonStyle()" class="editorButton" @click="editor.chain().focus().toggleHeading({ level: 2 }).run()">
-                            h2
-                        </button>
-                        <button :style="appGlobalStyle() + editorButtonStyle()" class="editorButton" @click="editor.chain().focus().toggleHeading({ level: 3 }).run()">
-                            h3
-                        </button>
-                        <button :style="appGlobalStyle() + editorButtonStyle()" class="editorButton" @click="editor.chain().focus().toggleHeading({ level: 4 }).run()">
-                            h4
-                        </button>
-                        <button :style="appGlobalStyle() + editorButtonStyle()" class="editorButton" @click="editor.chain().focus().toggleHeading({ level: 5 }).run()">
-                            h5
-                        </button>
-                        <button :style="appGlobalStyle() + editorButtonStyle()" class="editorButton" @click="editor.chain().focus().toggleHeading({ level: 6 }).run()">
-                            h6
-                        </button>
-                        <button :style="appGlobalStyle() + editorButtonStyle()" class="editorButton" @click="editor.chain().focus().toggleBulletList().run()">
-                            bullet list
-                        </button>
-                        <button :style="appGlobalStyle() + editorButtonStyle()" class="editorButton" @click="editor.chain().focus().toggleOrderedList().run()">
-                            ordered list
-                        </button>
-                        <button :style="appGlobalStyle() + editorButtonStyle()" class="editorButton" @click="editor.chain().focus().toggleCodeBlock().run()">
-                            code block
-                        </button>
-                        <button :style="appGlobalStyle() + editorButtonStyle()" class="editorButton" @click="editor.chain().focus().toggleBlockquote().run()">
-                            blockquote
-                        </button>
-                        <button :style="appGlobalStyle() + editorButtonStyle()" class="editorButton" @click="editor.chain().focus().setHorizontalRule().run()">
-                            horizontal rule
-                        </button>
-                        <button :style="appGlobalStyle() + editorButtonStyle()" class="editorButton" @click="editor.chain().focus().setHardBreak().run()">
-                            hard break
-                        </button>
-                        <button :style="appGlobalStyle() + editorButtonStyle()" class="editorButton" @click="editor.chain().focus().undo().run()">
-                            undo
-                        </button>
-                        <button :style="appGlobalStyle() + editorButtonStyle()" class="editorButton" @click="editor.chain().focus().redo().run()">
-                            redo
-                        </button>
-                        <!--table options-->
-                        <button type="button"
-                                id="dropdownMenuButton"
-                                data-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                                :style="appGlobalStyle() + editorButtonStyle()"
-                                class="editorButton">
-                            ⚙️ Table
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" :style="appGlobalStyle()">
-                            <p class="ml-5"><b>Actions</b></p>
-                            <button :style="appGlobalStyle() + editorButtonStyle()" class="editorButton" @click="editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()">
-                                ➕ Add Table
+         
+            <div class="sidebar">
+                <div class="container mt-3">
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <button class="btn btn-outline-secondary btn-sm mr-4" href="#" style="vertical-align: baseline;">
+                                <span class="material-symbols-outlined" style="vertical-align: bottom;">
+                                    arrow_back
+                                </span>
+                                Back
                             </button>
-                            <button :style="appGlobalStyle() + editorButtonStyle()" class="editorButton" @click="editor.chain().focus().deleteTable().run()">
-                                🗑️ Delete Table
+                            <button class="btn btn-outline-secondary btn-sm" href="#" style="vertical-align: baseline;" @click="zoomPageOut">
+                                <span class="material-symbols-outlined" style="vertical-align: bottom;">
+                                    remove
+                                </span>
                             </button>
-                            <hr />
-                            <p class="ml-5"><b>Rows</b></p>
-                            <button :style="appGlobalStyle() + editorButtonStyle()" class="editorButton" @click="editor.chain().focus().addRowBefore().run()">
-                                👆 Add Row Before
+                            <span class="p-1">{{currentZoomPercentage}}%</span>
+                            <button class="btn btn-outline-secondary btn-sm" href="#" style="vertical-align: baseline;" @click="zoomPageIn">
+                                <span class="material-symbols-outlined" style="vertical-align: bottom;">
+                                    add
+                                </span>
                             </button>
-                            <button :style="appGlobalStyle() + editorButtonStyle()" class="editorButton" @click="editor.chain().focus().addRowAfter().run()">
-                                Add Row After 👇
+                            <br />
+                            <br />
+                            <button class="btn btn-outline-success btn-block" href="#" style="vertical-align: baseline;">
+                                <span class="material-symbols-outlined mr-1" style="vertical-align: bottom;">
+                                    save
+                                </span>
+                                Save
                             </button>
-                            <button :style="appGlobalStyle() + editorButtonStyle()" class="editorButton" @click="editor.chain().focus().deleteRow().run()">
-                                🗑️ Delete Row
+                            <br />
+                            <button class="btn btn-outline-secondary btn-sm mb-3" href="#" style="vertical-align: baseline;" @click="showEditorButtons = !showEditorButtons">
+                                <span v-if="showEditorButtons" class="material-symbols-outlined mr-1" style="vertical-align: bottom;">
+                                    visibility
+                                </span>
+                                <span v-else class="material-symbols-outlined mr-1" style="vertical-align: bottom;">
+                                    visibility_off
+                                </span>
+                                Editor Buttons
                             </button>
-                            <hr />
-                            <p class="ml-5"><b>Columns</b></p>
-                            <button :style="appGlobalStyle() + editorButtonStyle()" class="editorButton" @click="editor.chain().focus().addColumnBefore().run()">
-                                👈 Column Before
-                            </button>
-                            <button :style="appGlobalStyle() + editorButtonStyle()" class="editorButton" @click="editor.chain().focus().addColumnAfter().run()">
-                                Column After 👉
-                            </button>
-                            <button :style="appGlobalStyle() + editorButtonStyle()" class="editorButton" @click="editor.chain().focus().deleteColumn().run()">
-                                🗑️ Delete Column
-                            </button>
-                            <hr />
-                            <p class="ml-5"><b>Other</b></p>
-                            <button :style="appGlobalStyle() + editorButtonStyle()" class="editorButton" @click="editor.chain().focus().mergeCells().run()">
-                                Merge Cells
-                            </button>
-
-                            <button :style="appGlobalStyle() + editorButtonStyle()" class="editorButton" @click="editor.chain().focus().splitCell().run()">
-                                Split Cells
-                            </button>
-
-                            <button :style="appGlobalStyle() + editorButtonStyle() + 'font-size: 14px !important;'" class="editorButton" @click="editor.chain().focus().toggleHeaderColumn().run()">
-                                Toggle Header Column
-                            </button>
-
-                            <button :style="appGlobalStyle() + editorButtonStyle()" class="editorButton" @click="editor.chain().focus().toggleHeaderRow().run()">
-                                Toggle Header Row
-                            </button>
-
-                            <button :style="appGlobalStyle() + editorButtonStyle()" class="editorButton" @click="editor.chain().focus().toggleHeaderCell().run()">
-                                Toggle Header Cell
+                            <br />
+                            <button class="btn btn-outline-secondary btn-sm" href="#" style="vertical-align: baseline;" @click="showMoveButtons = !showMoveButtons">
+                                <span v-if="showMoveButtons" class="material-symbols-outlined mr-1" style="vertical-align: bottom;">
+                                    visibility
+                                </span>
+                                <span v-else class="material-symbols-outlined mr-1" style="vertical-align: bottom;">
+                                    visibility_off
+                                </span>
+                                Move Buttons
                             </button>
                         </div>
-                        <!--table options end-->
-                </div>
-                </div>
-                <br />
-                <editor-content :editor="editor" v-if="showEditor"/>
+                    </div>
+                    <div>
+                        <br />
+                        <div class="row" style="margin-top: -30px;">
+                            <div class="col-12">
+                                <nav class="nav nav-pills nav-justified" id="test" style="overflow-x: hidden !important; height: 250px;">
+                                    <div 
+                                         class="nav-link disabled mr-1" 
+                                         style="cursor:pointer; margin-top:30px;" 
+                                         :class="{ TagActive: article.tags.find(x => x === tag) }" 
+                                         v-for="tag in tags" 
+                                         @click="selectTag(tag)">
+                                    {{tag}}
+                                    </div>
 
-                <br />
-                <br />
+                                    <!--<a class="nav-link TagActive" href="#">Docs</a>
+                                    <a class="nav-link disabled" href="#">C#</a>
+                                    <a class="nav-link disabled" href="#">HTML</a>
+                                    <a class="nav-link disabled" href="#">CSS</a>
+                                    <a class="nav-link disabled" href="#">SQL</a>
+                                    <a class="nav-link disabled" href="#">Vue Js</a>
+                                    <a class="nav-link TagActive" href="#">React</a>
+                                    <a class="nav-link TagActive" href="#">Java</a>
+                                    <a class="nav-link disabled" href="#">Azure</a>
+                                    <a class="nav-link disabled" href="#">AWS</a>
+                                    <a class="nav-link disabled" href="#">Kubernetes</a>
+                                    <a class="nav-link TagActive" href="#">Cheat Sheet</a>-->
+                                </nav>
+                            </div>
+                        </div>
 
-                <!--options-->
-                <div class="row justify-content-center">
-                    <div class="col-md-12 col-lg-4 mb-2">
-                        <center>
-                            <div class="option" :style="optionStyle() + 'font-size: 30px;'" @click="showEditor = !showEditor">
-                                <span class="test">
-                                    🖋️ Rich Text
-                                </span>
-                                <div class="pt-2">➕</div>
-                            </div>
-                        </center>
-                    </div>
-                    <div class="col-md-12 col-lg-4 mb-2">
-                        <center>
-                            <div class="option" :style="optionStyle() + 'font-size: 30px;'">
-                                <code>&lt; Code Block /&gt;</code>
-                                <div class="pt-2">➕</div>
-                            </div>
-                        </center>
+                        <br />
+
+                        <div class="row ml-1">
+                            <h6>Create tags</h6>
+                            <input 
+                                   style="width: 88%;" 
+                                   type="text" 
+                                   class="form-control" 
+                                   placeholder="Type + Enter"
+                                   @click="createTag"
+                                   v-model="createTagInput"
+                                   />
+                            <p class="text-info mt-2" style="font-size: 12px;">You can manage tags further in settings.</p>
+                        </div>
                     </div>
                 </div>
-                <br />
-                <div class="row justify-content-center">
-                    <div class="col-md-12 col-lg-4 mb-2">
-                        <center>
-                            <div class="option" :style="optionStyle() + 'font-size: 30px;'">
-                                <span class="test">
-                                    🚩 Banner
-                                </span>
-                                <div class="pt-2">➕</div>
-                            </div>
-                        </center>
-                    </div>
-                    <div class="col-md-12 col-lg-4 mb-2">
-                        <center>
-                            <div class="option" :style="optionStyle() + 'font-size: 30px;'">
-                                <span class="test">
-                                    🖼️ Media
-                                </span>
-                                <div class="pt-2">➕</div>
-                            </div>
-                        </center>
-                    </div>
-                </div>
-                <!--options end-->
-                <br />
-                <br />
-                <br />
-                <br />
             </div>
         </div>
         <!--content-->
@@ -249,36 +302,473 @@
 </template>
 
 <script>
+    import { mapActions, mapState } from "vuex";
+    import codeBlock from "@/components/mainContent/codeBlock.vue";
+    import Card from "@/components/common/card.vue";
+    import CustomEditor from "@/components/mainContent/customEditor.vue";
+    import SkeletonLoader from "@/components/common/SkeletonLoader.vue";
+
+
     import { Editor, EditorContent } from '@tiptap/vue-3'
     import StarterKit from '@tiptap/starter-kit'
-    import Document from '@tiptap/extension-document'
-    import Paragraph from '@tiptap/extension-paragraph'
     import Text from '@tiptap/extension-text'
     import Table from '@tiptap/extension-table'
     import TableRow from '@tiptap/extension-table-row'
     import TableCell from '@tiptap/extension-table-cell'
     import TableHeader from '@tiptap/extension-table-header'
-    import Gapcursor from '@tiptap/extension-gapcursor'
+    import TextAlign from '@tiptap/extension-text-align'
+    import Document from '@tiptap/extension-document'
+    import Paragraph from '@tiptap/extension-paragraph'
+    //import Gapcursor from '@tiptap/extension-gapcursor'
 
-    import { mapActions, mapState } from "vuex";
+    //alerts: [
+    //    {},
+    //    {}
+    //],
+    //author: '',
 
     export default {
-        name: "HomeView",
+        name: "CreateArticle",
         components: {
-            EditorContent,
+            Card,
+            codeBlock,
+            CustomEditor,
+            Editor,
+            SkeletonLoader
         },
         data: function () {
             return {
-                editor: null,
-                showEditor: false,
-                showEditorButtons: true,
+                currentZoomPercentage: 100,
+                createTagInput: '',
+                tags:
+                    [
+                        'Docs',
+                        'C#',
+                        'HTML',
+                        'CSS',
+                        'SQL',
+                        'Vue Js',
+                        'React',
+                        'Java',
+                        'Azure',
+                        'AWS',
+                        'Kubernetes',
+                        'Cheat Sheet',
+                    ],
+                article: {
+                    title: 'HashSet<T> Class',
+                    description: 'The following example demonstrates how to merge two disparate sets. This example creates two HashSet<T> objects, and populates them with even and odd numbers, respectively.',
+                    codeBlocks: [
+                        {
+                            id: 234234234,
+                            type: 'code',
+                            sortOrder: 1,
+                            // 0 egentligen
+                            code: `
+function partition(arr, start, end){
+// Taking the last element as the pivot
+const pivotValue = arr[end];
+let pivotIndex = start;
+for (let i = start; i < end; i++) {
+if (arr[i] < pivotValue) {
+// Swapping elements
+[arr[i], arr[pivotIndex]] = [arr[pivotIndex], arr[i]];
+// Moving to next element
+pivotIndex++;
+}
+}
+
+// Putting the pivot value in the middle
+[arr[pivotIndex], arr[end]] = [arr[end], arr[pivotIndex]]
+return pivotIndex;
+}; `,
+                            lang: 'C#'
+                        },
+                        //{
+                        //    id: 7367,
+                        //    type: 'code',
+                        //    sortOrder: 3,
+                        //    code: ``,
+                        //    lang: 'JS'
+                        //}
+                    ],
+                    texts: [
+                        //                        {
+                        //                            id: 888,
+                        //                            type: 'text',
+                        //                            sortOrder: 0,
+                        //                            text: `
+                        //<h4>Parameters 00000000</h4>
+                        //<div class="tableWrapper"><table style="min-width: 75px;"><colgroup><col><col><col></colgroup><tbody><tr><th colspan="1" rowspan="1"><p>Name</p></th><th colspan="1" rowspan="1"><p>Type</p></th><th colspan="1" rowspan="1"><p>Nullable</p></th></tr><tr><td colspan="1" rowspan="1"><p>Title</p></td><td colspan="1" rowspan="1"><p>string</p></td><td colspan="1" rowspan="1"><p>not null</p></td></tr><tr><td colspan="1" rowspan="1"><p>Description</p></td><td colspan="1" rowspan="1"><p>string</p></td><td colspan="1" rowspan="1"><p>null</p></td></tr></tbody></table></div>
+                        //<h2><strong>Examples</strong></h2>
+                        //<p>The following example demonstrates how to merge two disparate sets. This example creates two HashSet&lt;T&gt; objects, and populates them with even and odd numbers, respectively. A third HashSet&lt;T&gt; object is created from the set that contains the even numbers. The example then calls the UnionWith method, which adds the odd number set to the third set.</p>
+                        //      `,
+                        //                            editor: null
+                        //                        },
+                        {
+                            id: 909090,
+                            type: 'text',
+                            sortOrder: 0,
+                            text: `
+                        <h4>Parameters 22222222</h4>
+                        <div class="tableWrapper"><table style="min-width: 75px;"><colgroup><col><col><col></colgroup><tbody><tr><th colspan="1" rowspan="1"><p>Name</p></th><th colspan="1" rowspan="1"><p>Type</p></th><th colspan="1" rowspan="1"><p>Nullable</p></th></tr><tr><td colspan="1" rowspan="1"><p>Title</p></td><td colspan="1" rowspan="1"><p>string</p></td><td colspan="1" rowspan="1"><p>not null</p></td></tr><tr><td colspan="1" rowspan="1"><p>Description</p></td><td colspan="1" rowspan="1"><p>string</p></td><td colspan="1" rowspan="1"><p>null</p></td></tr></tbody></table></div>
+                        <h2><strong>Examples</strong></h2>
+                        <p>The following example demonstrates how to merge two disparate sets. This example creates two HashSet&lt;T&gt; objects, and populates them with even and odd numbers, respectively. A third HashSet&lt;T&gt; object is created from the set that contains the even numbers. The example then calls the UnionWith method, which adds the odd number set to the third set.</p>
+                              `,
+                            editor: null
+                        },
+                    ],
+                    tags:
+                        [
+                            'Docs', 'C#', 'AWS', 'SQL'
+                        ],
+                },
+
+                showEditorButtons: false,
+                showMoveButtons: true,
+                codeBlockVisible: false,
+
+                allArticleItemsByOrder: [],
+
+                emptyText: {
+                    id: 0,
+                    type: 'text',
+                    sortOrder: 0,
+                    text: ``,
+                    editor: null
+                },
+
+                emptyCodeBlock: {
+                    id: 0,
+                    type: 'code',
+                    sortOrder: 0,
+                    code: ``,
+                    lang: 'C#'
+                },
             };
         },
         methods: {
-            editorButtonStyle() {
-                let border = "border: 2px solid " + this.style.currentMode.color + "!important; cursor: pointer;";
-                return border;
+            zoomPageOut() {
+                this.currentZoomPercentage = this.currentZoomPercentage - 10;
+           
+                document.body.style.zoom = this.currentZoomPercentage + '%';
+            },
+            zoomPageIn() {
+                this.currentZoomPercentage = this.currentZoomPercentage + 10;
 
+                document.body.style.zoom = this.currentZoomPercentage + '%';
+            },
+            updateCodeBlock(codeBlock) {
+                this.article.codeBlocks.find(x => x.id === codeBlock.id).code = codeBlock.code;
+            },
+            // options start
+            addTextToArticle() {
+
+                const test = this.emptyText;
+                var newText = test;
+
+                newText.id = this.allArticleItemsByOrder.at(-1).id + 1;
+
+                newText.text = `<h2><strong>Examples</strong></h2>
+                        <p>The following example demonstrates how to merge two disparate sets. This example creates two HashSet&lt;T&gt; objects, and populates them with even and odd numbers, respectively. A third HashSet&lt;T&gt; object is created from the set that contains the even numbers. The example then calls the UnionWith method, which adds the odd number set to the third set.</p>`;
+
+
+                var newEditor = null;
+                newEditor = new Editor({
+                    content: newText.text,
+                    extensions: [
+                        StarterKit,
+                        Document,
+                        Paragraph,
+                        Text,
+                        TextAlign.configure({
+                            types: ['heading', 'paragraph'],
+                        }),
+                        Table.configure({
+                            resizable: true,
+                        }),
+                        TableHeader,
+                        TableCell,
+                        TableRow,
+                    ],
+                });
+
+                newText.editor = newEditor;
+
+                const sortOrderToGive = this.allArticleItemsByOrder.at(-1).sortOrder + 1;
+
+                newText.sortOrder = sortOrderToGive;
+
+
+                this.article.texts.push(newText);
+
+                // resetting the empty text reference otherwise it saves the state for next textblock that is created
+                this.emptyText = {
+                    id: 0,
+                    type: 'text',
+                    sortOrder: 0,
+                    text: ``,
+                    editor: null
+                };
+
+                // this fixes save state of text when add but not for all.........
+                this.allArticleItemsByOrder.push(newText);
+
+                this.getArticleItems();
+
+            },
+            addCodeBlockToArticle() {
+                const test = this.emptyCodeBlock;
+                var newCodeBlock = test;
+
+                newCodeBlock.id = this.allArticleItemsByOrder.at(-1).id + 1;
+                newCodeBlock.code =
+                    `
+// Putting the pivot value in the middle
+[arr[pivotIndex], arr[end]] = [arr[end], arr[pivotIndex]]
+return pivotIndex;
+};
+`;
+
+                const sortOrderToGive = this.allArticleItemsByOrder.at(-1).sortOrder + 1;
+                newCodeBlock.sortOrder = sortOrderToGive;
+
+                this.article.codeBlocks.push(newCodeBlock);
+
+                // resetting the empty text reference otherwise it saves the state for next textblock that is created
+                this.emptyCodeBlock = {
+                    id: 0,
+                    type: 'code',
+                    sortOrder: 0,
+                    code: ``,
+                    lang: 'C#'
+                };
+
+                this.allArticleItemsByOrder.push(newCodeBlock);
+
+                this.getArticleItems();
+            },
+            addBannerToArticle() {
+                console.log('add Banner');
+            },
+            addMediaToArticle() {
+                console.log('add Media');
+            },
+            // options end
+
+            createNewTag() {
+                var tag = this.createTagInput;
+
+                var found = this.tags.find(x => x === tag);
+                if (found === undefined) {
+                    this.tags.unshift(tag);
+                    this.createTagInput = '';
+                }
+            },
+            selectTag(tag) {
+                var found = this.article.tags.find(x => x === tag);
+                if (found === undefined) {
+                    this.article.tags.push(tag);
+                } else {
+                    this.article.tags.splice(this.article.tags.indexOf(found), 1);
+                }
+            },
+
+            moveCodeUp(item) {
+                if (item.sortOrder === 0) {
+                    return;
+                }
+
+                var currItem = null;
+                var prevItem = null;
+
+                // curr items
+                if (item.type === 'code') { // if item code
+                    currItem = this.article.codeBlocks.find(x => x.id === item.id);
+                    this.article.codeBlocks.splice(this.article.codeBlocks.indexOf(currItem), 1);
+                } else { // if item text
+                    currItem = this.article.texts.find(x => x.id === item.id);
+                    currItem.text = currItem.editor.getHTML();
+                    this.article.texts.splice(this.article.texts.indexOf(currItem), 1);
+                }
+
+
+                // search in texts
+                // search in codeblocks
+                // return only prev item
+
+                var prevCode = this.article.codeBlocks.find(x => x.sortOrder === (item.sortOrder - 1));
+                var prevText = this.article.texts.find(x => x.sortOrder === (item.sortOrder - 1));
+
+                if (prevCode === undefined) {
+                    prevItem = prevText;
+                    prevItem.text = prevItem.editor.getHTML();
+                    this.article.texts.splice(this.article.texts.indexOf(prevItem), 1);
+                } else {
+                    prevItem = prevCode;
+                    this.article.codeBlocks.splice(this.article.codeBlocks.indexOf(prevItem), 1);
+                }
+
+
+                if (currItem.type === 'code') {
+                    currItem.sortOrder = (currItem.sortOrder - 1);
+                    this.article.codeBlocks.push(currItem);
+                } else {
+                    currItem.sortOrder = (currItem.sortOrder - 1);
+                    this.article.texts.push(currItem);
+                }
+
+                if (prevItem.type === 'text') {
+                    prevItem.sortOrder = (prevItem.sortOrder + 1);
+                    this.article.texts.push(prevItem);
+                } else {
+                    prevItem.sortOrder = (prevItem.sortOrder + 1);
+                    this.article.codeBlocks.push(prevItem);
+                }
+
+                this.allArticleItemsByOrder.length = 0;
+
+                this.getArticleItems();
+            },
+            moveCodeDown(item) {
+                if ((item.sortOrder + 1) === this.allArticleItemsByOrder.length) {
+                    return;
+                }
+
+
+                var currItem = null;
+                var prevItem = null;
+
+                // curr items
+                if (item.type === 'code') { // if item code
+                    currItem = this.article.codeBlocks.find(x => x.id === item.id);
+                    this.article.codeBlocks.splice(this.article.codeBlocks.indexOf(currItem), 1);
+                } else { // if item text
+                    currItem = this.article.texts.find(x => x.id === item.id);
+                    currItem.text = currItem.editor.getHTML();
+                    this.article.texts.splice(this.article.texts.indexOf(currItem), 1);
+                }
+
+
+                // search in texts
+                // search in codeblocks
+                // return only prev item
+
+                var prevCode = this.article.codeBlocks.find(x => x.sortOrder === (item.sortOrder + 1));
+                var prevText = this.article.texts.find(x => x.sortOrder === (item.sortOrder + 1));
+
+                if (prevCode === undefined) {
+                    prevItem = prevText;
+                    prevItem.text = prevItem.editor.getHTML();
+                    this.article.texts.splice(this.article.texts.indexOf(prevItem), 1);
+                } else {
+                    prevItem = prevCode;
+                    this.article.codeBlocks.splice(this.article.codeBlocks.indexOf(prevItem), 1);
+
+
+                }
+
+
+                if (currItem.type === 'code') {
+                    currItem.sortOrder = (currItem.sortOrder + 1);
+                    this.article.codeBlocks.push(currItem);
+                } else {
+                    currItem.sortOrder = (currItem.sortOrder + 1);
+                    this.article.texts.push(currItem);
+                }
+
+                if (prevItem.type === 'text') {
+                    prevItem.sortOrder = (prevItem.sortOrder - 1);
+                    this.article.texts.push(prevItem);
+                } else {
+                    prevItem.sortOrder = (prevItem.sortOrder - 1);
+                    this.article.codeBlocks.push(prevItem);
+                }
+
+                this.allArticleItemsByOrder.length = 0;
+                // make chekcs if type code or text - 2 levels
+                this.getArticleItems();
+            },
+            removeCode() {
+                console.log('remove');
+            },
+            compareSortOrder(a, b) {
+                if (a.sortOrder < b.sortOrder) {
+                    return -1;
+                }
+                if (a.sortOrder > b.sortOrder) {
+                    return 1;
+                }
+                return 0;
+            },
+            saveStateInArticle() {
+                this.article.texts = [];
+                this.article.codeBlocks = [];
+
+                this.allArticleItemsByOrder;
+
+                for (var i = 0; i < this.allArticleItemsByOrder.length; i++) {
+                    if (this.allArticleItemsByOrder[i].type == 'text') {
+                        this.allArticleItemsByOrder[i].text = this.allArticleItemsByOrder[i].editor.getHTML();
+                        this.article.texts.push(this.allArticleItemsByOrder[i]);
+                    }
+                    if (this.allArticleItemsByOrder[i].type == 'code') {
+                        this.article.codeBlocks.push(this.allArticleItemsByOrder[i]);
+                    }
+                }
+            },
+            getArticleItems() {
+                if (this.allArticleItemsByOrder.length > 0) {
+                    this.saveStateInArticle();
+                }
+
+                this.allArticleItemsByOrder = [];
+                setTimeout(() => {
+
+
+                    var codeBlocks = this.article.codeBlocks;
+                    for (var i = 0; i < this.article.codeBlocks.length; i++) {
+                        this.allArticleItemsByOrder.splice((codeBlocks[i].sortOrder), 0, codeBlocks[i]);
+                    }
+
+                    var texts = this.article.texts;
+                    for (var i = 0; i < texts.length; i++) {
+
+                        var newEditor = null;
+                        newEditor = new Editor({
+                            content: texts[i].text,
+                            extensions: [
+                                StarterKit,
+                                Document,
+                                Paragraph,
+                                Text,
+                                TextAlign.configure({
+                                    types: ['heading', 'paragraph'],
+                                }),
+                                //Gapcursor,
+                                Table.configure({
+                                    resizable: true,
+                                }),
+                                TableRow,
+                                TableHeader,
+                                TableCell,
+                            ],
+                        });
+
+                        // new code
+
+                        // works but gotta find way to two way databind editor content and save it in .text with v-model or something
+                        this.article.texts.find(x => x.id === texts[i].id).editor = newEditor;
+                        this.allArticleItemsByOrder.splice((texts[i].sortOrder), 0, texts[i]);
+
+
+                        //var newEditorObject = { id: texts[i].id, theEditor: newEditor };
+                        //this.editors.push(newEditorObject);
+                    }
+
+                    this.allArticleItemsByOrder = this.allArticleItemsByOrder.sort(this.compareSortOrder);
+                }
+                    , 0);
             },
             optionStyle() {
                 let bg = "background-color: " + this.style.currentMode.contentBg + "; ";
@@ -286,7 +776,7 @@
                 return bg + color;
             },
             appGlobalStyle() {
-                let bg = "background-color: " + this.style.currentMode.bg + "; ";
+                let bg = "transition: ease-in-out 0.5s !important; background-color: " + this.style.currentMode.bg + "; ";
                 let color = "color: " + this.style.currentMode.color + "!important; ";
                 return bg + color;
             },
@@ -299,178 +789,96 @@
                 style: (store) => store.style,
             }),
         },
-      
         mounted() {
+            this._keyListener = function (e) {
+                if (e.keyCode === 13) {
+                    e.preventDefault();
+                    if (this.createTagInput !== '') {
+                        this.createNewTag();
+                    }
+                }
+            };
+
+            document.addEventListener("keydown", this._keyListener.bind(this));
+
             this.setUsersPrefferedThemeOrDefault();
+            this.getArticleItems();
 
-            this.editor = new Editor({
-                content: `
-<h1>HashSet&lt;T&gt; Class</h1>
-<p>Reference</p>
-<h4>Parameters</h4>
-<div class="tableWrapper"><table style="min-width: 75px;"><colgroup><col><col><col></colgroup><tbody><tr><th colspan="1" rowspan="1"><p>Name</p></th><th colspan="1" rowspan="1"><p>Type</p></th><th colspan="1" rowspan="1"><p>Nullable</p></th></tr><tr><td colspan="1" rowspan="1"><p>Title</p></td><td colspan="1" rowspan="1"><p>string</p></td><td colspan="1" rowspan="1"><p>not null</p></td></tr><tr><td colspan="1" rowspan="1"><p>Description</p></td><td colspan="1" rowspan="1"><p>string</p></td><td colspan="1" rowspan="1"><p>null</p></td></tr></tbody></table></div>
-<h2><strong>Examples</strong></h2>
-<p>The following example demonstrates how to merge two disparate sets. This example creates two HashSet&lt;T&gt; objects, and populates them with even and odd numbers, respectively. A third HashSet&lt;T&gt; object is created from the set that contains the even numbers. The example then calls the UnionWith method, which adds the odd number set to the third set.</p>
-      `,
-                extensions: [
-                    StarterKit,
-                    Document,
-                    Paragraph,
-                    Text,
-                    Gapcursor,
-                    Table.configure({
-                        resizable: true,
-                    }),
-                    TableRow,
-                    TableHeader,
-                    TableCell,
-                ],
-            })
+            //            this.editor = new Editor({
+            //                content: `
+            //<h4>Parameters</h4>
+            //<div class="tableWrapper"><table style="min-width: 75px;"><colgroup><col><col><col></colgroup><tbody><tr><th colspan="1" rowspan="1"><p>Name</p></th><th colspan="1" rowspan="1"><p>Type</p></th><th colspan="1" rowspan="1"><p>Nullable</p></th></tr><tr><td colspan="1" rowspan="1"><p>Title</p></td><td colspan="1" rowspan="1"><p>string</p></td><td colspan="1" rowspan="1"><p>not null</p></td></tr><tr><td colspan="1" rowspan="1"><p>Description</p></td><td colspan="1" rowspan="1"><p>string</p></td><td colspan="1" rowspan="1"><p>null</p></td></tr></tbody></table></div>
+            //<h2><strong>Examples</strong></h2>
+            //<p>The following example demonstrates how to merge two disparate sets. This example creates two HashSet&lt;T&gt; objects, and populates them with even and odd numbers, respectively. A third HashSet&lt;T&gt; object is created from the set that contains the even numbers. The example then calls the UnionWith method, which adds the odd number set to the third set.</p>
+            //      `,
+            //                extensions: [
+            //                    StarterKit,
+            //                    Document,
+            //                    Paragraph,
+            //                    Text,
+            //                    Gapcursor,
+            //                    Table.configure({
+            //                        resizable: true,
+            //                    }),
+            //                    TableRow,
+            //                    TableHeader,
+            //                    TableCell,
+            //                ],
+            //            })
         },
-
         beforeUnmount() {
-            this.editor.destroy()
+            //this.editor.destroy()
+            // foreach editors destroy but not really needed i think
         },
     };
 </script>
 
+<style lang="scss" scoped>
 
-<style lang="scss">
-
-   .editorButton {
-      /* background: transparent;
-       color: white;*/
-       border-radius: 18px;
-       padding-left: 12px;
-       padding-right: 12px;
-       padding-top: 4px;
-       padding-bottom: 4px;
-      /* border: 2px solid #fff;*/
-       margin: 6px;
-   }
-
-    .ProseMirror {
-        padding: 7px;
-        table {
-            border-collapse: collapse;
-            table-layout: fixed;
-            width: 100%;
-            margin: 0;
-            overflow: hidden;
-
-            td,
-            th {
-                min-width: 1em;
-                border: 2px solid #ced4da;
-                padding: 3px 5px;
-                vertical-align: top;
-                box-sizing: border-box;
-                position: relative;
-
-                > * {
-                    margin-bottom: 0;
-                }
-            }
-
-            th {
-                font-weight: bold;
-                text-align: left;
-            }
-
-            .selectedCell:after {
-                z-index: 2;
-                position: absolute;
-                content: "";
-                left: 0;
-                right: 0;
-                top: 0;
-                bottom: 0;
-                background: rgba(200, 200, 255, 0.4);
-                pointer-events: none;
-            }
-
-            .column-resize-handle {
-                position: absolute;
-                right: -2px;
-                top: 0;
-                bottom: -2px;
-                width: 4px;
-                background-color: #adf;
-                pointer-events: none;
-            }
-
-            p {
-                margin: 0;
-            }
-        }
+    .TagActive {
+        background-color: #6c757d !important;
+        color: #fff !important;
     }
 
-    .tableWrapper {
-        padding: 1rem 0;
-        overflow-x: auto;
+    .TagActive:hover {
+        background-color: #dc3545 !important;
+        border: 1px solid #dc3545 !important;
     }
 
-    .resize-cursor {
-        cursor: ew-resize;
-        cursor: col-resize;
+    .disabled {
+        border: 1px solid transparent;
+        border-radius: 10px;
     }
 
-    .ProseMirror {
-        > * + * {
-            margin-top: 0.75em;
-        }
-
-        ul,
-        ol {
-            padding: 0 1rem;
-        }
-
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            line-height: 1.1;
-        }
-
-        code {
-            background-color: rgba(#616161, 0.1);
-            color: #616161;
-        }
-
-        pre {
-            background: #0D0D0D;
-            color: #FFF;
-            font-family: 'JetBrainsMono', monospace;
-            padding: 0.75rem 1rem;
-            border-radius: 0.5rem;
-
-            code {
-                color: inherit;
-                padding: 0;
-                background: none;
-                font-size: 0.8rem;
-            }
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        blockquote {
-            padding-left: 1rem;
-            border-left: 2px solid rgba(#0D0D0D, 0.1);
-        }
-
-        hr {
-            border: none;
-            border-top: 2px solid rgba(#0D0D0D, 0.1);
-            margin: 2rem 0;
-        }
+    .disabled:hover {
+        border: 1px solid #6c757d;
     }
 
+    .wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .main,
+    .sidebar {
+    }
+
+    .main {
+        width: 100%;
+        height: 150vh;
+    }
+
+    .sidebar {
+        width: 25%;
+        height: 25vh;
+    }
+
+    .sidebar {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+    }
+    // sidebar end
 
     .option {
         height: 150px;
@@ -486,14 +894,16 @@
 
     .option:hover {
         transition: ease-in-out 0.25s;
-        background-color: #f44949 !important;
+        background-color: #007bff !important;
         color: #fff !important;
         -webkit-box-shadow: 2px 11px 17px -7px #000000;
         box-shadow: 2px 11px 17px -7px #000000;
     }
+
     .option:hover code {
         color: #fff;
     }
+
     .option:hover .test {
         color: #fff;
     }

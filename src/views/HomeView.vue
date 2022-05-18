@@ -1,79 +1,61 @@
 ﻿<template>
-    <div :style="appGlobalStyle()">
-        <br />
-        <!-- TopNavigation -->
-        <div id="navWrapperSticky" :style="appGlobalStyle()">
-            <TopNavigation />
-        </div>
-        <!-- TopNavigation -->
-
-
-        <!--
-
-            add copy button and language teller in combination with this maybe!
-
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
-            </li>
-        </ul>
-
-        <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">sdfffffffffffffffffffffffff</div>
-            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">sdfffffffffffffffffffffffff</div>
-            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">sdfffffffffffffffffffffffff</div>
-        </div>
-            -->
-
-        <br />
-        <!-- recents -->
-        <div class="container-fluid" style="padding-left:95px; padding-right:50px;">
+    <div>
+        <div class="container-fluid mt-5" id="recentsMobile" style="display:none;">
             <div class="row">
                 <div class="col-12">
-                    <h6 class="text-secondary">Recents</h6>
+                    <h6 class="text-secondary" :style="appGlobalStyle()">Recents</h6>
                 </div>
             </div>
-            <br />
+            <div class="row mt-4">
+                <div class="col-12">
+                    <Carousel></Carousel>
+                </div>
+            </div>
+        </div>
+        <br />
+        <!--<h1>DOWNLOAD GOOGLE ICONS</h1>
+        <p>https://fonts.google.com/icons?icon.query=details</p>-->
+        <!-- recents -->
+        <div class="container-fluid mt-5" id="recentsDesktop">
             <div class="row">
+                <div class="col-12">
+                    <h6 class="text-secondary" :style="appGlobalStyle()">Recents</h6>
+                </div>
+            </div>
+            <div class="row mt-4">
                 <div class="col-md-6 col-lg-3 mb-2">
-                    <card title="SSMS fixes" description="4 articles" tag="🕑" />
+                    <card title="SSMS fixes" description="4 articles" tag="history" to="category1"/>
                 </div>
                 <div class="col-md-6 col-lg-3 mb-2">
-                    <card title="GitHub Commands" description="1 article" tag="🕑" to="category1" />
+                    <card title="GitHub Commands" description="1 article" tag="history" to="category1" />
                 </div>
                 <div class="col-md-6 col-lg-3 mb-2">
-                    <card title="Firestore Setup Guide" description="10 articles" tag="🕑" to="category1" />
+                    <card title="Firestore Setup Guide" description="10 articles" tag="history" to="category1" />
                 </div>
                 <div class="col-md-6 col-lg-3 mb-2">
-                    <card title="Favorites" description="14 articles" tag="🕑" to="category1" />
+                    <card title="Favorites" description="14 articles" tag="history" to="category1" />
                 </div>
             </div>
         </div>
         <!-- recents -->
         <br />
         <!-- Favorites -->
-        <div class="container-fluid" style="padding-left:95px; padding-right:50px;">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <h6 class="text-secondary">Favorites</h6>
+                    <h6 class="text-secondary" :style="appGlobalStyle()">Favorites</h6>
                 </div>
             </div>
             <br />
             <div class="row">
                 <div class="col-md-12 col-lg-4 mb-2">
-                    <card title="Google Cloud Platform Docs" description="16 articles" tag="⭐" to="category1" />
+                    <card title="Google Cloud Platform Docs" description="16 articles" tag="grade" to="category1" />
                 </div>
                 <div class="col-md-12 col-lg-4 mb-2">
-                    <card title="GPC deploy Guide" description="1 articles" tag="⭐" to="category1" />
+                    <card title="GPC deploy Guide" description="1 articles" tag="grade" to="category1" />
                 </div>
                 <div class="col-md-12 col-lg-4 mb-2">
-                    <card title="Vue Dropzone Docs" description="1 articles" tag="⭐" to="category1" />
+                    <card title="Vue Dropzone Docs" description="1 articles" tag="grade" to="category1" />
                 </div>
 
             </div>
@@ -81,38 +63,38 @@
         <!-- Favorites -->
         <br />
         <!-- Last edited article + My spaces -->
-        <div class="container-fluid" style="padding-left:95px; padding-right:50px;">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-12 col-lg-6">
                     <!-- Last edited article -->
                     <div class="row mb-4 ml-1">
-                        <h6 class="text-secondary">Last edited article</h6>
+                        <h6 class="text-secondary" :style="appGlobalStyle()">Last edited article</h6>
                     </div>
-                    <card title="Vue Dropzone parameters" description="Contrary to popular belief, Lorem Ipsum is not simply random text." tag="🖋️" to="category1">
+                    <card title="Vue Dropzone parameters" description="Contrary to popular belief, Lorem Ipsum is not simply random text." tag="edit" to="category1">
                         <p class="text-secondary">{{loremIpsum}}</p>
                     </card>
                     <!-- Last edited article -->
                 </div>
                 <div class="col-sm-12 col-lg-6">
                     <div class="row mb-4 ml-1">
-                        <h6 class="text-secondary">My spaces</h6>
+                        <h6 class="text-secondary" :style="appGlobalStyle()">My spaces</h6>
                     </div>
                     <!-- My spaces-->
                     <div class="container-fluid pl-0">
                         <div class="row">
                             <div class="col-md-12 col-lg-6 mb-2">
-                                <card title="Private Space" spaceType="Private" :members="[{id: 1}]" description="56 articles" tag="🚀" to="category1" />
+                                <card title="Private Space" spaceType="Private" :members="[{id: 1}]" description="56 articles" tag="grid_view" to="category1" />
                             </div>
                             <div class="col-md-12 col-lg-6 mb-">
-                                <card title="Netmine" spaceType="Shared Private" :members="[{id: 1}, {id: 2}, {id: 3}, {id: 4}]" description="108 articles" tag="🚀" to="category1" />
+                                <card title="Netmine" spaceType="Shared Private" :members="[{id: 1}, {id: 2}, {id: 3}, {id: 4}]" description="108 articles" tag="grid_view" to="category1" />
                             </div>
                         </div>
                         <div class="row mt-2">
                             <div class="col-md-12 col-lg-6 mb-2">
-                                <card title="Case Study POC DPM" spaceType="Private" :members="[{id: 1}]" description="4 articles" tag="🚀" to="category1" />
+                                <card title="Case Study POC DPM" spaceType="Private" :members="[{id: 1}]" description="4 articles" tag="grid_view" to="category1" />
                             </div>
                             <div class="col-md-12 col-lg-6 mb-2">
-                                <card title="NCF Public Docs" spaceType="Shared Public" :members="[{id: 1}, {id: 2}, {id: 3}]" description="16 articles" tag="🚀" to="category1" />
+                                <card title="NCF Public Docs" spaceType="Shared Public" :members="[{id: 1}, {id: 2}, {id: 3}]" description="16 articles" tag="grid_view" to="category1" />
                             </div>
                         </div>
                     </div>
@@ -134,7 +116,7 @@
                     <center>
                         <card to="settings/dashboard">
                             <h4>Customize Dashboard</h4>
-                            <span style="font-size: 50px;">⚙️</span>
+                            <span class="material-symbols-outlined" style="font-size: 50px;">settings</span>
                             <br />
                             <br />
                         </card>
@@ -150,6 +132,8 @@
 </template>
 
 <script>
+    import Carousel from "@/components/common/Carousel.vue";
+
     import TopNavigation from "@/components/Layout/TopNavigation.vue";
     import loader from "@/components/common/loader.vue";
     import card from "@/components/common/card.vue";
@@ -175,7 +159,7 @@
             mainContent,
             card,
             codeBlock,
-            TopNavigation
+            Carousel
         },
         data: function () {
             return {
@@ -197,7 +181,7 @@
         },
         methods: {
             appGlobalStyle() {
-                let bg = "background-color: " + this.style.currentMode.bg + "; ";
+                let bg = "transition: ease-in-out 0.5s !important; background-color: " + this.style.currentMode.bg + "; ";
                 let color = "color: " + this.style.currentMode.color + "!important; ";
                 return bg + color;
             },
@@ -226,5 +210,15 @@
         /*background-color: #141618;*/
         border-bottom-left-radius: 32px;
         border-bottom-right-radius: 32px;
+    }
+
+    
+    @media screen and (max-width: 679px) {
+        #recentsMobile {
+            display:block !important;
+        }
+        #recentsDesktop {
+            display: none;
+        }
     }
 </style>

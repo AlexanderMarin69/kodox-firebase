@@ -1,633 +1,287 @@
 ﻿<template>
-  <div :style="appGlobalStyle()">
-    <aside class="sidebar">
-      <div class="side-inner" :style="appGlobalStyle()">
-        <div class="logo-wrap js-menu-toggle">
-          <div class="logo" :style="appGlobalStyle()">
-            <span :style="appGlobalStyle() + 'margin-left: 28px;'">kodox.</span>
-          </div>
-        </div>
-        <div class="logo-wrap js-menu-toggle">
-          <div class="logo" :style="appGlobalStyle()"></div>
-          <span
-            style="margin-left: -30px; margin-top: -50px"
-            class="logo-text text-secondary"
-            >Alexander Marin</span
-          >
-        </div>
-
-        <div class="logo-wrap js-menu-toggle">
-          <div class="logo" :style="appGlobalStyle()"></div>
-          <span
-            style="margin-left: -30px; margin-top: -120px; font-size: 12px"
-            class="logo-text text-secondary"
-            >Netmine AB</span
-          >
-        </div>
-
-        <div class="logo-wrap js-menu-toggle">
-          <div class="logo" :style="appGlobalStyle()"></div>
-          <span
-            style="margin-left: -30px; margin-top: -200px; font-size: 12px"
-            class="logo-text text-secondary"
-            >alexandermarin9908@gmail.com</span
-          >
-        </div>
-
-        <div class="logo-wrap js-menu-toggle">
-          <div class="logo" :style="appGlobalStyle()"></div>
-          <span
-            style="margin-left: -30px; margin-top: -270px; font-size: 12px"
-            class="logo-text text-secondary"
-            >🎗️ 275 community ribbons</span
-          >
-        </div>
-
-        <div
-          class="nav-menu"
-          style="
-            width: 200px !important;
-            margin-top: 180px !important;
-            position: absolute;
-          "
-        >
-          <ul>
-            <li style="cursor: pointer">
-              <a
-                :style="
-                  appGlobalStyle() + 'background-color: transparent !important;'
-                "
-                ><span class="">📱 Dashboard</span></a
-              >
-            </li>
-            <li style="cursor: pointer">
-              <a
-                :style="
-                  appGlobalStyle() + 'background-color: transparent !important;'
-                "
-                ><span class="">🚀 Spaces</span></a
-              >
-            </li>
-            <li style="cursor: pointer">
-              <a
-                :style="
-                  appGlobalStyle() + 'background-color: transparent !important;'
-                "
-                ><span class="">🔔 Notifications</span></a
-              >
-            </li>
-            <li style="cursor: pointer">
-              <a
-                :style="
-                  appGlobalStyle() + 'background-color: transparent !important;'
-                "
-                ><span class="">📁 Library</span></a
-              >
-            </li>
-            <li style="cursor: pointer">
-              <a
-                :style="
-                  appGlobalStyle() + 'background-color: transparent !important;'
-                "
-                ><span class="">🗑️ Archive</span></a
-              >
-            </li>
-            <li style="cursor: pointer">
-              <a
-                :style="
-                  appGlobalStyle() + 'background-color: transparent !important;'
-                "
-                ><span class="">⚙️ Settings</span></a
-              >
-            </li>
+    <div class="container-xl" style="display: grid; grid-template-columns: 1fr minmax(10px, 92%); height: 100px; margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px;">
+        <aside :style="appGlobalStyle()">
+            <div style="font-size: 32px;" class="ml-2">kodox.</div>
+            <p class="gradient-text ml-2" style="font-size: 8px; font-weight:bold;">The Code Docs Company.</p>
             <br />
-            <li>
-              <a>
-                <span>
-                  <ThemeAlternator />
-                </span>
-              </a>
-            </li>
-            <hr
-              style="border-top: 1px solid #fff; width: 152px; margin-left: 0"
-            />
-            <li style="cursor: pointer">
-              <a
-                :style="
-                  appGlobalStyle() + 'background-color: transparent !important;'
-                "
-                ><span class="">👨‍👨‍👧 Community</span></a
-              >
-            </li>
-               <li style="cursor: pointer">
-              <a
-                :style="
-                  appGlobalStyle() + 'background-color: transparent !important;'
-                "
-                ><span class="">📘 Blog</span></a
-              >
-            </li>
-            <li style="cursor: pointer">
-              <a
-                :style="
-                  appGlobalStyle() + 'background-color: transparent !important;'
-                "
-                ><span class="">▶️ Tutorials</span></a
-              >
-            </li>
-            <!-- <hr
-              style="border-top: 1px solid #fff; width: 152px; margin-left: 0"
-            />
-            <li style="cursor: pointer">
-              <a
-                :style="
-                  appGlobalStyle() + 'background-color: transparent !important;'
-                "
-                ><span class="">🚪 Log out</span></a
-              >
-            </li> -->
-          </ul>
-        </div>
-      </div>
-    </aside>
-    <main>
-      <router-view style="margin-left: 60px" />
-    </main>
-  </div>
+            <ul>
+                <li class="hoverable-list-item">
+                    <span class="material-symbols-outlined" style="vertical-align: text-top; color: #007bff; font-weight: bold">
+                        team_dashboard
+                    </span>
+                    <span style="vertical-align: sub; color: #007bff; font-weight: bold;" class="pl-1">Dashboard</span>
+                </li>
+                <li class="hoverable-list-item">
+                    <span class="material-symbols-outlined" style="vertical-align: text-top;">
+                        grid_view
+                    </span>
+                    <span style="vertical-align: sub;" class="pl-1">Spaces</span>
+                </li>
+                <li class="hoverable-list-item">
+                    <span class="material-symbols-outlined" style="vertical-align: text-top;">
+                        folder
+                    </span>
+                    <span style="vertical-align: sub;" class="pl-1">Library</span>
+                </li>
+                <li class="hoverable-list-item">
+                    <span class="material-symbols-outlined" style="vertical-align: text-top;">
+                        delete
+                    </span>
+                    <span style="vertical-align: sub;" class="pl-1">Archive</span>
+                </li>
+                <li class="hoverable-list-item">
+                    <span class="material-symbols-outlined" style="vertical-align: text-top;">
+                        settings
+                    </span>
+                    <span style="vertical-align: sub;" class="pl-1">Settings</span>
+                </li>
+
+                <br />
+
+                <li><ThemeAlternator /></li>
+
+                <br />
+
+                <li class="hoverable-list-item">
+                    <span class="material-symbols-outlined" style="vertical-align: text-top;">
+                        keyboard
+                    </span>
+                    <span style="vertical-align: sub;" class="pl-1">Hotkeys</span>
+                </li>
+                <li class="hoverable-list-item">
+                    <span class="material-symbols-outlined" style="vertical-align: text-top;">
+                        play_circle
+                    </span>
+                    <span style="vertical-align: sub;" class="pl-1">Tutorials</span>
+                </li>
+                <li class="hoverable-list-item">
+                    <span class="material-symbols-outlined" style="vertical-align: text-top;">
+                        logout
+                    </span>
+                    <span style="vertical-align: sub;" class="pl-1">Log out</span>
+                </li>
+
+                <br /> 
+
+                <li>
+                    <div class="p-1 quickNoteButton" style="width: 75px; height: 75px; border-radius: 10px; background-color: #fff;">
+                        <center>
+                            <span class="mt-2 material-symbols-outlined">
+                                add
+                            </span>
+                            <br />
+                            Quick Note
+                        </center>
+                    </div>
+                </li>
+
+            </ul>
+        </aside>
+        <main>
+            <nav class="navbar" :style="appGlobalStyle()">
+                <TopNavigation :style="appGlobalStyle()" />
+                <router-view />
+            </nav>
+        </main>
+    </div>
 </template>
 
 <script>
-import ThemeAlternator from "@/components/Design/ThemeAlternator.vue";
-import { mapState, mapActions } from "vuex";
-export default {
-  name: "HomeView",
-  components: {
-    ThemeAlternator,
-  },
-  data() {
-    return {};
-  },
-  methods: {
-    appGlobalStyle() {
-      let bg = "background-color: " + this.style.currentMode.bg + "; ";
-      let color = "color: " + this.style.currentMode.color + "!important; ";
-      return bg + color;
-    },
-    ...mapActions({
-      focusGlobalSearchBar: "functions/FOCUS_GLOBAL_SEARCH_BAR",
-    }),
-  },
-  computed: {
-    ...mapState({
-      style: (store) => store.style,
-    }),
-  },
-  mounted() {
-    this._keyListener = function (e) {
-      //if (e.key === "s" && (e.ctrlKey || e.metaKey)) {
-      //    e.preventDefault(); // present "Save Page" from getting triggered.
+    import TopNavigation from "@/components/Layout/TopNavigation.vue";
+    import ThemeAlternator from "@/components/Design/ThemeAlternator.vue";
 
-      //    alert('saveeeeeeee');
-      //}
-      if (e.keyCode === 114 || (e.ctrlKey && e.keyCode === 70)) {
-        e.preventDefault();
-        this.focusGlobalSearchBar();
-      }
+    import { mapState, mapActions } from "vuex";
+
+    export default {
+        name: "HomeView",
+        components: {
+            TopNavigation,
+            ThemeAlternator
+        },
+        data() {
+            return {};
+        },
+        methods: {
+            appGlobalStyle() {
+                let bg = "transition: ease-in-out 0.5s !important; background-color: " + this.style.currentMode.bg + "; ";
+                let color = "color: " + this.style.currentMode.color + "!important; ";
+                return bg + color;
+            },
+            ...mapActions({
+                focusGlobalSearchBar: "functions/FOCUS_GLOBAL_SEARCH_BAR",
+            }),
+        },
+        computed: {
+            ...mapState({
+                style: (store) => store.style,
+            }),
+        },
+        mounted() {
+            //document.body.style.zoom = "90%";
+
+            this._keyListener = function (e) {
+                //if (e.key === "s" && (e.ctrlKey || e.metaKey)) {
+                //    e.preventDefault(); // present "Save Page" from getting triggered.
+
+                //    alert('saveeeeeeee');
+                //}
+                if (e.keyCode === 114 || (e.ctrlKey && e.keyCode === 70)) {
+                    e.preventDefault();
+                    this.focusGlobalSearchBar();
+                }
+            };
+
+            document.addEventListener("keydown", this._keyListener.bind(this));
+        },
+        //beforeDestroy() {  USE THIS WHEN SAVING INSIDE A CODE BLOCK OR WHATEVER !!!!!!!!!!!!!!!!!
+        //    document.removeEventListener('keydown', this._keyListener);
+        //}
     };
-
-    document.addEventListener("keydown", this._keyListener.bind(this));
-  },
-  //beforeDestroy() {  USE THIS WHEN SAVING INSIDE A CODE BLOCK OR WHATEVER !!!!!!!!!!!!!!!!!
-  //    document.removeEventListener('keydown', this._keyListener);
-  //}
-};
 </script>
+
+
 <style scoped>
-.logo-wrap {
-  cursor: pointer;
-}
+    .gradient-text {
+        font-weight:bold;
+        background-color: red;
+        background-image: linear-gradient(45deg, #eaa16d, #af4261);
+        background-size: 100%;
+        background-repeat: repeat;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -moz-background-clip: text;
+        -moz-text-fill-color: transparent;
+    }
 
-body {
-  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  background-color: #efefef;
-}
+    .quickNoteButton:hover {
+        background-color: #007bff !important;
+        color: #fff;
+        border-radius: 10px;
+        -webkit-transition: 0.3s all ease;
+        -o-transition: 0.3s all ease;
+        transition: 0.3s all ease;
+    }
 
-p {
-  color: #b3b3b3;
-  font-weight: 300;
-}
+    ul {
+        padding-left: 0px;
+    }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6 {
-  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-}
+    li {
+        list-style: none;
+        text-align: start;
+        padding: 12px;
+        padding-right: 0px !important;
+        padding-left: 4px !important;
+        width: 100% !important;
+        font-size: 12px;
+        cursor: pointer;
+    }
 
-a {
-  -webkit-transition: 0.3s all ease;
-  -o-transition: 0.3s all ease;
-  transition: 0.3s all ease;
-}
+    .hoverable-list-item:hover {
+        background-color: #007bff;
+        color: #fff;
+        border-radius: 7px;
+        font-weight: bold;
+        -webkit-transition: 0.1s all ease;
+        -o-transition: 0.1s all ease;
+        transition: 0.1s all ease;
+    }
 
-a,
-a:hover {
-  text-decoration: none !important;
-}
+    #navWrapperSticky {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background-color: #141618;
+        border-bottom-left-radius: 32px;
+        border-bottom-right-radius: 32px;
+        transition: ease-in-out 0.5s;
+    }
 
-h2 {
-  font-size: 20px;
-}
 
-body {
-  position: relative;
-}
+   
 
-body:before {
-  position: absolute;
-  content: "";
-  z-index: 1;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  opacity: 0;
-  visibility: hidden;
-  -webkit-transition: 0.3s all ease-in-out;
-  -o-transition: 0.3s all ease-in-out;
-  transition: 0.3s all ease-in-out;
-}
+    .logo {
+        margin-right: 50px;
+    }
 
-body.show-sidebar {
-  overflow: hidden;
-}
+    .list {
+        list-style: none;
+        display: flex;
+        gap: 25px;
+    }
 
-body.show-sidebar:before {
-  opacity: 1;
-  visibility: visible;
-}
 
-.site-section {
-  padding: 7rem 0;
-}
+    @media screen and (max-width: 679px) {
+        .menu {
+            width: 100%;
+            max-height: 0;
+            overflow: hidden;
+        }
 
-aside,
-main {
-  height: 100vh;
-  min-height: 580px;
-}
+        .list {
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
 
-aside {
-  width: 140px;
-  left: 0;
-  z-index: 1001;
-  position: fixed;
-  -webkit-transform: translateX(0px);
-  -ms-transform: translateX(0px);
-  transform: translateX(0px);
-  background-color: #fff;
-  -webkit-transition: 0.7s width cubic-bezier(0.23, 1, 0.32, 1);
-  -o-transition: 0.7s width cubic-bezier(0.23, 1, 0.32, 1);
-  transition: 0.14s width cubic-bezier(0.23, 1, 0.32, 1);
-}
+        .navbar label {
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+        }
 
-.show-sidebar aside {
-  width: 260px;
-  -webkit-transform: translateX(0%);
-  -ms-transform: translateX(0%);
-  transform: translateX(0%);
-}
+        #toggler:checked ~ .menu {
+            max-height: 100%;
+        }
+    }
 
-aside .toggle {
-  padding-left: 30px;
-  padding-top: 30px;
-  position: absolute;
-  right: 0;
-  -webkit-transform: translateX(100%);
-  -ms-transform: translateX(100%);
-  transform: translateX(100%);
-}
+    main,
+    aside {
+        padding: 12px;
+    }
 
-.show-sidebar aside .toggle .burger:before,
-.show-sidebar aside .toggle .burger span,
-.show-sidebar aside .toggle .burger:after {
-  background: #fff;
-}
+    aside {
+        background: #81cfd9;
+    }
 
-.show-sidebar aside {
-  -webkit-box-shadow: 10px 0 30px 0 rgba(0, 0, 0, 0.2);
-  box-shadow: 10px 0 30px 0 rgba(0, 0, 0, 0.2);
-}
 
-aside .side-inner {
-  padding: 30px 0;
-  height: 100vh;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
-  -ms-overflow-style: none;
-}
+    @media screen and (max-width: 679px) {
+        .container-xl {
+            width: 100% !important;
+            display: block !important;
+        }
 
-aside .side-inner::-webkit-scrollbar {
-  display: none;
-}
+        aside {
+            display: none !important;
+        }
+    }
 
-aside .side-inner .logo-wrap {
-  display: block;
-  position: relative;
-  width: 100%;
-  float: left;
-}
 
-aside .side-inner .logo-wrap .logo {
-  width: 50px;
-  float: left;
-  height: 50px;
-  border-radius: 50%;
-  position: relative;
-  -webkit-transition: 0.3s margin ease;
-  -o-transition: 0.3s margin ease;
-  transition: 0.3s margin ease;
-  margin: 0 auto 50px 10px;
-}
 
-.show-sidebar aside .side-inner .logo-wrap .logo {
-  margin: 0 auto 50px 20px;
-}
 
-aside .side-inner .logo-wrap .logo span {
-  position: absolute;
-  color: #fff;
-  font-size: 1.5rem;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
+    #toggler,
+    .navbar label {
+        display: none;
+    }
+    .navbar {
+        background-color: black;
+        color: white;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+    }
 
-aside .side-inner .logo-wrap .logo-text {
-  position: absolute;
-  top: 10px;
-  font-size: 20px;
-  margin-left: 10px;
-  -webkit-transition: 0.3s all ease;
-  -o-transition: 0.3s all ease;
-  transition: 0.3s all ease;
-  opacity: 0;
-  visibility: hidden;
-}
+        .navbar a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-.show-sidebar aside .side-inner .logo-wrap .logo-text {
-  opacity: 1;
-  visibility: visible;
-}
+    main {
+        background: #d4f2c4;
+        padding: 0px;
+    }
 
-aside .side-inner .search-form {
-  padding-left: 20px;
-  padding-right: 20px;
-  clear: both;
-  margin-bottom: 30px;
-}
-
-aside .side-inner .search-form form {
-  position: relative;
-}
-
-aside .side-inner .search-form form .form-control {
-  border-radius: 30px;
-  border: 1px solid transparent;
-  padding-left: 40px;
-}
-
-aside .side-inner .search-form form .form-control:active,
-aside .side-inner .search-form form .form-control:focus {
-  outline: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-
-.show-sidebar aside .side-inner .search-form form .form-control {
-  border: 1px solid #efefef;
-}
-
-aside .side-inner .search-form form .wrap-icon {
-  font-size: 1.2rem;
-  top: 50%;
-  position: absolute;
-  top: 8px;
-  left: 2px;
-  z-index: 2;
-  -webkit-transition: 0.3s left ease;
-  -o-transition: 0.3s left ease;
-  transition: 0.3s left ease;
-}
-
-.show-sidebar aside .side-inner .search-form form .wrap-icon {
-  left: 10px;
-}
-
-aside .side-inner .nav-menu {
-  margin-bottom: 50px;
-  clear: both;
-}
-
-aside .side-inner .nav-menu ul,
-aside .side-inner .nav-menu ul li {
-  padding: 0;
-  margin: 0px;
-  list-style: none;
-}
-
-aside .side-inner .nav-menu ul li a {
-  display: block;
-  padding-left: 23px;
-  padding-right: 30px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  color: #b1b1b1;
-  position: relative;
-  -webkit-transition: 0.3s all ease;
-  -o-transition: 0.3s all ease;
-  transition: 0.3s all ease;
-}
-
-aside .side-inner .nav-menu ul li a:active,
-aside .side-inner .nav-menu ul li a:focus,
-aside .side-inner .nav-menu ul li a:hover {
-  outline: none;
-}
-
-aside .side-inner .nav-menu ul li a .wrap-icon {
-  font-size: 1.2rem;
-}
-
-aside .side-inner .nav-menu ul li a .menu-text {
-  opacity: 0;
-  visibility: hidden;
-  -webkit-transition: 0.3s all ease;
-  -o-transition: 0.3s all ease;
-  transition: 0.3s all ease;
-}
-
-.show-sidebar aside .side-inner .nav-menu ul li a .menu-text {
-  -webkit-transition: 0s all ease;
-  -o-transition: 0s all ease;
-  transition: 0s all ease;
-  opacity: 1;
-  visibility: visible;
-}
-
-aside .side-inner .nav-menu ul li.active a {
-  color: #000;
-}
-
-main {
-  width: calc(100%);
-  -webkit-transition: 1s -webkit-transform cubic-bezier(0.23, 1, 0.32, 1);
-  transition: 1s -webkit-transform cubic-bezier(0.23, 1, 0.32, 1);
-  -o-transition: 1s transform cubic-bezier(0.23, 1, 0.32, 1);
-  transition: 1s transform cubic-bezier(0.23, 1, 0.32, 1);
-  transition: 1s transform cubic-bezier(0.23, 1, 0.32, 1),
-    1s -webkit-transform cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.show-sidebar main {
-  -webkit-transform: translateX(0px);
-  -ms-transform: translateX(0px);
-  transform: translateX(0px);
-}
-
-main .post-entry {
-  margin-bottom: 30px;
-}
-
-main .post-entry .custom-thumbnail {
-  -webkit-box-flex: 0;
-  -ms-flex: 0 0 80px;
-  flex: 0 0 80px;
-  margin-right: 30px;
-}
-
-main .post-content h3 {
-  font-size: 18px;
-}
-
-main .post-content .post-meta {
-  font-size: 15px;
-  color: #ccc;
-}
-
-/* Burger */
-.burger {
-  width: 28px;
-  height: 32px;
-  cursor: pointer;
-  position: relative;
-  z-index: 99;
-  float: right;
-}
-
-.burger:before,
-.burger span,
-.burger:after {
-  width: 100%;
-  height: 2px;
-  display: block;
-  background: #000;
-  border-radius: 2px;
-  position: absolute;
-  opacity: 1;
-}
-
-.burger:before,
-.burger:after {
-  -webkit-transition: top 0.35s cubic-bezier(0.23, 1, 0.32, 1),
-    opacity 0.35s cubic-bezier(0.23, 1, 0.32, 1),
-    background-color 1.15s cubic-bezier(0.86, 0, 0.07, 1),
-    -webkit-transform 0.35s cubic-bezier(0.23, 1, 0.32, 1);
-  transition: top 0.35s cubic-bezier(0.23, 1, 0.32, 1),
-    opacity 0.35s cubic-bezier(0.23, 1, 0.32, 1),
-    background-color 1.15s cubic-bezier(0.86, 0, 0.07, 1),
-    -webkit-transform 0.35s cubic-bezier(0.23, 1, 0.32, 1);
-  -o-transition: top 0.35s cubic-bezier(0.23, 1, 0.32, 1),
-    transform 0.35s cubic-bezier(0.23, 1, 0.32, 1),
-    opacity 0.35s cubic-bezier(0.23, 1, 0.32, 1),
-    background-color 1.15s cubic-bezier(0.86, 0, 0.07, 1);
-  transition: top 0.35s cubic-bezier(0.23, 1, 0.32, 1),
-    transform 0.35s cubic-bezier(0.23, 1, 0.32, 1),
-    opacity 0.35s cubic-bezier(0.23, 1, 0.32, 1),
-    background-color 1.15s cubic-bezier(0.86, 0, 0.07, 1);
-  transition: top 0.35s cubic-bezier(0.23, 1, 0.32, 1),
-    transform 0.35s cubic-bezier(0.23, 1, 0.32, 1),
-    opacity 0.35s cubic-bezier(0.23, 1, 0.32, 1),
-    background-color 1.15s cubic-bezier(0.86, 0, 0.07, 1),
-    -webkit-transform 0.35s cubic-bezier(0.23, 1, 0.32, 1);
-  -webkit-transition: top 0.35s cubic-bezier(0.23, 1, 0.32, 1),
-    -webkit-transform 0.35s cubic-bezier(0.23, 1, 0.32, 1),
-    opacity 0.35s cubic-bezier(0.23, 1, 0.32, 1),
-    background-color 1.15s cubic-bezier(0.86, 0, 0.07, 1);
-  content: "";
-}
-
-.burger:before {
-  top: 4px;
-}
-
-.burger span {
-  top: 15px;
-}
-
-.burger:after {
-  top: 26px;
-}
-
-/* Hover */
-.burger:hover:before {
-  top: 7px;
-}
-
-.burger:hover:after {
-  top: 23px;
-}
-
-/* Click */
-.burger.active span {
-  opacity: 0;
-}
-
-.burger.active:before,
-.burger.active:after {
-  top: 40%;
-}
-
-.burger.active:before {
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=5);
-  /*for IE*/
-}
-
-.burger.active:after {
-  -webkit-transform: rotate(-45deg);
-  -moz-transform: rotate(-45deg);
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=-5);
-  /*for IE*/
-}
-
-.burger:focus {
-  outline: none;
-}
+ 
 </style>
