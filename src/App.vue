@@ -64,7 +64,7 @@
                 <br /> 
 
                 <li>
-                    <div class="p-1 quickNoteButton" style="width: 75px; height: 75px; border-radius: 10px; background-color: #fff;">
+                    <div class="p-1 quickNoteButton" style="width: 75px; height: 75px; border-radius: 10px; border: 1px solid #007bff;">
                         <center>
                             <span class="mt-2 material-symbols-outlined">
                                 add
@@ -154,7 +154,7 @@
     }
 
     .quickNoteButton:hover {
-        background-color: #007bff !important;
+        background-color: #007bff;
         color: #fff;
         border-radius: 10px;
         -webkit-transition: 0.3s all ease;

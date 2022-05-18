@@ -227,7 +227,7 @@
                                 </span>
                                 Save
                             </button>
-                            <br />
+                            <p class="text-info" style="font-size: 12px;">Saving to: Netmine | Router Docs</p>
                             <button class="btn btn-outline-secondary btn-sm mb-3" href="#" style="vertical-align: baseline;" @click="showEditorButtons = !showEditorButtons">
                                 <span v-if="showEditorButtons" class="material-symbols-outlined mr-1" style="vertical-align: bottom;">
                                     visibility
@@ -459,6 +459,7 @@ return pivotIndex;
                 document.body.style.zoom = this.currentZoomPercentage + '%';
             },
             updateCodeBlock(codeBlock) {
+                console.log(codeBlock.id);
                 this.article.codeBlocks.find(x => x.id === codeBlock.id).code = codeBlock.code;
             },
             // options start

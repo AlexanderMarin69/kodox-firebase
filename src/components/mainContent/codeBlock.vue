@@ -27,7 +27,7 @@
 
         <pre class="preStyle">
         <!--<code class="codeStyle" contenteditable="true" id="editableCodeBlock">-->
-        <code class="codeStyle" id="editableCodeBlock" contenteditable="true"><span>{{code}}</span></code>
+        <code class="codeStyle" :id="'editableCodeBlock' + editId" contenteditable="true"><span>{{code}}</span></code>
         </pre>
         <div style="margin-top:-50px;">
             <span class="text-secondary">Authors: Alexander Marin</span>
@@ -196,17 +196,15 @@
             highlighter.highlightAll();
 
             // highlights on blur <code>
-            const editableCodeBlock = document.getElementById("editableCodeBlock");
+            const editableCodeBlock = document.getElementById("editableCodeBlock" + this.editId);
             editableCodeBlock.addEventListener('blur', (event) => {
 
-                var contenteditable = document.getElementById("editableCodeBlock");
+                var contenteditable = document.getElementById("editableCodeBlock" + this.editId);
                 var text = contenteditable.textContent;
 
                 this.$emit("codeChanged", { code: text, id: this.editId });
 
-                setTimeout(() => {
-                    self.doTheHighlightning(editableCodeBlock);
-                }, 0);
+                self.doTheHighlightning(editableCodeBlock);
             });
 
             // so that user can press enter
@@ -217,7 +215,7 @@
                 }
             };
 
-            document.getElementById("editableCodeBlock").addEventListener("keydown", this._keyListener.bind(this));
+            document.getElementById("editableCodeBlock" + this.editId).addEventListener("keydown", this._keyListener.bind(this));
         },
     };
 </script>
