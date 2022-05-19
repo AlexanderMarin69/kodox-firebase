@@ -93,9 +93,11 @@
         /* -webkit-box-shadow: 1px 2px 15px -5px rgba(0,0,0,0.35);
         box-shadow: 1px 2px 15px -5px rgba(0,0,0,0.35);*/
         /*box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;*/
-
         // latest 👇
         /*box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;*/
+
+        -webkit-box-shadow: 0px 38px 50px -22px rgba(0,0,0,0.16);
+        box-shadow: 0px 38px 50px -22px rgba(0,0,0,0.16);
     }
 </style>
 

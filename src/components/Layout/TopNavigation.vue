@@ -24,7 +24,7 @@
                     </div>
 
                     <div class="btn-group">
-                        <div :style="appGlobalStyleContent() + 'padding-left: 0px !important; padding-right: 0px !important; border-radius: 10px; ' " class="btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div :style="appGlobalStyleContent() + 'padding-left: 0px !important; padding-right: 0px !important; border-radius: 10px; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;' " class="btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-6">
@@ -56,7 +56,7 @@
                         </div>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" :style="appGlobalStyleContent() + 'border: 1px solid #007bff;' ">
                             <p class="ml-5 text-info mt-2">Workspace Actions</p>
-                            <router-link to="createArticle" class="dropdown-item mb-2" href="#" :style="appGlobalStyleContent() + 'vertical-align: sub;'">
+                            <router-link to="article-view" class="dropdown-item mb-2" href="#" :style="appGlobalStyleContent() + 'vertical-align: sub;'">
                                 <span class="material-symbols-outlined mr-1 hoverText" style="vertical-align: text-top;">
                                     add
                                 </span>
@@ -138,7 +138,7 @@
             <div class="col-12 col-lg-4 text-right user-card" style="padding-right: 0px !important">
                 <a href="#">
                     <div class="btn-group">
-                        <span :style="appGlobalStyleContent() + ' margin-top: 2px; padding: 12px; padding-bottom: 5px !important; border-radius: 10px; ' " class="btn mr-3" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span :style="appGlobalStyleContent() + ' margin-top: 2px; padding: 12px; padding-bottom: 5px !important; border-radius: 10px; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;' " class="btn mr-3" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <!--🔔-->
                             <span class="material-symbols-outlined">
                                 notifications
@@ -161,16 +161,15 @@
                         </div>
                     </div>
                     <div class="btn-group">
-                        <div :style="appGlobalStyleContent() + 'border-radius: 10px; '" class="btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <div class="container" style="padding-right: 0px;">
+                        <div :style="appGlobalStyleContent() + 'border-radius: 10px; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;'" class="btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="container" style="padding-right: 0px; ">
                                 <div class="row" style="padding-right: 0px;">
                                     <div class="col-2 mt-1" style="padding-left: 0px;">
                                         <span class="avatar">
                                             <img src="../../assets/placeholder.jpg">
                                         </span>
                                     </div>
-                                    <div class="col-1 mt-1" style="padding-right: 0px;">
-                                        <!--Alexander Marin 👇-->
+                                    <div class="col-1 mt-1" style="padding-right: 0px;"> 
                                         <span style="vertical-align: super;">Alexander Marin</span>
                                         <span class="material-symbols-outlined" style="vertical-align: baseline;">
                                             expand_more

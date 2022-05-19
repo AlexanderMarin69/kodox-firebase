@@ -7,7 +7,7 @@
                 </div>
             </div>
             <div class="row mt-4">
-                <div class="col-12">
+                <div class="col-12" style="padding:0px !important;">
                     <Carousel></Carousel>
                 </div>
             </div>
@@ -69,7 +69,7 @@
                 <div class="col-sm-12 col-lg-6">
                     <!-- Last edited article -->
                     <div class="row mb-4 ml-1">
-                        <h6 class="text-secondary" :style="appGlobalStyle()">Last edited article</h6>
+                        <h6 class="text-secondary" :style="appGlobalStyle() + 'background: transparent !important;'">Last edited article</h6>
                     </div>
                     <card title="Vue Dropzone parameters" description="Contrary to popular belief, Lorem Ipsum is not simply random text." tag="edit" to="category1">
                         <p class="text-secondary">{{loremIpsum}}</p>
@@ -78,7 +78,7 @@
                 </div>
                 <div class="col-sm-12 col-lg-6">
                     <div class="row mb-4 ml-1">
-                        <h6 class="text-secondary" :style="appGlobalStyle()">My spaces</h6>
+                        <h6 class="text-secondary" :style="appGlobalStyle() + 'background: transparent !important;'">My spaces</h6>
                     </div>
                     <!-- My spaces-->
                     <div class="container-fluid pl-0">

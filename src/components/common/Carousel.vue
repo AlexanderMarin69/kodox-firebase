@@ -1,6 +1,6 @@
 <template>
-    <section class="carousel" aria-label="Gallery" style="height: 260px !important;">
-        <ol class="carousel__viewport">
+    <section class="carousel" aria-label="Gallery" style="height: 320px !important;">
+        <ol class="carousel__viewport" style="background: transparent !important;">
             <li id="carousel__slide1"
                 tabindex="0"
                 class="carousel__slide">
@@ -13,7 +13,7 @@
                         </div>
                         <div class="row mt-2">
                             <div class="col-12">
-                                <card title="GitHub Commands" description="1 article" tag="history" to="category1" />
+                                <card title="GitHub Commands" description="1 article" tag="history" to="category1"/>
                             </div>
                         </div>
                     </div>
@@ -184,7 +184,7 @@
     .carousel {
         position: relative;
         padding-top: 75%;
-        filter: drop-shadow(0 0 10px #0003);
+        /*filter: drop-shadow(0 0 10px #0003);*/
         perspective: 100px;
     }
 

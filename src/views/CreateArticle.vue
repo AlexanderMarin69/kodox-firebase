@@ -354,7 +354,7 @@
     //author: '',
 
     export default {
-        name: "CreateArticle",
+        name: "article-view",
         components: {
             Card,
             codeBlock,
