@@ -24,7 +24,8 @@
             </div>
             <div class="row mt-4">
                 <div class="col-md-6 col-lg-3 mb-2">
-                    <card title="SSMS fixes" description="4 articles" tag="history" to="category1"/>
+                    <!--<card title="SSMS fixes" description="4 articles" tag="history" to="category1"/>-->
+                    <iframe class="responsive-iframe" src="https://www.youtube.com/embed/jS4aFq5-91M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <div class="col-md-6 col-lg-3 mb-2">
                     <card title="GitHub Commands" description="1 article" tag="history" to="category1" />

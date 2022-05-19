@@ -3,8 +3,9 @@
     "",
     "\\src",
     "\\src\\components",
-    "\\src\\components\\mainContent"
+    "\\src\\components\\mainContent",
+    "\\src\\views"
   ],
-  "SelectedNode": "\\jsconfig.json",
+  "SelectedNode": "\\src\\views\\CreateArticle.vue",
   "PreviewInSolutionExplorer": false
 }

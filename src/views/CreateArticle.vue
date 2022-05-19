@@ -156,52 +156,64 @@
                     <!--options-->
                     <div class="row m-2">
                         <div class="col-12 col-lg-4 text-center mt-4">
-                                <div class="option" :style="optionStyle() + 'font-size: 30px;'" @click="addTextToArticle()">
-                                    <span class="test">
-                                        Rich Text
+                            <div class="option" :style="optionStyle() + 'font-size: 30px;'" @click="addTextToArticle()">
+                                <span class="test">
+                                    Rich Text
+                                </span>
+                                <div class="pt-2">
+                                    <span class="material-symbols-outlined" style="vertical-align: baseline; font-size: 50px;">
+                                        format_align_left
                                     </span>
-                                    <div class="pt-2">
-                                        <span class="material-symbols-outlined" style="vertical-align: baseline; font-size: 50px;">
-                                            format_align_left
-                                        </span>
-                                    </div>
                                 </div>
+                            </div>
                         </div>
                         <div class="col-12 col-lg-4 text-center mt-4">
-                                <div class="option" :style="optionStyle() + 'font-size: 30px;'" @click="addCodeBlockToArticle()">
-                                    <span class="test">
-                                        Code Block
+                            <div class="option" :style="optionStyle() + 'font-size: 30px;'" @click="addCodeBlockToArticle()">
+                                <span class="test">
+                                    Code Block
+                                </span>
+                                <div class="pt-2">
+                                    <span class="material-symbols-outlined" style="vertical-align: baseline; font-size: 50px;">
+                                        integration_instructions
                                     </span>
-                                    <div class="pt-2">
-                                        <span class="material-symbols-outlined" style="vertical-align: baseline; font-size: 50px;">
-                                            integration_instructions
-                                        </span>
-                                    </div>
                                 </div>
+                            </div>
                         </div>
                         <div class="col-12 col-lg-4 text-center mt-4">
-                                <div class="option" :style="optionStyle() + 'font-size: 30px;'" @click="addBannerToArticle()">
-                                    <span class="test">
-                                        Banner
+                            <div class="option" :style="optionStyle() + 'font-size: 30px;'" @click="addCodeBlockToArticle()">
+                                <span class="test">
+                                    iFrame
+                                </span>
+                                <div class="pt-2">
+                                    <span class="material-symbols-outlined" style="vertical-align: baseline; font-size: 50px;">
+                                        filter_frames
                                     </span>
-                                    <div class="pt-2">
-                                        <span class="material-symbols-outlined" style="vertical-align: baseline; font-size: 50px;">
-                                            info
-                                        </span>
-                                    </div>
                                 </div>
+                            </div>
                         </div>
                         <div class="col-12 col-lg-4 text-center mt-4">
-                                <div class="option" :style="optionStyle() + 'font-size: 30px;'" @click="addMediaToArticle()">
-                                    <span class="test">
-                                        Media
+                            <div class="option" :style="optionStyle() + 'font-size: 30px;'" @click="addBannerToArticle()">
+                                <span class="test">
+                                    Banner
+                                </span>
+                                <div class="pt-2">
+                                    <span class="material-symbols-outlined" style="vertical-align: baseline; font-size: 50px;">
+                                        info
                                     </span>
-                                    <div class="pt-2">
-                                        <span class="material-symbols-outlined" style="vertical-align: baseline; font-size: 50px;">
-                                            panorama
-                                        </span>
-                                    </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4 text-center mt-4">
+                            <div class="option" :style="optionStyle() + 'font-size: 30px;'" @click="addMediaToArticle()">
+                                <span class="test">
+                                    Media
+                                </span>
+                                <div class="pt-2">
+                                    <span class="material-symbols-outlined" style="vertical-align: baseline; font-size: 50px;">
+                                        panorama
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <!--options end-->
