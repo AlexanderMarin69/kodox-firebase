@@ -152,7 +152,24 @@
                     <br />
                     <br />
                     <br />
-
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="text-info">Save</p>
+                            <span>
+                                <kbd class="keyboard-shortcut">
+                                    CTRL
+                                </kbd>
+                            </span>
+                            <span class="ml-2 mr-2">
+                                +
+                            </span>
+                            <span>
+                                <kbd class="keyboard-shortcut">
+                                    S
+                                </kbd>
+                            </span>
+                        </div>
+                    </div>
                     <!--options-->
                     <div class="row m-2">
                         <div class="col-12 col-lg-4 text-center mt-4">
@@ -861,7 +878,13 @@ return pivotIndex;
 </script>
 
 <style lang="scss" scoped>
-
+    .keyboard-shortcut { /* Background and color */
+        background-color: transparent;
+        border-radius: 4px;
+        color: rgba(0, 0, 0, 0.7); /* Bottom shadow */
+        box-shadow: rgba(0, 0, 0, 0.3) 0px -2px 0px inset, rgba(0, 0, 0, 0.4) 0px 1px 1px; /* Spacing */
+        padding: 8px;
+    }
     .TagActive {
         background-color: #6c757d !important;
         color: #fff !important;
