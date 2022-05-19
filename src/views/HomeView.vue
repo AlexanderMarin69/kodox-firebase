@@ -182,7 +182,7 @@
         },
         methods: {
             appGlobalStyle() {
-                let bg = "transition: ease-in-out 0.5s !important; background-color: " + this.style.currentMode.bg + "; ";
+                let bg = "transition: ease-in-out 0.3s !important; background-color: " + this.style.currentMode.bg + "; ";
                 let color = "color: " + this.style.currentMode.color + "!important; ";
                 return bg + color;
             },

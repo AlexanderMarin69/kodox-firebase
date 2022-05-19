@@ -64,7 +64,7 @@
                 <br /> 
 
                 <li>
-                    <div class="p-1 quickNoteButton" style="width: 75px; height: 75px; border-radius: 10px; border: 1px solid #007bff;">
+                    <div class="p-1 quickNoteButton" style="width: 75px; height: 75px; border-radius: 10px; border: 1px solid rgba(0, 123, 255, 0.4);">
                         <center>
                             <span class="mt-2 material-symbols-outlined">
                                 add
@@ -103,7 +103,7 @@
         },
         methods: {
             appGlobalStyle() {
-                let bg = "transition: ease-in-out 0.5s !important; background-color: " + this.style.currentMode.bg + "; ";
+                let bg = "transition: ease-in-out 0.3s !important; background-color: " + this.style.currentMode.bg + "; ";
                 let color = "color: " + this.style.currentMode.color + "!important; ";
                 return bg + color;
             },
@@ -154,7 +154,7 @@
     }
 
     .quickNoteButton:hover {
-        background-color: #007bff;
+        background-color: rgba(0, 123, 255, 0.4);
         color: #fff;
         border-radius: 10px;
         -webkit-transition: 0.3s all ease;
@@ -178,8 +178,7 @@
     }
 
     .hoverable-list-item:hover {
-        background-color: #007bff;
-        color: #fff;
+        background-color: rgba(0, 123, 255, 0.4);
         border-radius: 7px;
         font-weight: bold;
         -webkit-transition: 0.1s all ease;
@@ -195,7 +194,7 @@
         background-color: #141618;
         border-bottom-left-radius: 32px;
         border-bottom-right-radius: 32px;
-        transition: ease-in-out 0.5s;
+        transition: ease-in-out 0.3s;
     }
 
 

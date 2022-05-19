@@ -54,7 +54,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" :style="appGlobalStyleContent() + 'border: 1px solid #007bff;' ">
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" :style="appGlobalStyleContent() + 'border: 1px solid rgba(0, 123, 255, 0.4);' ">
                             <p class="ml-5 text-info mt-2">Workspace Actions</p>
                             <router-link to="article-view" class="dropdown-item mb-2" href="#" :style="appGlobalStyleContent() + 'vertical-align: sub;'">
                                 <span class="material-symbols-outlined mr-1 hoverText" style="vertical-align: text-top;">
@@ -129,7 +129,7 @@
                                    @blur="unFocusInputField"
                                    :style="inputInputStyle() + 'width: 100% !important;'"
                                    class="form-control mr-sm-2 container demo animated customStyle"
-                                   type="search"
+                                   type="text"
                                    aria-label="Search" />
                         </div>
                     </div>
@@ -144,7 +144,7 @@
                                 notifications
                             </span>
                         </span>
-                        <div class="dropdown-menu" :style="appGlobalStyleContent() + 'border: 1px solid #007bff;' ">
+                        <div class="dropdown-menu" :style="appGlobalStyleContent() + 'border: 1px solid rgba(0, 123, 255, 0.4);' ">
                             <a class="dropdown-item" href="#" :style="appGlobalStyleContent() + 'background-color: #f3f4f5;'">
                                 <!--<span class="material-symbols-outlined mr-1" style="vertical-align: text-top;">
                             person
@@ -178,7 +178,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="dropdown-menu" :style="appGlobalStyleContent() + 'border: 1px solid #007bff;' ">
+                        <div class="dropdown-menu" :style="appGlobalStyleContent() + 'border: 1px solid rgba(0, 123, 255, 0.4);' ">
                             <a class="dropdown-item" href="#" :style="appGlobalStyleContent() + 'vertical-align: sub;'">
                                 <span class="material-symbols-outlined mr-1 hoverText" style="vertical-align: text-top;">
                                     person
@@ -272,12 +272,12 @@
                 return '';
             },
             appGlobalStyle() {
-                let bg = "transition: ease-in-out 0.5s !important; background-color: " + this.style.currentMode.bg + "; ";
+                let bg = "transition: ease-in-out 0.3s !important; background-color: " + this.style.currentMode.bg + "; ";
                 let color = "color: " + this.style.currentMode.color + "!important; ";
                 return bg + color;
             },
             appGlobalStyleContent() {
-                let bg = "transition: ease-in-out 0.5s !important; background-color: " + this.style.currentMode.contentBg + "; ";
+                let bg = "transition: ease-in-out 0.3s !important; background-color: " + this.style.currentMode.contentBg + "; ";
                 let color = "color: " + this.style.currentMode.color + "!important; ";
                 return bg + color;
             },
@@ -366,13 +366,10 @@
 
 
     .dropdown-item:hover {
-        background-color: #007bff !important;
-        color: #ffffff !important;
+        background-color: rgba(0, 123, 255, 0.4) !important;
+        font-weight:bold;
+        cursor:pointer;
     }
-
-        .dropdown-item:hover > .hoverText {
-            color: white !important;
-        }
 
     .dropdown-menu {
         border: 0px;

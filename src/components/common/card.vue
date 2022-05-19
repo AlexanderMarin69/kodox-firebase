@@ -21,7 +21,7 @@
                   
                     <div class="col-2">
                         <p class="float-right">
-                            <span class="material-symbols-outlined" :style="cardGlobalStyle()">{{ tag }}</span>
+                            <span class="material-symbols-outlined" :style="cardGlobalStyle() + 'background:transparent !important;'">{{ tag }}</span>
                         </p>
                     </div>
                 </div>
@@ -53,8 +53,8 @@
 
 <style scoped lang="scss">
     .card:hover {
-        background-color: #007bff !important;
-        color: #fff !important;
+        background-color: rgba(0, 123, 255, 0.4) !important;
+        /*color: #fff !important;*/
 
         .material-symbols-outlined {
             background-color: #007bff !important;
@@ -90,12 +90,12 @@
         width: 100%;
         border: 0px;
         border-radius: 10px;
+        border: 1px solid rgba(0, 123, 255, 0.4);
         /* -webkit-box-shadow: 1px 2px 15px -5px rgba(0,0,0,0.35);
         box-shadow: 1px 2px 15px -5px rgba(0,0,0,0.35);*/
         /*box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;*/
         // latest 👇
         /*box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;*/
-
         -webkit-box-shadow: 0px 38px 50px -22px rgba(0,0,0,0.16);
         box-shadow: 0px 38px 50px -22px rgba(0,0,0,0.16);
     }
@@ -118,7 +118,7 @@
                 alert(this.to)
             },
             cardGlobalStyle() {
-                let contentBg = 'transition: ease-in-out 0.5s !important; background-color: ' + this.style.currentMode.contentBg + '; ';
+                let contentBg = 'transition: ease-in-out 0.3s !important; background-color: ' + this.style.currentMode.contentBg + '; ';
                 let color = 'color: ' + this.style.currentMode.color + '; ';
                 return contentBg + color;
             },

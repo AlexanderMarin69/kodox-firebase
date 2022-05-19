@@ -173,7 +173,14 @@
                     <!--options-->
                     <div class="row m-2">
                         <div class="col-12 col-lg-4 text-center mt-4">
-                            <div class="option" :style="optionStyle() + 'font-size: 30px;'" @click="addTextToArticle()">
+                            <button class="option btn btn-outline-primary btn-block"  @click="addTextToArticle()">
+                                <span class="material-symbols-outlined" style="vertical-align: sub; font-size: 32px;">
+                                    format_align_left
+                                </span>
+                                <span class="ml-3" style="vertical-align: baseline;">Rich Text</span>
+                            </button>
+
+                            <!--<div class="option" :style="optionStyle() + 'font-size: 30px;'" @click="addTextToArticle()">
                                 <span class="test">
                                     Rich Text
                                 </span>
@@ -182,10 +189,10 @@
                                         format_align_left
                                     </span>
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                         <div class="col-12 col-lg-4 text-center mt-4">
-                            <div class="option" :style="optionStyle() + 'font-size: 30px;'" @click="addCodeBlockToArticle()">
+                            <!--<div class="option" :style="optionStyle() + 'font-size: 30px;'" @click="addCodeBlockToArticle()">
                                 <span class="test">
                                     Code Block
                                 </span>
@@ -194,10 +201,19 @@
                                         integration_instructions
                                     </span>
                                 </div>
-                            </div>
+                            </div>-->
+
+                            <button class="option btn btn-outline-primary btn-block" @click="addCodeBlockToArticle()">
+                                <span class="material-symbols-outlined" style="vertical-align: sub; font-size: 32px;">
+                                    integration_instructions
+                                </span>
+                                <span class="ml-3" style="vertical-align: baseline;">
+                                Code Block
+                                </span>
+                            </button>
                         </div>
                         <div class="col-12 col-lg-4 text-center mt-4">
-                            <div class="option" :style="optionStyle() + 'font-size: 30px;'" @click="addCodeBlockToArticle()">
+                            <!--<div class="option" :style="optionStyle() + 'font-size: 30px;'" @click="addCodeBlockToArticle()">
                                 <span class="test">
                                     iFrame
                                 </span>
@@ -206,22 +222,39 @@
                                         filter_frames
                                     </span>
                                 </div>
-                            </div>
+                            </div>-->
+
+                            <button class="option btn btn-outline-primary btn-block" @click="addCodeBlockToArticle()">
+                                <span class="material-symbols-outlined" style="vertical-align: sub; font-size: 32px;">
+                                    filter_frames
+                                </span>
+                                <span class="ml-3" style="vertical-align: baseline;">
+                                iFrame
+                                </span>
+                            </button>
                         </div>
                         <div class="col-12 col-lg-4 text-center mt-4">
-                            <div class="option" :style="optionStyle() + 'font-size: 30px;'" @click="addBannerToArticle()">
-                                <span class="test">
+                            <!--<div class="option" :style="optionStyle() + 'font-size: 30px;'" @click="addBannerToArticle()">
+        <span class="test">
+            Banner
+        </span>
+        <div class="pt-2">
+            <span class="material-symbols-outlined" style="vertical-align: baseline; font-size: 50px;">
+                info
+            </span>
+        </div>
+    </div>-->
+                            <button class="option btn btn-outline-primary btn-block" @click="addCodeBlockToArticle()">
+                                <span class="material-symbols-outlined" style="vertical-align: sub; font-size: 32px;">
+                                    info
+                                </span>
+                                <span class="ml-3" style="vertical-align: baseline;">
                                     Banner
                                 </span>
-                                <div class="pt-2">
-                                    <span class="material-symbols-outlined" style="vertical-align: baseline; font-size: 50px;">
-                                        info
-                                    </span>
-                                </div>
-                            </div>
+                            </button>
                         </div>
                         <div class="col-12 col-lg-4 text-center mt-4">
-                            <div class="option" :style="optionStyle() + 'font-size: 30px;'" @click="addMediaToArticle()">
+                            <!--<div class="option" :style="optionStyle() + 'font-size: 30px;'" @click="addMediaToArticle()">
                                 <span class="test">
                                     Media
                                 </span>
@@ -230,7 +263,16 @@
                                         panorama
                                     </span>
                                 </div>
-                            </div>
+                            </div>-->
+
+                            <button class="option btn btn-outline-primary btn-block" @click="addCodeBlockToArticle()">
+                                <span class="material-symbols-outlined" style="vertical-align: sub; font-size: 32px;">
+                                    panorama
+                                </span>
+                                <span class="ml-3" style="vertical-align: baseline;">
+                                    Media
+                                </span>
+                            </button>
                         </div>
                     </div>
                     <!--options end-->
@@ -270,7 +312,7 @@
                                 </span>
                                 Save
                             </button>
-                            <p class="text-info" style="font-size: 12px;">Saving to: Netmine | Router Docs</p>
+                            <p class="text-info" style="font-size: 12px;">Saving to Netmine | Router Docs</p>
                             <button class="btn btn-outline-secondary btn-sm mb-3" href="#" style="vertical-align: baseline;" @click="showEditorButtons = !showEditorButtons">
                                 <span v-if="showEditorButtons" class="material-symbols-outlined mr-1" style="vertical-align: bottom;">
                                     visibility
@@ -299,7 +341,7 @@
                                 <nav class="nav nav-pills nav-justified" id="test" style="overflow-x: hidden !important; height: 250px;">
                                     <div 
                                          class="nav-link disabled mr-1" 
-                                         style="cursor:pointer; margin-top:30px;" 
+                                         :style="appGlobalStyle() + 'cursor:pointer; margin-top: 30px;'" 
                                          :class="{ TagActive: article.tags.find(x => x === tag) }" 
                                          v-for="tag in tags" 
                                          @click="selectTag(tag)">
@@ -820,7 +862,7 @@ return pivotIndex;
                 return bg + color;
             },
             appGlobalStyle() {
-                let bg = "transition: ease-in-out 0.5s !important; background-color: " + this.style.currentMode.bg + "; ";
+                let bg = "transition: ease-in-out 0.3s !important; background-color: " + this.style.currentMode.bg + "; ";
                 let color = "color: " + this.style.currentMode.color + "!important; ";
                 return bg + color;
             },
@@ -885,14 +927,14 @@ return pivotIndex;
         box-shadow: rgba(0, 0, 0, 0.3) 0px -2px 0px inset, rgba(0, 0, 0, 0.4) 0px 1px 1px; /* Spacing */
         padding: 8px;
     }
+
     .TagActive {
-        background-color: #6c757d !important;
-        color: #fff !important;
+        background-color: rgba(108, 117, 125, 0.4) !important;
     }
 
     .TagActive:hover {
-        background-color: #dc3545 !important;
-        border: 1px solid #dc3545 !important;
+        background-color: rgba(220, 53, 69, 0.4) !important;
+        border: 1px solid rgba(220, 53, 69, 0.4) !important;
     }
 
     .disabled {
@@ -901,7 +943,7 @@ return pivotIndex;
     }
 
     .disabled:hover {
-        border: 1px solid #6c757d;
+        border: 1px solid rgba(108, 117, 125, 0.4);
     }
 
     .wrapper {
@@ -934,21 +976,22 @@ return pivotIndex;
         height: 150px;
         width: 300px;
         border-radius: 18px;
-        background-color: #133535;
-        padding-top: 25px;
+        font-size: 32px;
+        /*background-color: #133535;*/
+      /*  padding-top: 25px;
         cursor: pointer;
-        transition: ease-in-out 0.5s;
+        transition: ease-in-out 0.3s;
         -webkit-box-shadow: 1px 2px 15px -5px rgba(0,0,0,0.35);
-        box-shadow: 1px 2px 15px -5px rgba(0,0,0,0.35);
+        box-shadow: 1px 2px 15px -5px rgba(0,0,0,0.35);*/
     }
 
-    .option:hover {
+   /* .option:hover {
         transition: ease-in-out 0.25s;
         background-color: #007bff !important;
         color: #fff !important;
         -webkit-box-shadow: 2px 11px 17px -7px #000000;
         box-shadow: 2px 11px 17px -7px #000000;
-    }
+    }*/
 
     .option:hover code {
         color: #fff;

@@ -2,11 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\components",
-    "\\src\\components\\Layout",
-    "\\src\\router",
-    "\\src\\views"
+    "\\src\\store",
+    "\\src\\store\\style"
   ],
-  "SelectedNode": "\\src\\components\\Layout\\TopNavigation.vue",
+  "SelectedNode": "\\src\\store\\style\\mutations.js",
   "PreviewInSolutionExplorer": false
 }
