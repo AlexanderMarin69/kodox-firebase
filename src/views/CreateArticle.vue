@@ -44,7 +44,7 @@
                                         <!--<CustomEditor :showEditorButtons="showEditorButtons" :editor="editors.find(x => x.id == item.id).theEditor" />-->
                                         <CustomEditor :showEditorButtons="showEditorButtons" :editor="article.texts.find(x => x.id == item.id).editor"/>
                                     </div>
-                                    <div class="col-1" v-if="showMoveButtons">
+                                    <div class="col-1" v-if="showMoveButtons" style="position: relative;">
                                         <br />
                                         <br />
                                         <br />
@@ -68,6 +68,13 @@
                                         <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-danger">
                                             <span class="material-symbols-outlined">
                                                 delete
+                                            </span>
+                                        </button>
+
+                                        <!--// bottom 0-->
+                                        <button style="padding-left: 26px; padding-right: 26px; position: absolute; bottom: 0; padding-bottom: 0px; border-radius: 70px !important; " class="btn btn-sm btn-outline-primary">
+                                            <span class="material-symbols-outlined">
+                                                add
                                             </span>
                                         </button>
                                     </div>
@@ -102,7 +109,7 @@
                                             </div>-->
                                         </div>
                                     </div>
-                                    <div class="col-1" v-if="showMoveButtons && item">
+                                    <div class="col-1" v-if="showMoveButtons && item" style="position: relative;">
                                         <br />
                                         <br />
                                         <!--<button style="padding-left: 26px; padding-right: 26px;" class="btn btn-sm btn-outline-primary" @click="moveCodeUp(item)">👆</button>-->
@@ -125,6 +132,13 @@
                                         <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-danger" @click="removeCode">
                                             <span class="material-symbols-outlined">
                                                 delete
+                                            </span>
+                                        </button>
+
+                                        <!--// bottom 0-->
+                                        <button style="padding-left: 26px; padding-right: 26px; position: absolute; bottom: 0; padding-bottom: 0px; border-radius: 70px !important;" class="btn btn-sm btn-outline-primary">
+                                            <span class="material-symbols-outlined">
+                                                add
                                             </span>
                                         </button>
                                     </div>
