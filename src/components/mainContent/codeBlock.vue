@@ -2,16 +2,19 @@
     <!-- for dynamic styles -->
     <!-- <div :style="leLol()"> -->
     <div>
-        <span class="text-secondary"><u>common/components/index.js</u></span>
-        <span style="float: right">
-            <a href="https://www.codepen.io/aasdfADFHqea32bSF">https://www.codepen.io/aasdfADFHqea32bSF</a>
-        </span>
-
         <div class="container">
             <div class="row">
-                <div class="col-3">
-                    <span class="text-secondary"
-                          style="font-size: 28px;">{{langTeller}}</span>
+                <div class="col-3" style="padding-left: 0px !important;">
+                    <div class="dropdown">
+                        <a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{langTeller}}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="#">C#</a>
+                            <a class="dropdown-item" href="#">Python</a>
+                            <a class="dropdown-item" href="#">SQL</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-7"></div>
                 <div class="col-2 text-right">
@@ -27,12 +30,14 @@
 
         <pre class="preStyle">
         <!--<code class="codeStyle" contenteditable="true" id="editableCodeBlock">-->
-        <code class="codeStyle" :id="'editableCodeBlock' + editId" contenteditable="true"><span>{{code}}</span></code>
+        <code :class="'codeStyle ' + langTeller" :id="'editableCodeBlock' + editId" contenteditable="true"><span>{{code}}</span></code>
         </pre>
         <div style="margin-top:-50px;">
-            <span class="text-secondary">Authors: Alexander Marin</span>
+            <span contenteditable="true" class="text-secondary">Authors: Alexander Marin</span>
             <br />
-            <span class="text-secondary">Credits: Emil Johansson</span>
+            <span contenteditable="true" class="text-secondary">Location: common/components/index.js</span>
+            <br />
+            <a contenteditable="true" href="https://www.codepen.io/aasdfADFHqea32bSF">https://www.codepen.io/aasdfADFHqea32bSF</a>
         </div>
     </div>
 </template>

@@ -333,6 +333,23 @@
     </div>
 </template>
 
+
+
+
+
+<!--
+    
+    ///////////// revert to previous where it all works compare git.............................
+
+    save codeblock.vue bcz nice changes!!!!!!!!!
+    
+    
+    --> 
+
+
+
+
+
 <script>
     import { mapActions, mapState } from "vuex";
     import codeBlock from "@/components/mainContent/codeBlock.vue";
@@ -744,7 +761,7 @@ return pivotIndex;
                 console.log('remove');
             },
             // ---------------------
-            pareSortOrder(a, b) {
+            compareSortOrder(a, b) {
                 if (a.sortOrder < b.sortOrder) {
                     return -1;
                 }
