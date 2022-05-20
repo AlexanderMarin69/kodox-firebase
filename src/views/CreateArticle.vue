@@ -498,11 +498,9 @@ for (var i in data) {
                 document.body.style.zoom = this.currentZoomPercentage + '%';
             },
             updateCodeBlock(codeBlock) {
-                console.log(codeBlock.id);
                 this.article.codeBlocks.find(x => x.id === codeBlock.id).code = codeBlock.code;
             },
             updateText(editorId) {
-                console.log(editorId);
                 setTimeout(() => {
                     const theTextToUpdateWith = this.article.texts.find(x => x.id === editorId).editor.getHTML();
                     this.article.texts.find(x => x.id === editorId).text = theTextToUpdateWith;
@@ -713,8 +711,6 @@ return pivotIndex;
                 } else {
                     prevItem = prevCode;
                     this.article.codeBlocks.splice(this.article.codeBlocks.indexOf(prevItem), 1);
-
-
                 }
 
 

@@ -175,7 +175,7 @@
  
 <script>
     import { EditorContent } from '@tiptap/vue-3'
-    
+
 
     import { mapState } from "vuex";
 
@@ -199,6 +199,9 @@
                 let color = "color: " + this.style.currentMode.color + "!important; ";
                 return bg + color;
             },
+            test() {
+                this.$emit("editorChanged", this.editId);
+            }
         },
         computed: {
             ...mapState({
@@ -208,8 +211,34 @@
         mounted() {
             const editor = document.getElementById("editor-id-" + this.editId);
             editor.addEventListener('input', (event) => {
-                this.$emit("editorChanged", this.editId);
+                this.test();
             });
+            var scopeVarYeet = this;
+            // if paste otherwise no integrity
+            this._keyListener = function (e) {
+
+
+                var ctrlDown = false,
+                    ctrlKey = 17,
+                    cmdKey = 91,
+                    vKey = 86,
+                    cKey = 67;
+
+                $(document).keydown(function (e) {
+                    if (e.keyCode == ctrlKey || e.keyCode == cmdKey) ctrlDown = true;
+                }).keyup(function (e) {
+                    if (e.keyCode == ctrlKey || e.keyCode == cmdKey) ctrlDown = false;
+                });
+
+                // Document Ctrl + V 
+                $(document).keydown(function (e) {
+                    if (ctrlDown && (e.keyCode == vKey)) {
+                        scopeVarYeet.test();
+                    }
+                });
+            };
+
+            document.getElementById("editor-id-" + this.editId).addEventListener("keydown", this._keyListener.bind(this));
         },
     };
 </script>
