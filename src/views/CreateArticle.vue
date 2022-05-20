@@ -70,13 +70,6 @@
                                                 delete
                                             </span>
                                         </button>
-
-                                        <!--// bottom 0-->
-                                        <button style="padding-left: 26px; padding-right: 26px; position: absolute; bottom: 0; padding-bottom: 0px; border-radius: 70px !important; " class="btn btn-sm btn-outline-primary">
-                                            <span class="material-symbols-outlined">
-                                                add
-                                            </span>
-                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -135,24 +128,28 @@
                                             </span>
                                         </button>
 
-                                        <!--// bottom 0-->
-                                        <button style="padding-left: 26px; padding-right: 26px; position: absolute; bottom: 0; padding-bottom: 0px; border-radius: 70px !important;" class="btn btn-sm btn-outline-primary">
-                                            <span class="material-symbols-outlined">
-                                                add
-                                            </span>
-                                        </button>
+                                        
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <!--<div class="row">
+                            <div class="col-12 text-right">
+                                <button style="padding-left: 26px; padding-right: 26px; bottom: 0; padding-bottom: 0px; border-radius: 70px !important;" class="mt-5 btn btn-sm btn-outline-primary">
+                                    <span class="material-symbols-outlined">
+                                        add
+                                    </span>
+                                </button>
+                            </div>
+                        </div>-->
                     </div>
 
-                    <SkeletonLoader v-else></SkeletonLoader>
+                    <SkeletonLoader v-if="allArticleItemsByOrder.length < 1 && !isNew"></SkeletonLoader>
                     </div>
                     <br />
                     <br />
                     <br />
-                    <div class="row">
+                    <!--<div class="row">
                         <div class="col-12">
                             <p class="text-info">Save</p>
                             <span>
@@ -169,7 +166,7 @@
                                 </kbd>
                             </span>
                         </div>
-                    </div>
+                    </div>-->
                     <!--options-->
                     <div class="row m-2">
                         <div class="col-12 col-sm-12 col-md-6 col-xl-4 mt-4">
@@ -373,6 +370,7 @@
         },
         data: function () {
             return {
+                isNew: false,
                 currentZoomPercentage: 100,
                 createTagInput: '',
                 tags:
@@ -464,21 +462,16 @@
 
                 allArticleItemsByOrder: [],
 
-                emptyText: {
+                emptyArticleSection: {
                     id: 0,
-                    type: 'text',
+                    type: '',
                     sortOrder: 0,
                     text: ``,
-                    editor: null
-                },
-
-                emptyCodeBlock: {
-                    id: 0,
-                    type: 'code',
-                    sortOrder: 0,
+                    editor: null,
                     code: ``,
                     lang: 'C#'
                 },
+
             };
         },
         methods: {
@@ -505,7 +498,8 @@
             // options start
             addTextToArticle() {
 
-                const test = this.emptyText;
+                const test = this.emptyArticleSection
+                test.type = 'text';
                 var newText = test;
 
                 if (this.allArticleItemsByOrder.length > 0) {
@@ -540,20 +534,22 @@
 
                 newText.editor = newEditor;
 
-                const sortOrderToGive = this.allArticleItemsByOrder.at(-1).sortOrder + 1;
-
-                newText.sortOrder = sortOrderToGive;
-
+                newText.sortOrder = 0;
+                if (this.allArticleItemsByOrder.length > 0) {
+                    newText.sortOrder = this.allArticleItemsByOrder.at(-1).sortOrder + 1;
+                }
 
                 this.article.texts.push(newText);
 
                 // resetting the empty text reference otherwise it saves the state for next textblock that is created
-                this.emptyText = {
+                this.emptyArticleSection = {
                     id: 0,
-                    type: 'text',
+                    type: '',
                     sortOrder: 0,
                     text: ``,
-                    editor: null
+                    editor: null,
+                    code: ``,
+                    lang: 'C#'
                 };
 
                 // this fixes save state of text when add but not for all.........
@@ -563,7 +559,9 @@
 
             },
             addCodeBlockToArticle() {
-                const test = this.emptyCodeBlock;
+                const test = this.emptyArticleSection;
+                test.type = 'code';
+                test.lang = 'C#';
                 var newCodeBlock = test;
 
                 if (this.allArticleItemsByOrder.length > 0) {
@@ -580,18 +578,22 @@ return pivotIndex;
 };
 `;
 
-                const sortOrderToGive = this.allArticleItemsByOrder.at(-1).sortOrder + 1;
-                newCodeBlock.sortOrder = sortOrderToGive;
+                newCodeBlock.sortOrder = 0;
+                if (this.allArticleItemsByOrder.length > 0) {
+                    newCodeBlock.sortOrder = this.allArticleItemsByOrder.at(-1).sortOrder + 1;
+                }
 
                 this.article.codeBlocks.push(newCodeBlock);
 
                 // resetting the empty text reference otherwise it saves the state for next textblock that is created
                 this.emptyCodeBlock = {
                     id: 0,
-                    type: 'code',
+                    type: '',
                     sortOrder: 0,
+                    text: ``,
+                    editor: null,
                     code: ``,
-                    lang: 'C#'
+                    lang: ''
                 };
 
                 this.allArticleItemsByOrder.push(newCodeBlock);
@@ -741,7 +743,8 @@ return pivotIndex;
             removeCode() {
                 console.log('remove');
             },
-            compareSortOrder(a, b) {
+            // ---------------------
+            pareSortOrder(a, b) {
                 if (a.sortOrder < b.sortOrder) {
                     return -1;
                 }
@@ -767,6 +770,11 @@ return pivotIndex;
                 }
             },
             getArticleItems() {
+                if (this.article.texts.length < 1 && this.article.codeBlocks.length < 1) {
+                    this.isNew = true;
+                    return;
+                }
+
                 if (this.allArticleItemsByOrder.length > 0) {
                     this.saveStateInArticle();
                 }
@@ -819,6 +827,7 @@ return pivotIndex;
                 }
                     , 0);
             },
+            // ---------------------
             optionStyle() {
                 let bg = "background-color: " + this.style.currentMode.contentBg + "; ";
                 let color = "color: " + this.style.currentMode.color + "!important; ";

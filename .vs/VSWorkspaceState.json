@@ -1,9 +1,11 @@
 {
   "ExpandedNodes": [
     "",
+    "\\public",
     "\\src",
-    "\\src\\store",
-    "\\src\\store\\style"
+    "\\src\\store\\style",
+    "\\src\\views"
   ],
+  "SelectedNode": "\\src\\views\\CreateArticle.vue",
   "PreviewInSolutionExplorer": false
 }
