@@ -155,7 +155,6 @@
 
     .quickNoteButton:hover {
         background-color: rgba(0, 123, 255, 0.4);
-        color: #fff;
         border-radius: 10px;
         -webkit-transition: 0.3s all ease;
         -o-transition: 0.3s all ease;

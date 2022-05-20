@@ -4,7 +4,10 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-7">
-                        <h6 class="card-title">{{ title }}</h6>
+                        <h6 class="card-title">
+                            <span class="material-symbols-outlined" style="background:transparent !important; vertical-align: bottom;">{{ type }}</span>
+                            {{ title }}
+                        </h6>
                         <div class="row">
                             <div class="col-12">
                                 <p v-if="spaceType" class="text-secondary">{{spaceType}}</p>
@@ -21,14 +24,13 @@
                   
                     <div class="col-2">
                         <p class="float-right">
-                            <span class="material-symbols-outlined" :style="cardGlobalStyle() + 'background:transparent !important;'">{{ tag }}</span>
+                            <span class="material-symbols-outlined" style="background:transparent !important;">{{ tag }}</span>
                         </p>
                     </div>
                 </div>
              
-                <p class="card-text text-info">{{ description }}</p>
-                 
-                       
+                <p class="card-text text-info card-description">{{ description }}</p>
+                <p style="margin-bottom: 0px; font-size:14px;" class="text-secondary card-last-edited">{{edited}}</p>
                 <slot></slot>
             </div>
         </div>
@@ -54,11 +56,12 @@
 <style scoped lang="scss">
     .card:hover {
         background-color: rgba(0, 123, 255, 0.4) !important;
-        /*color: #fff !important;*/
+        .card-description {
+            color: #fff !important
+        }
 
-        .material-symbols-outlined {
-            background-color: #007bff !important;
-            color: #fff !important;
+        .card-last-edited {
+            color: #fff !important
         }
     }
 
@@ -106,7 +109,7 @@
 
     export default {
         name: "card",
-        props: ["title", "description", "text", "tag", "to", "spaceType", "members"],
+        props: ["title", "description", "text", "tag", "to", "spaceType", "members", "type", "edited"],
         data: function () {
             return {
                 hasMembers: false

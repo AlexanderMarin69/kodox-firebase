@@ -168,7 +168,7 @@
 
         </div>
 
-        <editor-content :editor="editor"/>
+        <editor-content :editor="editor" :id="'editor-id-' + editId"/>
     </div>
 </template>
 
@@ -184,7 +184,7 @@
         components: {
             EditorContent
         },
-        props: ["editor", "showEditorButtons"],
+        props: ["editor", "editId", "showEditorButtons"],
         data: function () {
             return {
             };
@@ -206,7 +206,10 @@
             }),
         },
         mounted() {
-          
+            const editor = document.getElementById("editor-id-" + this.editId);
+            editor.addEventListener('input', (event) => {
+                this.$emit("editorChanged", this.editId);
+            });
         },
     };
 </script>

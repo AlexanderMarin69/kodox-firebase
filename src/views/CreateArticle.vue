@@ -42,14 +42,14 @@
                                 <div class="row">
                                     <div class="col-11" v-bind:class="{ active: showMoveButtons, 'col-12': !showMoveButtons }">
                                         <!--<CustomEditor :showEditorButtons="showEditorButtons" :editor="editors.find(x => x.id == item.id).theEditor" />-->
-                                        <CustomEditor :showEditorButtons="showEditorButtons" :editor="article.texts.find(x => x.id == item.id).editor"/>
+                                        <CustomEditor :showEditorButtons="showEditorButtons" :editor="item.editor" :editId="item.id" @editor-changed="updateText"/>
                                     </div>
                                     <div class="col-1" v-if="showMoveButtons" style="position: relative;">
                                         <br />
                                         <br />
                                         <br />
                                         <!--<button style="padding-left: 26px; padding-right: 26px;" class="btn btn-sm btn-outline-primary" @click="moveCodeUp(item)">👆</button>-->
-                                        <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-primary" @click="moveCodeUp(item)">
+                                        <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-primary" @click="moveArticleSectionUp(item)">
                                             <span class="material-symbols-outlined">
                                                 expand_less
                                             </span>
@@ -57,7 +57,7 @@
                                         <br />
                                         <br />
                                         <!--<button style="padding-left: 26px; padding-right: 26px;" class="btn btn-sm btn-outline-primary">👇</button>-->
-                                        <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-primary" @click="moveCodeDown(item)">
+                                        <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-primary" @click="moveArticleSectionDown(item)">
                                             <span class="material-symbols-outlined">
                                                 expand_more
                                             </span>
@@ -113,7 +113,7 @@
                                         <br />
                                         <br />
                                         <!--<button style="padding-left: 26px; padding-right: 26px;" class="btn btn-sm btn-outline-primary" @click="moveCodeUp(item)">👆</button>-->
-                                        <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-primary" @click="moveCodeUp(item)">
+                                        <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-primary" @click="moveArticleSectionUp(item)">
                                             <span class="material-symbols-outlined">
                                                 expand_less
                                             </span>
@@ -121,7 +121,7 @@
                                         <br />
                                         <br />
                                         <!--<button style="padding-left: 26px; padding-right: 26px;" class="btn btn-sm btn-outline-primary" @click="moveCodeDown">👇</button>-->
-                                        <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-primary" @click="moveCodeDown(item)">
+                                        <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-primary" @click="moveArticleSectionDown(item)">
                                             <span class="material-symbols-outlined">
                                                 expand_more
                                             </span>
@@ -172,78 +172,39 @@
                     </div>
                     <!--options-->
                     <div class="row m-2">
-                        <div class="col-12 col-lg-4 text-center mt-4">
-                            <button class="option btn btn-outline-primary btn-block"  @click="addTextToArticle()">
+                        <div class="col-12 col-sm-12 col-md-6 col-xl-4 mt-4">
+
+                            <button class="option btn btn-outline-primary btn-block" @click="addTextToArticle()">
                                 <span class="material-symbols-outlined" style="vertical-align: sub; font-size: 32px;">
                                     format_align_left
                                 </span>
                                 <span class="ml-3" style="vertical-align: baseline;">Rich Text</span>
                             </button>
-
-                            <!--<div class="option" :style="optionStyle() + 'font-size: 30px;'" @click="addTextToArticle()">
-                                <span class="test">
-                                    Rich Text
-                                </span>
-                                <div class="pt-2">
-                                    <span class="material-symbols-outlined" style="vertical-align: baseline; font-size: 50px;">
-                                        format_align_left
-                                    </span>
-                                </div>
-                            </div>-->
                         </div>
-                        <div class="col-12 col-lg-4 text-center mt-4">
-                            <!--<div class="option" :style="optionStyle() + 'font-size: 30px;'" @click="addCodeBlockToArticle()">
-                                <span class="test">
-                                    Code Block
-                                </span>
-                                <div class="pt-2">
-                                    <span class="material-symbols-outlined" style="vertical-align: baseline; font-size: 50px;">
-                                        integration_instructions
-                                    </span>
-                                </div>
-                            </div>-->
+                        <div class="col-12 col-sm-12 col-md-6 col-xl-4 mt-4">
 
                             <button class="option btn btn-outline-primary btn-block" @click="addCodeBlockToArticle()">
                                 <span class="material-symbols-outlined" style="vertical-align: sub; font-size: 32px;">
                                     integration_instructions
                                 </span>
                                 <span class="ml-3" style="vertical-align: baseline;">
-                                Code Block
+                                    Code Block
                                 </span>
                             </button>
                         </div>
-                        <div class="col-12 col-lg-4 text-center mt-4">
-                            <!--<div class="option" :style="optionStyle() + 'font-size: 30px;'" @click="addCodeBlockToArticle()">
-                                <span class="test">
-                                    iFrame
-                                </span>
-                                <div class="pt-2">
-                                    <span class="material-symbols-outlined" style="vertical-align: baseline; font-size: 50px;">
-                                        filter_frames
-                                    </span>
-                                </div>
-                            </div>-->
+                        <div class="col-12 col-sm-12 col-md-6 col-xl-4 mt-4">
 
                             <button class="option btn btn-outline-primary btn-block" @click="addCodeBlockToArticle()">
                                 <span class="material-symbols-outlined" style="vertical-align: sub; font-size: 32px;">
                                     filter_frames
                                 </span>
                                 <span class="ml-3" style="vertical-align: baseline;">
-                                iFrame
+                                    iframe
                                 </span>
                             </button>
                         </div>
-                        <div class="col-12 col-lg-4 text-center mt-4">
-                            <!--<div class="option" :style="optionStyle() + 'font-size: 30px;'" @click="addBannerToArticle()">
-        <span class="test">
-            Banner
-        </span>
-        <div class="pt-2">
-            <span class="material-symbols-outlined" style="vertical-align: baseline; font-size: 50px;">
-                info
-            </span>
-        </div>
-    </div>-->
+                        <div class="col-12 col-sm-12 col-md-6 col-xl-4 mt-4">
+
                             <button class="option btn btn-outline-primary btn-block" @click="addCodeBlockToArticle()">
                                 <span class="material-symbols-outlined" style="vertical-align: sub; font-size: 32px;">
                                     info
@@ -253,18 +214,7 @@
                                 </span>
                             </button>
                         </div>
-                        <div class="col-12 col-lg-4 text-center mt-4">
-                            <!--<div class="option" :style="optionStyle() + 'font-size: 30px;'" @click="addMediaToArticle()">
-                                <span class="test">
-                                    Media
-                                </span>
-                                <div class="pt-2">
-                                    <span class="material-symbols-outlined" style="vertical-align: baseline; font-size: 50px;">
-                                        panorama
-                                    </span>
-                                </div>
-                            </div>-->
-
+                        <div class="col-12 col-sm-12 col-md-6 col-xl-4 mt-4">
                             <button class="option btn btn-outline-primary btn-block" @click="addCodeBlockToArticle()">
                                 <span class="material-symbols-outlined" style="vertical-align: sub; font-size: 32px;">
                                     panorama
@@ -312,7 +262,7 @@
                                 </span>
                                 Save
                             </button>
-                            <p class="text-info" style="font-size: 12px;">Saving to Netmine | Router Docs</p>
+                            <p class="text-info mt-1" style="font-size: 12px;">Saving to Netmine | Router Docs</p>
                             <button class="btn btn-outline-secondary btn-sm mb-3" href="#" style="vertical-align: baseline;" @click="showEditorButtons = !showEditorButtons">
                                 <span v-if="showEditorButtons" class="material-symbols-outlined mr-1" style="vertical-align: bottom;">
                                     visibility
@@ -376,7 +326,7 @@
                                    @click="createTag"
                                    v-model="createTagInput"
                                    />
-                            <p class="text-info mt-2" style="font-size: 12px;">You can manage tags further in settings.</p>
+                            <p class="text-info mt-1" style="font-size: 12px;">You can manage tags further in settings.</p>
                         </div>
                     </div>
                 </div>
@@ -449,24 +399,28 @@
                             type: 'code',
                             sortOrder: 1,
                             // 0 egentligen
-                            code: `
-function partition(arr, start, end){
-// Taking the last element as the pivot
-const pivotValue = arr[end];
-let pivotIndex = start;
-for (let i = start; i < end; i++) {
-if (arr[i] < pivotValue) {
-// Swapping elements
-[arr[i], arr[pivotIndex]] = [arr[pivotIndex], arr[i]];
-// Moving to next element
-pivotIndex++;
-}
-}
+                            //                            code: `
+                            //function partition(arr, start, end){
+                            //// Taking the last element as the pivot
+                            //const pivotValue = arr[end];
+                            //let pivotIndex = start;
+                            //for (let i = start; i < end; i++) {
+                            //if (arr[i] < pivotValue) {
+                            //// Swapping elements
+                            //[arr[i], arr[pivotIndex]] = [arr[pivotIndex], arr[i]];
+                            //// Moving to next element
+                            //pivotIndex++;
+                            //}
+                            //}
 
-// Putting the pivot value in the middle
-[arr[pivotIndex], arr[end]] = [arr[end], arr[pivotIndex]]
-return pivotIndex;
-}; `,
+                            //// Putting the pivot value in the middle
+                            //[arr[pivotIndex], arr[end]] = [arr[end], arr[pivotIndex]]
+                            //return pivotIndex;
+                            //}; `,
+                            code: `
+for (var i in data) {
+    var keys = i.split('.')
+  }`,
                             lang: 'C#'
                         },
                         //{
@@ -535,7 +489,7 @@ return pivotIndex;
         methods: {
             zoomPageOut() {
                 this.currentZoomPercentage = this.currentZoomPercentage - 10;
-           
+
                 document.body.style.zoom = this.currentZoomPercentage + '%';
             },
             zoomPageIn() {
@@ -546,6 +500,14 @@ return pivotIndex;
             updateCodeBlock(codeBlock) {
                 console.log(codeBlock.id);
                 this.article.codeBlocks.find(x => x.id === codeBlock.id).code = codeBlock.code;
+            },
+            updateText(editorId) {
+                console.log(editorId);
+                setTimeout(() => {
+                    const theTextToUpdateWith = this.article.texts.find(x => x.id === editorId).editor.getHTML();
+                    this.article.texts.find(x => x.id === editorId).text = theTextToUpdateWith;
+                }, 0);
+
             },
             // options start
             addTextToArticle() {
@@ -660,7 +622,7 @@ return pivotIndex;
                 }
             },
 
-            moveCodeUp(item) {
+            moveArticleSectionUp(item) {
                 if (item.sortOrder === 0) {
                     return;
                 }
@@ -674,7 +636,7 @@ return pivotIndex;
                     this.article.codeBlocks.splice(this.article.codeBlocks.indexOf(currItem), 1);
                 } else { // if item text
                     currItem = this.article.texts.find(x => x.id === item.id);
-                    currItem.text = currItem.editor.getHTML();
+                    //currItem.text = currItem.editor.getHTML();
                     this.article.texts.splice(this.article.texts.indexOf(currItem), 1);
                 }
 
@@ -688,7 +650,7 @@ return pivotIndex;
 
                 if (prevCode === undefined) {
                     prevItem = prevText;
-                    prevItem.text = prevItem.editor.getHTML();
+                    //prevItem.text = prevItem.editor.getHTML();
                     this.article.texts.splice(this.article.texts.indexOf(prevItem), 1);
                 } else {
                     prevItem = prevCode;
@@ -716,7 +678,8 @@ return pivotIndex;
 
                 this.getArticleItems();
             },
-            moveCodeDown(item) {
+            moveArticleSectionDown(item) {
+                // last crated text if more than 1 does not save state 
                 if ((item.sortOrder + 1) === this.allArticleItemsByOrder.length) {
                     return;
                 }
@@ -731,7 +694,7 @@ return pivotIndex;
                     this.article.codeBlocks.splice(this.article.codeBlocks.indexOf(currItem), 1);
                 } else { // if item text
                     currItem = this.article.texts.find(x => x.id === item.id);
-                    currItem.text = currItem.editor.getHTML();
+                    //currItem.text = currItem.editor.getHTML();
                     this.article.texts.splice(this.article.texts.indexOf(currItem), 1);
                 }
 
@@ -745,7 +708,7 @@ return pivotIndex;
 
                 if (prevCode === undefined) {
                     prevItem = prevText;
-                    prevItem.text = prevItem.editor.getHTML();
+                    //prevItem.text = prevItem.editor.getHTML();
                     this.article.texts.splice(this.article.texts.indexOf(prevItem), 1);
                 } else {
                     prevItem = prevCode;

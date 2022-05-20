@@ -13,8 +13,6 @@
             </div>
         </div>
         <br />
-        <!--<h1>DOWNLOAD GOOGLE ICONS</h1>
-        <p>https://fonts.google.com/icons?icon.query=details</p>-->
         <!-- recents -->
         <div class="container-fluid mt-5" id="recentsDesktop">
             <div class="row">
@@ -24,17 +22,22 @@
             </div>
             <div class="row mt-4">
                 <div class="col-md-6 col-lg-3 mb-2">
-                    <!--<card title="SSMS fixes" description="4 articles" tag="history" to="category1"/>-->
-                    <iframe class="responsive-iframe" src="https://www.youtube.com/embed/jS4aFq5-91M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <card title="SSMS fixes" description="4 articles" tag="history" to="category1" type="article" edited="Last edit 2022-05-03"/>
                 </div>
                 <div class="col-md-6 col-lg-3 mb-2">
-                    <card title="GitHub Commands" description="1 article" tag="history" to="category1" />
+                    <card title="GitHub Commands" description="1 article" tag="history" to="category1" type="article" edited="Last edit 2022-05-03">
+                        <!--
+                            // if files 
+                            
+                        --> 
+                        <iframe class="responsive-iframe" src="https://www.youtube.com/embed/jS4aFq5-91M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </card>
                 </div>
                 <div class="col-md-6 col-lg-3 mb-2">
-                    <card title="Firestore Setup Guide" description="10 articles" tag="history" to="category1" />
+                    <card title="Firestore Setup Guide" description="10 articles" tag="history" to="category1" type="article" edited="Last edit 2022-05-03"/>
                 </div>
                 <div class="col-md-6 col-lg-3 mb-2">
-                    <card title="Favorites" description="14 articles" tag="history" to="category1" />
+                    <card title="Favorites" description="14 articles" tag="history" to="category1" type="folder" edited="Last edit 2022-05-03"/>
                 </div>
             </div>
         </div>
@@ -50,13 +53,13 @@
             <br />
             <div class="row">
                 <div class="col-md-12 col-lg-4 mb-2">
-                    <card title="Google Cloud Platform Docs" description="16 articles" tag="grade" to="category1" />
+                    <card title="Google Cloud Platform Docs" description="16 articles" tag="grade" to="category1" type="folder" edited="Last edit 2022-05-03"/>
                 </div>
                 <div class="col-md-12 col-lg-4 mb-2">
-                    <card title="GPC deploy Guide" description="1 articles" tag="grade" to="category1" />
+                    <card title="GPC deploy Guide" description="1 articles" tag="grade" to="category1" type="article" edited="Last edit 2022-05-03"/>
                 </div>
                 <div class="col-md-12 col-lg-4 mb-2">
-                    <card title="Vue Dropzone Docs" description="1 articles" tag="grade" to="category1" />
+                    <card title="Vue Dropzone Docs" description="1 articles" tag="grade" to="category1" edited="Last edit 2022-05-03" />
                 </div>
 
             </div>
@@ -71,7 +74,7 @@
                     <div class="row mb-4 ml-1">
                         <h6 class="text-secondary" :style="appGlobalStyle() + 'background: transparent !important;'">Last edited article</h6>
                     </div>
-                    <card title="Vue Dropzone parameters" description="Contrary to popular belief, Lorem Ipsum is not simply random text." tag="edit" to="category1">
+                    <card title="Vue Dropzone parameters" type="article" description="Contrary to popular belief, Lorem Ipsum is not simply random text." tag="edit" to="category1">
                         <p class="text-secondary">{{loremIpsum}}</p>
                     </card>
                     <!-- Last edited article -->
