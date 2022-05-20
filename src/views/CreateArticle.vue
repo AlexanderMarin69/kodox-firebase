@@ -394,35 +394,30 @@
                     title: 'HashSet<T> Class',
                     description: 'The following example demonstrates how to merge two disparate sets. This example creates two HashSet<T> objects, and populates them with even and odd numbers, respectively.',
                     codeBlocks: [
-                        {
-                            id: 234234234,
-                            type: 'code',
-                            sortOrder: 1,
-                            // 0 egentligen
-                            //                            code: `
-                            //function partition(arr, start, end){
-                            //// Taking the last element as the pivot
-                            //const pivotValue = arr[end];
-                            //let pivotIndex = start;
-                            //for (let i = start; i < end; i++) {
-                            //if (arr[i] < pivotValue) {
-                            //// Swapping elements
-                            //[arr[i], arr[pivotIndex]] = [arr[pivotIndex], arr[i]];
-                            //// Moving to next element
-                            //pivotIndex++;
-                            //}
-                            //}
+                        //                        {
+                        //                            id: 234234234,
+                        //                            type: 'code',
+                        //                            sortOrder: 1,
+                        //                            code: `
+                        //function partition(arr, start, end){
+                        //// Taking the last element as the pivot
+                        //const pivotValue = arr[end];
+                        //let pivotIndex = start;
+                        //for (let i = start; i < end; i++) {
+                        //if (arr[i] < pivotValue) {
+                        //// Swapping elements
+                        //[arr[i], arr[pivotIndex]] = [arr[pivotIndex], arr[i]];
+                        //// Moving to next element
+                        //pivotIndex++;
+                        //}
+                        //}
 
-                            //// Putting the pivot value in the middle
-                            //[arr[pivotIndex], arr[end]] = [arr[end], arr[pivotIndex]]
-                            //return pivotIndex;
-                            //}; `,
-                            code: `
-for (var i in data) {
-    var keys = i.split('.')
-  }`,
-                            lang: 'C#'
-                        },
+                        //// Putting the pivot value in the middle
+                        //[arr[pivotIndex], arr[end]] = [arr[end], arr[pivotIndex]]
+                        //return pivotIndex;
+                        //}; `,
+                        //                            lang: 'C#'
+                        //                        },
                         //{
                         //    id: 7367,
                         //    type: 'code',
@@ -444,18 +439,18 @@ for (var i in data) {
                         //      `,
                         //                            editor: null
                         //                        },
-                        {
-                            id: 909090,
-                            type: 'text',
-                            sortOrder: 0,
-                            text: `
-                        <h4>Parameters 22222222</h4>
-                        <div class="tableWrapper"><table style="min-width: 75px;"><colgroup><col><col><col></colgroup><tbody><tr><th colspan="1" rowspan="1"><p>Name</p></th><th colspan="1" rowspan="1"><p>Type</p></th><th colspan="1" rowspan="1"><p>Nullable</p></th></tr><tr><td colspan="1" rowspan="1"><p>Title</p></td><td colspan="1" rowspan="1"><p>string</p></td><td colspan="1" rowspan="1"><p>not null</p></td></tr><tr><td colspan="1" rowspan="1"><p>Description</p></td><td colspan="1" rowspan="1"><p>string</p></td><td colspan="1" rowspan="1"><p>null</p></td></tr></tbody></table></div>
-                        <h2><strong>Examples</strong></h2>
-                        <p>The following example demonstrates how to merge two disparate sets. This example creates two HashSet&lt;T&gt; objects, and populates them with even and odd numbers, respectively. A third HashSet&lt;T&gt; object is created from the set that contains the even numbers. The example then calls the UnionWith method, which adds the odd number set to the third set.</p>
-                              `,
-                            editor: null
-                        },
+                        //{
+                        //    id: 909090,
+                        //    type: 'text',
+                        //    sortOrder: 0,
+                        //    text: `
+                        //<h4>Parameters 22222222</h4>
+                        //<div class="tableWrapper"><table style="min-width: 75px;"><colgroup><col><col><col></colgroup><tbody><tr><th colspan="1" rowspan="1"><p>Name</p></th><th colspan="1" rowspan="1"><p>Type</p></th><th colspan="1" rowspan="1"><p>Nullable</p></th></tr><tr><td colspan="1" rowspan="1"><p>Title</p></td><td colspan="1" rowspan="1"><p>string</p></td><td colspan="1" rowspan="1"><p>not null</p></td></tr><tr><td colspan="1" rowspan="1"><p>Description</p></td><td colspan="1" rowspan="1"><p>string</p></td><td colspan="1" rowspan="1"><p>null</p></td></tr></tbody></table></div>
+                        //<h2><strong>Examples</strong></h2>
+                        //<p>The following example demonstrates how to merge two disparate sets. This example creates two HashSet&lt;T&gt; objects, and populates them with even and odd numbers, respectively. A third HashSet&lt;T&gt; object is created from the set that contains the even numbers. The example then calls the UnionWith method, which adds the odd number set to the third set.</p>
+                        //      `,
+                        //    editor: null
+                        //},
                     ],
                     tags:
                         [
@@ -513,7 +508,11 @@ for (var i in data) {
                 const test = this.emptyText;
                 var newText = test;
 
-                newText.id = this.allArticleItemsByOrder.at(-1).id + 1;
+                if (this.allArticleItemsByOrder.length > 0) {
+                    newText.id = this.allArticleItemsByOrder.at(-1).id + 1;
+                } else {
+                    newText.id = 1;
+                }
 
                 newText.text = `<h2><strong>Examples</strong></h2>
                         <p>The following example demonstrates how to merge two disparate sets. This example creates two HashSet&lt;T&gt; objects, and populates them with even and odd numbers, respectively. A third HashSet&lt;T&gt; object is created from the set that contains the even numbers. The example then calls the UnionWith method, which adds the odd number set to the third set.</p>`;
@@ -567,7 +566,12 @@ for (var i in data) {
                 const test = this.emptyCodeBlock;
                 var newCodeBlock = test;
 
-                newCodeBlock.id = this.allArticleItemsByOrder.at(-1).id + 1;
+                if (this.allArticleItemsByOrder.length > 0) {
+                    newCodeBlock.id = this.allArticleItemsByOrder.at(-1).id + 1;
+                } else {
+                    newCodeBlock.id = 1;
+                }
+
                 newCodeBlock.code =
                     `
 // Putting the pivot value in the middle
