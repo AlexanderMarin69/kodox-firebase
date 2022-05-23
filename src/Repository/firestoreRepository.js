@@ -113,6 +113,6 @@
 //       this.per.name = s.docs[i].data().name;
 //       this.hej3.push(this.per);
 //     }
-  });
+  //});
 
 

@@ -6,31 +6,31 @@
 
                 <!--title-->
                 <div class="row">
-                <div class="col-12 ml-4">
-                    <div class="input-group">
-                        <input placeholder="Title"
-                               v-model="article.title"
-                               :style="appGlobalStyle() + 'border:0px; font-size:35px;'"
-                               type="text"
-                               class="form-control"
-                               aria-label="Large"
-                               aria-describedby="inputGroup-sizing-sm">
+                    <div class="col-12 ml-4">
+                        <div class="input-group">
+                            <input placeholder="Title"
+                                   v-model="article.title"
+                                   :style="appGlobalStyle() + 'border:0px; font-size:35px;'"
+                                   type="text"
+                                   class="form-control"
+                                   aria-label="Large"
+                                   aria-describedby="inputGroup-sizing-sm">
+                        </div>
                     </div>
-                </div>
                 </div>
                 <!--title end-->
                 <!--description-->
                 <div class="row">
-                <div class="col-12 ml-4">
-                    <div class="input-group">
-                        <textarea placeholder="The following example demonstrates how to merge two disparate sets. This example creates two HashSet<T> objects, and populates them with even and odd numbers, respectively."
-                                  v-model="article.description"
-                                  rows="3"
-                                  :style="appGlobalStyle() + 'border:0px; font-size:20px;'"
-                                  class="form-control"
-                                  aria-label="With textarea"></textarea>
+                    <div class="col-12 ml-4">
+                        <div class="input-group">
+                            <textarea placeholder="The following example demonstrates how to merge two disparate sets. This example creates two HashSet<T> objects, and populates them with even and odd numbers, respectively."
+                                      v-model="article.description"
+                                      rows="3"
+                                      :style="appGlobalStyle() + 'border:0px; font-size:20px;'"
+                                      class="form-control"
+                                      aria-label="With textarea"></textarea>
+                        </div>
                     </div>
-                </div>
                 </div>
                 <!--description end-->
 
@@ -42,7 +42,7 @@
                                     <div class="row">
                                         <div class="col-11">
                                             <!--<CustomEditor :showEditorButtons="showEditorButtons" :editor="editors.find(x => x.id == item.id).theEditor" />-->
-                                            <CustomEditor :showEditorButtons="showEditorButtons" :editor="item.editor" :editId="item.id" @editor-changed="updateText"/>
+                                            <CustomEditor :showEditorButtons="showEditorButtons" :editor="item.editor" :editId="item.id" @editor-changed="updateText" />
                                         </div>
                                         <div class="col-1" v-if="showMoveButtons" style="position: relative;">
                                             <br />
@@ -90,16 +90,16 @@
                                                     </a>
                                                 </li>
                                                 <!--<li class="nav-item">
-                                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">{{item.id}}</a>
-                                                </li>-->
+                                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">{{item.id}}</a>
+                                    </li>-->
                                             </ul>
                                             <div class="tab-content" id="myTabContent">
                                                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                                     <codeBlock :code="item.code" :editId="item.id" :langTeller="item.lang" @code-changed="updateCodeBlock" />
                                                 </div>
                                                 <!--<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                                    <codeBlock :code="item.code" :langTeller="item.id" />
-                                                </div>-->
+                                        <codeBlock :code="item.code" :langTeller="item.id" />
+                                    </div>-->
                                             </div>
                                         </div>
                                         <div class="col-1" v-if="showMoveButtons && item" style="position: relative;">
@@ -134,70 +134,70 @@
                         </div>
 
                         <SkeletonLoader v-else></SkeletonLoader>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <!--options-->
+                    <div class="row m-2">
+                        <div class="col-12 col-sm-12 col-md-6 col-xl-4 mt-4">
+
+                            <button class="option btn btn-outline-primary btn-block" @click="addTextToArticle()">
+                                <span class="material-symbols-outlined" style="vertical-align: sub; font-size: 32px;">
+                                    format_align_left
+                                </span>
+                                <span class="ml-3" style="vertical-align: baseline;">Rich Text</span>
+                            </button>
                         </div>
-                        <br />
-                        <br />
-                        <br />
-                        <!--options-->
-                        <div class="row m-2">
-                            <div class="col-12 col-sm-12 col-md-6 col-xl-4 mt-4">
+                        <div class="col-12 col-sm-12 col-md-6 col-xl-4 mt-4">
 
-                                <button class="option btn btn-outline-primary btn-block" @click="addTextToArticle()">
-                                    <span class="material-symbols-outlined" style="vertical-align: sub; font-size: 32px;">
-                                        format_align_left
-                                    </span>
-                                    <span class="ml-3" style="vertical-align: baseline;">Rich Text</span>
-                                </button>
-                            </div>
-                            <div class="col-12 col-sm-12 col-md-6 col-xl-4 mt-4">
-
-                                <button class="option btn btn-outline-primary btn-block" @click="addCodeBlockToArticle()">
-                                    <span class="material-symbols-outlined" style="vertical-align: sub; font-size: 32px;">
-                                        integration_instructions
-                                    </span>
-                                    <span class="ml-3" style="vertical-align: baseline;">
-                                        Code Block
-                                    </span>
-                                </button>
-                            </div>
-                            <div class="col-12 col-sm-12 col-md-6 col-xl-4 mt-4">
-
-                                <button class="option btn btn-outline-primary btn-block" @click="addCodeBlockToArticle()">
-                                    <span class="material-symbols-outlined" style="vertical-align: sub; font-size: 32px;">
-                                        filter_frames
-                                    </span>
-                                    <span class="ml-3" style="vertical-align: baseline;">
-                                        iframe
-                                    </span>
-                                </button>
-                            </div>
-                            <div class="col-12 col-sm-12 col-md-6 col-xl-4 mt-4">
-
-                                <button class="option btn btn-outline-primary btn-block" @click="addCodeBlockToArticle()">
-                                    <span class="material-symbols-outlined" style="vertical-align: sub; font-size: 32px;">
-                                        info
-                                    </span>
-                                    <span class="ml-3" style="vertical-align: baseline;">
-                                        Banner
-                                    </span>
-                                </button>
-                            </div>
-                            <div class="col-12 col-sm-12 col-md-6 col-xl-4 mt-4">
-                                <button class="option btn btn-outline-primary btn-block" @click="addCodeBlockToArticle()">
-                                    <span class="material-symbols-outlined" style="vertical-align: sub; font-size: 32px;">
-                                        panorama
-                                    </span>
-                                    <span class="ml-3" style="vertical-align: baseline;">
-                                        Media
-                                    </span>
-                                </button>
-                            </div>
+                            <button class="option btn btn-outline-primary btn-block" @click="addCodeBlockToArticle()">
+                                <span class="material-symbols-outlined" style="vertical-align: sub; font-size: 32px;">
+                                    integration_instructions
+                                </span>
+                                <span class="ml-3" style="vertical-align: baseline;">
+                                    Code Block
+                                </span>
+                            </button>
                         </div>
-                        <!--options end-->
-                        <br />
-                        <br />
-                        <br />
-                        <br />
+                        <div class="col-12 col-sm-12 col-md-6 col-xl-4 mt-4">
+
+                            <button class="option btn btn-outline-primary btn-block" @click="addCodeBlockToArticle()">
+                                <span class="material-symbols-outlined" style="vertical-align: sub; font-size: 32px;">
+                                    filter_frames
+                                </span>
+                                <span class="ml-3" style="vertical-align: baseline;">
+                                    iframe
+                                </span>
+                            </button>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6 col-xl-4 mt-4">
+
+                            <button class="option btn btn-outline-primary btn-block" @click="addCodeBlockToArticle()">
+                                <span class="material-symbols-outlined" style="vertical-align: sub; font-size: 32px;">
+                                    info
+                                </span>
+                                <span class="ml-3" style="vertical-align: baseline;">
+                                    Banner
+                                </span>
+                            </button>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6 col-xl-4 mt-4">
+                            <button class="option btn btn-outline-primary btn-block" @click="addCodeBlockToArticle()">
+                                <span class="material-symbols-outlined" style="vertical-align: sub; font-size: 32px;">
+                                    panorama
+                                </span>
+                                <span class="ml-3" style="vertical-align: baseline;">
+                                    Media
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                    <!--options end-->
+                    <br />
+                    <br />
+                    <br />
+                    <br />
                 </div>
             </div>
          
@@ -229,6 +229,12 @@
                                     save
                                 </span>
                                 Save
+                            </button>
+                            <button class="btn btn-outline-primary btn-block" href="#" style="vertical-align: baseline;" @click="getArticle()">
+                                <span class="material-symbols-outlined mr-1" style="vertical-align: bottom;">
+                                    download
+                                </span>
+                                Get test
                             </button>
                             <p class="text-info mt-1" style="font-size: 12px;">Saving to Netmine | Router Docs</p>
 
@@ -312,6 +318,8 @@
     //    {}
     //],
     //author: '',
+
+    import articleService from "@/services/articleService";
 
     export default {
         name: "article-view",
@@ -427,8 +435,14 @@
             };
         },
         methods: {
+            getArticle() {
+                articleService.getTest();
+            },
             saveArticle() {
-                console.log(this.article);
+                for (var i = 0; i < this.article.texts.length; i++) {
+                    this.article.texts[i].editor = null;
+                }
+                articleService.test(this.article);
             },
             // move to zoomer component -------------------------
             zoomPageOut() {
@@ -673,6 +687,8 @@ return pivotIndex;
                         }
                     }, 0);
 
+                    // if this is before codeBlocks then wrong visual update when moving 2 texts close to eachoter
+                    // still happens if they at the bottom tho......
                     setTimeout(() => {
                         for (var lel = 0; lel < this.article.texts.length; lel++) {
                             // push
