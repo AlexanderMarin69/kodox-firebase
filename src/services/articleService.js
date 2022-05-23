@@ -1,5 +1,14 @@
 "use strict";
 
+//const ref = db.collection('users').collection('someList');
+
+//ref.where('createdAt', '>=', today);
+
+
+
+//const westCoastCities = citiesRef.where('regions', 'array-contains',
+//    'west_coast').get();
+
 import { initializeApp } from "firebase/app";
 import {
     getFirestore,

@@ -1,11 +1,16 @@
 ﻿<template>
     <div class="container-xl" style="display: grid; grid-template-columns: 1fr minmax(10px, 92%); height: 100px; margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px;">
         <aside :style="appGlobalStyle()">
-            <div style="font-size: 32px;" class="ml-2">kodox.</div>
-            <p class="gradient-text ml-2" style="font-size: 8px; font-weight:bold;">The Code Docs Company.</p>
+            <div style="font-size: 23px; cursor: pointer;" @click="navigate('/')">
+                <span class="material-symbols-outlined" style="vertical-align: sub; font-size: 22px;">
+                    menu_book
+                </span>
+                <span style="vertical-align: text-top;" class="ml-2">kodox.</span>
+            </div>
+            <p class="gradient-text ml-2" style="font-size: 10px; font-weight: bold; cursor: pointer;" @click="navigate('/')">The Code Docs Company.</p>
             <br />
             <ul>
-                <li class="hoverable-list-item">
+                <li class="hoverable-list-item" @click="navigate('/')">
                     <span class="material-symbols-outlined" style="vertical-align: text-top; color: #007bff; font-weight: bold">
                         team_dashboard
                     </span>
@@ -17,7 +22,8 @@
                     </span>
                     <span style="vertical-align: sub;" class="pl-1">Spaces</span>
                 </li>
-                <li class="hoverable-list-item">
+
+                <li class="hoverable-list-item" @click="navigate('/library')">
                     <span class="material-symbols-outlined" style="vertical-align: text-top;">
                         folder
                     </span>
@@ -61,7 +67,7 @@
                     <span style="vertical-align: sub;" class="pl-1">Log out</span>
                 </li>
 
-                <br /> 
+                <br />
 
                 <li>
                     <div class="p-1 quickNoteButton" style="width: 75px; height: 75px; border-radius: 10px; border: 1px solid rgba(0, 123, 255, 0.4);">
@@ -77,12 +83,12 @@
 
             </ul>
         </aside>
-        <main>
+        <main :style="appGlobalStyle()">
             <nav class="navbar" :style="appGlobalStyle()">
                 <TopNavigation :style="appGlobalStyle()" />
 
                 <router-view v-slot="{ Component }" >
-                    <Transition name="page" mode="ouit-in">
+                    <Transition name="page">
                         <Component :is="Component" />
                     </Transition>
                 </router-view>
@@ -97,6 +103,8 @@
 
     import { mapState, mapActions } from "vuex";
 
+    import router from 'vue-router'
+
     export default {
         name: "HomeView",
         components: {
@@ -107,6 +115,9 @@
             return {};
         },
         methods: {
+            navigate(path) {
+                this.$router.push(path);
+            },
             appGlobalStyle() {
                 let bg = "transition: ease-in-out 0.3s !important; background-color: " + this.style.currentMode.bg + "; ";
                 let color = "color: " + this.style.currentMode.color + "!important; ";
@@ -148,8 +159,8 @@
 <style scoped>
     .page-enter-active,
     .page-leave-active {
-        transition: opacity 100ms ease,
-            transform 100ms ease;
+        transition: opacity 300ms ease,
+            transform 300ms ease;
     }
 
     .page-enter-from,
@@ -294,7 +305,7 @@
         }
 
     main {
-        background: #d4f2c4;
+        /*background: #d4f2c4;*/
         padding: 0px;
     }
 

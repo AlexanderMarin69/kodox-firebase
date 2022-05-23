@@ -795,7 +795,7 @@ return pivotIndex;
     }
 
     .TagActive {
-        background-color: rgba(108, 117, 125, 0.4) !important;
+        background-color: rgba(0, 123, 255, 0.4) !important;
     }
 
     .TagActive:hover {
@@ -804,11 +804,12 @@ return pivotIndex;
     }
 
     .disabled {
-        border: 1px solid transparent;
+        border: 1px solid rgba(0, 123, 255, 0.4);
         border-radius: 10px;
     }
 
     .disabled:hover {
+        background-color: rgba(0, 123, 255, 0.4) !important;
         border: 1px solid rgba(108, 117, 125, 0.4);
     }
 

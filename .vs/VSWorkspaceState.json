@@ -3,8 +3,9 @@
     "",
     "\\src",
     "\\src\\Repository",
-    "\\src\\services"
+    "\\src\\store",
+    "\\src\\store\\style"
   ],
-  "SelectedNode": "\\src\\registerServiceWorker.js",
+  "SelectedNode": "\\src\\store\\style\\mutations.js",
   "PreviewInSolutionExplorer": false
 }

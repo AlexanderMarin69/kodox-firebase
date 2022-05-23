@@ -22,10 +22,10 @@
             </div>
             <div class="row mt-4">
                 <div class="col-md-6 col-lg-3 mb-2">
-                    <card title="SSMS fixes" description="4 articles" tag="history" to="category1" type="article" edited="Last edit 2022-05-03"/>
+                    <card title="SSMS fixes" createdBy="Alexander Marin" description="This library goes through all docs regarding setup and deployment of firebase projects" tag="history" to="category1" type="article" edited="Last edit 2022-05-03"/>
                 </div>
                 <div class="col-md-6 col-lg-3 mb-2">
-                    <card title="GitHub Commands" description="1 article" tag="history" to="category1" type="article" edited="Last edit 2022-05-03">
+                    <card title="GitHub Commands" createdBy="Alexander Marin" description="This library goes through all docs regarding setup and deployment of firebase projects" tag="history" to="category1" type="article" edited="Last edit 2022-05-03">
                         <!--
                             // if files 
                             
@@ -34,10 +34,10 @@
                     </card>
                 </div>
                 <div class="col-md-6 col-lg-3 mb-2">
-                    <card title="Firestore Setup Guide" description="10 articles" tag="history" to="category1" type="article" edited="Last edit 2022-05-03"/>
+                    <card title="Firestore Setup Guide" createdBy="Alexander Marin" description="This library goes through all docs regarding setup and deployment of firebase projects" tag="history" to="category1" type="article" edited="Last edit 2022-05-03"/>
                 </div>
                 <div class="col-md-6 col-lg-3 mb-2">
-                    <card title="Favorites" description="14 articles" tag="history" to="category1" type="folder" edited="Last edit 2022-05-03"/>
+                    <card title="Favorites" createdBy="Alexander Marin" description="This library goes through all docs regarding setup and deployment of firebase projects" tag="history" to="category1" type="folder" edited="Last edit 2022-05-03"/>
                 </div>
             </div>
         </div>
@@ -53,13 +53,13 @@
             <br />
             <div class="row">
                 <div class="col-md-12 col-lg-4 mb-2">
-                    <card title="Google Cloud Platform Docs" description="16 articles" tag="grade" to="category1" type="folder" edited="Last edit 2022-05-03"/>
+                    <card title="Google Cloud Platform Docs" createdBy="Alexander Marin" description="This library goes through all docs regarding setup and deployment of firebase projects" tag="grade" to="category1" type="folder" edited="Last edit 2022-05-03"/>
                 </div>
                 <div class="col-md-12 col-lg-4 mb-2">
-                    <card title="GPC deploy Guide" description="1 articles" tag="grade" to="category1" type="article" edited="Last edit 2022-05-03"/>
+                    <card title="GPC deploy Guide" createdBy="Alexander Marin" description="This library goes through all docs regarding setup and deployment of firebase projects" tag="grade" to="category1" type="article" edited="Last edit 2022-05-03"/>
                 </div>
                 <div class="col-md-12 col-lg-4 mb-2">
-                    <card title="Vue Dropzone Docs" description="1 articles" tag="grade" to="category1" edited="Last edit 2022-05-03" />
+                    <card title="Vue Dropzone Docs" description="This library goes through all docs regarding setup and deployment of firebase projects" tag="grade" to="category1" edited="Last edit 2022-05-03" />
                 </div>
 
             </div>
@@ -74,7 +74,7 @@
                     <div class="row mb-4 ml-1">
                         <h6 class="text-secondary" :style="appGlobalStyle() + 'background: transparent !important;'">Last edited article</h6>
                     </div>
-                    <card title="Vue Dropzone parameters" type="article" description="Contrary to popular belief, Lorem Ipsum is not simply random text." tag="edit" to="category1">
+                    <card title="Vue Dropzone parameters" type="article" description="This library goes through all docs regarding setup and deployment of firebase projects" tag="edit" to="category1">
                         <p class="text-secondary">{{loremIpsum}}</p>
                     </card>
                     <!-- Last edited article -->
@@ -87,18 +87,18 @@
                     <div class="container-fluid pl-0">
                         <div class="row">
                             <div class="col-md-12 col-lg-6 mb-2">
-                                <card title="Private Space" spaceType="Private" :members="[{id: 1}]" description="56 articles" tag="grid_view" to="category1" />
+                                <card title="Private Space" spaceType="Private" :members="[{id: 1}]" description="This library goes through all docs" tag="grid_view" to="category1" />
                             </div>
                             <div class="col-md-12 col-lg-6 mb-">
-                                <card title="Netmine" spaceType="Shared Private" :members="[{id: 1}, {id: 2}, {id: 3}, {id: 4}]" description="108 articles" tag="grid_view" to="category1" />
+                                <card title="Netmine" spaceType="Shared Private" :members="[{id: 1}, {id: 2}, {id: 3}, {id: 4}]" description="This library goes through all docs regarding setup and deployment of firebase projects" tag="grid_view" to="category1" />
                             </div>
                         </div>
                         <div class="row mt-2">
                             <div class="col-md-12 col-lg-6 mb-2">
-                                <card title="Case Study POC DPM" spaceType="Private" :members="[{id: 1}]" description="4 articles" tag="grid_view" to="category1" />
+                                <card title="Case Study POC DPM" spaceType="Private" :members="[{id: 1}]" description="This library goes through all" tag="grid_view" to="category1" />
                             </div>
                             <div class="col-md-12 col-lg-6 mb-2">
-                                <card title="NCF Public Docs" spaceType="Shared Public" :members="[{id: 1}, {id: 2}, {id: 3}]" description="16 articles" tag="grid_view" to="category1" />
+                                <card title="NCF Public Docs" spaceType="Shared Public" :members="[{id: 1}, {id: 2}, {id: 3}]" description="This library" tag="grid_view" to="category1" />
                             </div>
                         </div>
                     </div>

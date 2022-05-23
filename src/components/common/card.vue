@@ -3,7 +3,8 @@
         <div v-if="to" @click="navigate" style="cursor:pointer;">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-7">
+                    <!-- 7 -->
+                    <div class="col-10">
                         <h6 class="card-title">
                             <span class="material-symbols-outlined" style="background:transparent !important; vertical-align: bottom;">{{ type }}</span>
                             {{ title }}
@@ -14,14 +15,17 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-3">
-                        <div class="avatars" v-if="spaceType">
+
+                    <!-- 3 -->
+                    <div class="col-3" v-if="spaceType">
+                    <div class="avatars">
                             <span class="avatar" v-for="item in members" :key="item.id">
                                 <img src="../../assets/placeholder.jpg">
                             </span>
                         </div>
-                    </div> 
-                  
+                    </div>
+
+                    <!-- 2 -->
                     <div class="col-2">
                         <p class="float-right">
                             <span class="material-symbols-outlined" style="background:transparent !important;">{{ tag }}</span>
@@ -30,24 +34,9 @@
                 </div>
              
                 <p class="card-text text-info card-description">{{ description }}</p>
-                <p style="margin-bottom: 0px; font-size:14px;" class="text-secondary card-last-edited">{{edited}}</p>
+                <p style="margin-bottom: 0px;" class="text-secondary card-last-edited">16 articles | {{createdBy}} | {{edited}}</p>
                 <slot></slot>
             </div>
-        </div>
-        <div class="card-body" v-else>
-            <div class="row">
-                <div class="col-5">
-                    <h6 class="card-title">{{ title }}</h6>
-                </div>
-                <div class="col-2"></div>
-                <div class="col-5">
-                    <p class="float-right">
-                        <span class="material-symbols-outlined" :style="cardGlobalStyle()">{{ tag }}</span>
-                    </p>
-                </div>
-            </div>
-            <p class="card-text text-info">{{ description }}</p>
-            <slot></slot>
         </div>
     </div>
 </template>
@@ -56,6 +45,7 @@
 <style scoped lang="scss">
     .card:hover {
         background-color: rgba(0, 123, 255, 0.4) !important;
+
         .card-description {
             color: #fff !important
         }
@@ -90,6 +80,7 @@
     }
 
     .card {
+        max-width: 900px;
         width: 100%;
         border: 0px;
         border-radius: 10px;
@@ -109,7 +100,7 @@
 
     export default {
         name: "card",
-        props: ["title", "description", "text", "tag", "to", "spaceType", "members", "type", "edited"],
+        props: ["title", "description", "text", "tag", "to", "spaceType", "members", "type", "edited", "createdBy"],
         data: function () {
             return {
                 hasMembers: false

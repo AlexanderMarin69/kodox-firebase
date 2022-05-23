@@ -24,7 +24,7 @@
                     </div>
 
                     <div class="btn-group">
-                        <div :style="appGlobalStyleContent() + 'padding-left: 0px !important; padding-right: 0px !important; border-radius: 10px; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;' " class="btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div :style="appGlobalStyleContent() + 'padding-left: 0px !important; padding-right: 0px !important; border-radius: 10px; ' " class="btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-6">
@@ -122,15 +122,14 @@
             <div class="col-12 col-lg-5 mt-1 search-card">
                 <a href="#">
                     <div>
-                        <div id="globalSearchInput" class="container-input-animation animated" :style="inputStyle() + ''">
-                            <input placeholder="Search for everyting.... (ctrl + f)"
+                        <div id="globalSearchInput">
+                            <input placeholder="Search for everyting"
                                    id="globalSearchInputField"
                                    @focus.native="focusInputField"
                                    @blur="unFocusInputField"
-                                   :style="inputInputStyle() + 'width: 100% !important;'"
-                                   class="form-control mr-sm-2 container demo animated customStyle"
-                                   type="text"
-                                   aria-label="Search" />
+                                   :style="inputInputStyle() + 'width: 100% !important; border-radius: 10px; border: 0px; '"
+                                   class="form-control mr-sm-2"
+                                   type="text"/>
                         </div>
                     </div>
                 </a>
@@ -138,7 +137,7 @@
             <div class="col-12 col-lg-4 text-right user-card" style="padding-right: 0px !important">
                 <a href="#">
                     <div class="btn-group">
-                        <span :style="appGlobalStyleContent() + ' margin-top: 2px; padding: 12px; padding-bottom: 5px !important; border-radius: 10px; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;' " class="btn mr-3" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span :style="appGlobalStyleContent() + ' margin-top: 2px; padding: 12px; padding-bottom: 5px !important; border-radius: 10px; ' " class="btn mr-3" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <!--🔔-->
                             <span class="material-symbols-outlined">
                                 notifications
@@ -161,7 +160,7 @@
                         </div>
                     </div>
                     <div class="btn-group">
-                        <div :style="appGlobalStyleContent() + 'border-radius: 10px; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;'" class="btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div :style="appGlobalStyleContent() + 'border-radius: 10px; '" class="btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <div class="container" style="padding-right: 0px; ">
                                 <div class="row" style="padding-right: 0px;">
                                     <div class="col-2 mt-1" style="padding-left: 0px;">
@@ -256,15 +255,15 @@
             },
             inputInputStyle() {
                 if (this.style.currentMode.isLight) {
-                    return 'background-color:' + this.style.currentMode.contentBg + ' !important; color: ' + this.style.currentMode.color + ' !important; ';
+                    return 'transition: ease-in-out 0.3s !important; background-color:' + this.style.currentMode.contentBg + ' !important; color: ' + this.style.currentMode.color + ' !important; ';
                 } else {
-                    return 'background-color:' + this.style.currentMode.contentBg + ' !important; color: ' + this.style.currentMode.color + ' !important; ';
+                    return 'transition: ease-in-out 0.3s !important; background-color:' + this.style.currentMode.contentBg + ' !important; color: ' + this.style.currentMode.color + ' !important; ';
                 }
             },
             inputStyle() {
                 while (this.isFocused) {
                     if (this.style.currentMode.isLight) {
-                        return 'box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;';
+                        return '';
                     } else {
                         return 'box-shadow: rgba(255, 255, 255, 0.2) 0px 2px 8px 0px;';
                     }
@@ -415,11 +414,7 @@
 
 
 
-    .customStyle {
-        width: 100% !important;
-        border: 0px;
-        padding: 20px !important;
-    }
+     
 
     .form-control:focus {
         box-shadow: none;
@@ -430,16 +425,7 @@
         margin-top: -4px;
     }
 
-    .animated {
-        border-radius: 10px;
-        margin-right: 0px !important;
-        /*background-image: linear-gradient(white, white), linear-gradient(180deg, #00d7b9, #b95dd7 50%, #ffb367 100%);*/
-        /*background-repeat: no-repeat;*/
-        background-size: 100% 100%, 100% 200%;
-        background-position: 0 0, 0 100%;
-        background-origin: padding-box, border-box;
-        animation: highlight 1s infinite alternate;
-    }
+   
 
     @keyframes highlight {
         100% {
