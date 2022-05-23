@@ -351,6 +351,7 @@
                     ],
 
                 article: {
+                    id: 1,
                     title: 'HashSet<T> Class',
                     description: 'The following example demonstrates how to merge two disparate sets. This example creates two HashSet<T> objects, and populates them with even and odd numbers, respectively.',
                     codeBlocks: [
@@ -414,7 +415,7 @@
                     ],
                     tags:
                         [
-                            'Docs', 'C#', 'AWS', 'SQL'
+                            //'Docs', 'C#', 'AWS', 'SQL'
                         ],
                 },
 
@@ -475,7 +476,7 @@
                 for (var i = 0; i < this.article.texts.length; i++) {
                     this.article.texts[i].editor = null;
                 }
-                articleService.test(this.article);
+                articleService.save(this.article);
             },
             // move to zoomer component -------------------------
             zoomPageOut() {
@@ -507,6 +508,7 @@
             addTextToArticle() {
                 var newText = {
                     id: 0,
+                    articleId: 0,
                     type: 'text',
                     sortOrder: 0,
                     text: ``,
@@ -557,6 +559,7 @@
             addCodeBlockToArticle() {
                 var newCodeBlock = {
                     id: 0,
+                    articleId: 0,
                     type: 'code',
                     sortOrder: 0,
                     code: ``,

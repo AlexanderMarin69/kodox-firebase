@@ -80,7 +80,12 @@
         <main>
             <nav class="navbar" :style="appGlobalStyle()">
                 <TopNavigation :style="appGlobalStyle()" />
-                <router-view />
+
+                <router-view v-slot="{ Component }" >
+                    <Transition name="page" mode="ouit-in">
+                        <Component :is="Component" />
+                    </Transition>
+                </router-view>
             </nav>
         </main>
     </div>
@@ -141,6 +146,18 @@
 
 
 <style scoped>
+    .page-enter-active,
+    .page-leave-active {
+        transition: opacity 100ms ease,
+            transform 100ms ease;
+    }
+
+    .page-enter-from,
+    .page-leave-to {
+        transition: opacity 0;
+        transform: translateY(60px);
+    }
+
     .gradient-text {
         font-weight:bold;
         background-color: red;

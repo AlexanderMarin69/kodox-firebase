@@ -1,11 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\public",
     "\\src",
-    "\\src\\router",
-    "\\src\\views"
+    "\\src\\Repository",
+    "\\src\\services"
   ],
-  "SelectedNode": "\\src\\views\\CreateArticle.vue",
+  "SelectedNode": "\\src\\registerServiceWorker.js",
   "PreviewInSolutionExplorer": false
 }

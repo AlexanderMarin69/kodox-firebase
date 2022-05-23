@@ -24,34 +24,22 @@ var firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const articleCollection = collection(db, "Articles");
+const articleCodeBlocksCollection = collection(db, "ArticleCodeBlocks");
+const articleTextsCollection = collection(db, "ArticleTexts");
 
-
-
-
-
-//article: {
-//    title: '',
-//    description: '',
-//    tags: ['Docs', 'JS'],
-//    codeBlockIds: [1, 3, 5],
-//    textIds: [2, 4, 6],
-//}
-
-// intermediate table för codeBlocks och texts
-// sen hämta by id, sätt alla codeblocks och texts i article
-// sen returnera hela articlen i article-view
-
-// but no, article has no references, codeBlocks has articleId and text has article id
-// only thins is codeBlocks should be under collection {userId}/CodeBlocks/<item> - to fasten the search
-
-
-
-
-
-
+// when functioning somewhat, do user
 
 export default {
     async getTest() {
+        // get by id
+        // get codeBlocks by articleId
+        // get texts by articleId
+
+        // create obejct with article, codeBlocks, texts
+        // send them to view
+        // in view put them in corresponding variable
+        // decouple them in view........
+
         console.log('downloaded');
 
         var test = null;
@@ -66,10 +54,54 @@ export default {
         return test.docs[0].data();
     },
 
-    async test(payload) {
+    async save(payload) {
         console.log('posted');
 
+        console.log(payload);
+
+        // they get article Id
+        for (var i = 0; i < payload.texts.length; i++) {
+            var newText = {
+                id: payload.texts[i].id,
+                articleId: payload.id,
+                type: payload.texts[i].type,
+                sortOrder: payload.texts[i].sortOrder,
+                text: payload.texts[i].text,
+                editor: null,
+            };
+            await addDoc(articleTextsCollection, newText);
+        }
+        for (var i = 0; i < payload.codeBlocks.length; i++) {
+
+            var newCodeBlock = {
+                id: payload.codeBlocks[i].id,
+                articleId: payload.id,
+                type: payload.codeBlocks[i].type,
+                sortOrder: payload.codeBlocks[i].sortOrder,
+                code: payload.codeBlocks[i].code,
+                lang: payload.codeBlocks[i].lang
+            };
+
+            await addDoc(articleCodeBlocksCollection, newCodeBlock);
+        }
+
+
+
+        //TODO:
+        // user/codeBlocks
+        // user/texts
+
+
+
+
+
+        // TODO: decouople in createView CodeBlocks And Texts from article so that they dont get saved on article below
+        // make different views for edit and create
+        //payload.codeBlocks = [];
+        //payload.texts = [];
+
         await addDoc(articleCollection, payload);
+
 
         //const Persons = collection(db, "Persons");
         //const persons = collection(db, "persons");
