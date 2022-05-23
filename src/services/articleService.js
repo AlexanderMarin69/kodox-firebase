@@ -41,6 +41,8 @@ const articleCollection = collection(db, "Articles");
 // sen hämta by id, sätt alla codeblocks och texts i article
 // sen returnera hela articlen i article-view
 
+// but no, article has no references, codeBlocks has articleId and text has article id
+// only thins is codeBlocks should be under collection {userId}/CodeBlocks/<item> - to fasten the search
 
 
 
@@ -52,12 +54,16 @@ export default {
     async getTest() {
         console.log('downloaded');
 
+        var test = null;
         await getDocs(articleCollection).then((article) => {
-            for (let i = 0; i < article.docs.length; i++) {
-                console.log(article.docs[i].data());
-                console.log(article.docs[i].data().codeBlocks);
-            }
+            //for (let i = 0; i < article.docs.length; i++) {
+            //    console.log(article.docs[i].data());
+            //    console.log(article.docs[i].data().codeBlocks);
+            //}
+            test = article;
         });
+
+        return test.docs[0].data();
     },
 
     async test(payload) {

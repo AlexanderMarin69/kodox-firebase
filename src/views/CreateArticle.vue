@@ -435,8 +435,39 @@
             };
         },
         methods: {
-            getArticle() {
-                articleService.getTest();
+            async getArticle() {
+                await articleService.getTest()
+                    .then((result) => {
+                        console.log(result);
+                        this.article = result;
+
+                        for (var i = 0; i < this.article.texts.length; i++) {
+                            var newEditor = null;
+                            newEditor = new Editor({
+                                content: this.article.texts[i].text,
+                                extensions: [
+                                    StarterKit,
+                                    Document,
+                                    Paragraph,
+                                    Text,
+                                    TextAlign.configure({
+                                        types: ['heading', 'paragraph'],
+                                    }),
+                                    Table.configure({
+                                        resizable: true,
+                                    }),
+                                    TableHeader,
+                                    TableCell,
+                                    TableRow,
+                                ],
+                            });
+
+                            this.article.texts[i].editor = newEditor;
+                        }
+
+
+                        this.setUpArticleItemsListForView();
+                    });
             },
             saveArticle() {
                 for (var i = 0; i < this.article.texts.length; i++) {
