@@ -438,9 +438,12 @@
             async getArticle() {
                 await articleService.getTest()
                     .then((result) => {
+
                         console.log(result);
+
                         this.article = result;
 
+                        // settings editor bcz editor is null in db
                         for (var i = 0; i < this.article.texts.length; i++) {
                             var newEditor = null;
                             newEditor = new Editor({
@@ -464,7 +467,6 @@
 
                             this.article.texts[i].editor = newEditor;
                         }
-
 
                         this.setUpArticleItemsListForView();
                     });
