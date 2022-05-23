@@ -35,209 +35,175 @@
                 <!--description end-->
 
                 <div class="row">
-                <div class="col-12 ml-4">
-                    <p class="text-info">somwhere here, 3 codeblocks, bottom klick up, it goes sort order -1</p>
-                    <div v-for="item in allArticleItemsByOrder">
-                        <p>Type: {{item.type}}</p>
-                        <p>Sort Order: {{item.sortOrder}}</p>
-                    </div>
-                    <div v-if="allArticleItemsByOrder.length > 0" v-for="item in allArticleItemsByOrder">
-                        <div v-if="item.type == 'text'">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-11">
-                                        <!--<CustomEditor :showEditorButtons="showEditorButtons" :editor="editors.find(x => x.id == item.id).theEditor" />-->
-                                        <CustomEditor :showEditorButtons="showEditorButtons" :editor="item.editor" :editId="item.id" @editor-changed="updateText"/>
-                                    </div>
-                                    <div class="col-1" v-if="showMoveButtons" style="position: relative;">
-                                        <br />
-                                        <br />
-                                        <br />
-                                        <!--<button style="padding-left: 26px; padding-right: 26px;" class="btn btn-sm btn-outline-primary" @click="moveCodeUp(item)">👆</button>-->
-                                        <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-primary" @click="moveArticleSectionUp(item)">
-                                            <span class="material-symbols-outlined">
-                                                expand_less
-                                            </span>
-                                        </button>
-                                        <br />
-                                        <br />
-                                        <!--<button style="padding-left: 26px; padding-right: 26px;" class="btn btn-sm btn-outline-primary">👇</button>-->
-                                        <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-primary" @click="moveArticleSectionDown(item)">
-                                            <span class="material-symbols-outlined">
-                                                expand_more
-                                            </span>
-                                        </button>
-                                        <br />
-                                        <br />
-                                        <!--<button style="padding-left: 26px; padding-right: 26px;" class="btn btn-sm btn-outline-danger">🗑️</button>-->
-                                        <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-danger" @click="removeArticleSection(item)">
-                                            <span class="material-symbols-outlined">
-                                                delete
-                                            </span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div v-if="item.type == 'code'">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-11" v-bind:class="{ active: showMoveButtons, 'col-12': !showMoveButtons }">
-                                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                            <li class="nav-item">
-                                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">{{item.lang}}</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
-                                                    <span class="material-symbols-outlined">
-                                                        add
-                                                    </span>
-                                                </a>
-                                            </li>
-                                            <!--<li class="nav-item">
-        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">{{item.id}}</a>
-    </li>-->
-                                        </ul>
-                                        <div class="tab-content" id="myTabContent">
-                                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                                <codeBlock :code="item.code" :editId="item.id" :langTeller="item.lang" @code-changed="updateCodeBlock" />
-                                            </div>
-                                            <!--<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                                <codeBlock :code="item.code" :langTeller="item.id" />
-                                            </div>-->
+                    <div class="col-12 ml-4">
+                        <div v-if="allArticleItemsByOrder.length > 0" v-for="item in allArticleItemsByOrder">
+                            <div v-if="item.type == 'text'">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-11">
+                                            <!--<CustomEditor :showEditorButtons="showEditorButtons" :editor="editors.find(x => x.id == item.id).theEditor" />-->
+                                            <CustomEditor :showEditorButtons="showEditorButtons" :editor="item.editor" :editId="item.id" @editor-changed="updateText"/>
+                                        </div>
+                                        <div class="col-1" v-if="showMoveButtons" style="position: relative;">
+                                            <br />
+                                            <br />
+                                            <br />
+                                            <!--<button style="padding-left: 26px; padding-right: 26px;" class="btn btn-sm btn-outline-primary" @click="moveCodeUp(item)">👆</button>-->
+                                            <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-primary" @click="moveArticleSectionUp(item)">
+                                                <span class="material-symbols-outlined">
+                                                    expand_less
+                                                </span>
+                                            </button>
+                                            <br />
+                                            <br />
+                                            <!--<button style="padding-left: 26px; padding-right: 26px;" class="btn btn-sm btn-outline-primary">👇</button>-->
+                                            <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-primary" @click="moveArticleSectionDown(item)">
+                                                <span class="material-symbols-outlined">
+                                                    expand_more
+                                                </span>
+                                            </button>
+                                            <br />
+                                            <br />
+                                            <!--<button style="padding-left: 26px; padding-right: 26px;" class="btn btn-sm btn-outline-danger">🗑️</button>-->
+                                            <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-danger" @click="removeArticleSection(item)">
+                                                <span class="material-symbols-outlined">
+                                                    delete
+                                                </span>
+                                            </button>
                                         </div>
                                     </div>
-                                    <div class="col-1" v-if="showMoveButtons && item" style="position: relative;">
-                                        <br />
-                                        <br />
-                                        <!--<button style="padding-left: 26px; padding-right: 26px;" class="btn btn-sm btn-outline-primary" @click="moveCodeUp(item)">👆</button>-->
-                                        <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-primary" @click="moveArticleSectionUp(item)">
-                                            <span class="material-symbols-outlined">
-                                                expand_less
-                                            </span>
-                                        </button>
-                                        <br />
-                                        <br />
-                                        <!--<button style="padding-left: 26px; padding-right: 26px;" class="btn btn-sm btn-outline-primary" @click="moveCodeDown">👇</button>-->
-                                        <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-primary" @click="moveArticleSectionDown(item)">
-                                            <span class="material-symbols-outlined">
-                                                expand_more
-                                            </span>
-                                        </button>
-                                        <br />
-                                        <br />
-                                        <!--<button style="padding-left: 26px; padding-right: 26px;" class="btn btn-sm btn-outline-danger" @click="removeCode">🗑️</button>-->
-                                        <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-danger" @click="removeArticleSection(item)">
-                                            <span class="material-symbols-outlined">
-                                                delete
-                                            </span>
-                                        </button>
-
-                                        
+                                </div>
+                            </div>
+                            <div v-if="item.type == 'code'">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-11" v-bind:class="{ active: showMoveButtons, 'col-12': !showMoveButtons }">
+                                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">{{item.lang}}</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
+                                                        <span class="material-symbols-outlined">
+                                                            add
+                                                        </span>
+                                                    </a>
+                                                </li>
+                                                <!--<li class="nav-item">
+                                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">{{item.id}}</a>
+                                                </li>-->
+                                            </ul>
+                                            <div class="tab-content" id="myTabContent">
+                                                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                                    <codeBlock :code="item.code" :editId="item.id" :langTeller="item.lang" @code-changed="updateCodeBlock" />
+                                                </div>
+                                                <!--<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                                    <codeBlock :code="item.code" :langTeller="item.id" />
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-1" v-if="showMoveButtons && item" style="position: relative;">
+                                            <br />
+                                            <br />
+                                            <!--<button style="padding-left: 26px; padding-right: 26px;" class="btn btn-sm btn-outline-primary" @click="moveCodeUp(item)">👆</button>-->
+                                            <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-primary" @click="moveArticleSectionUp(item)">
+                                                <span class="material-symbols-outlined">
+                                                    expand_less
+                                                </span>
+                                            </button>
+                                            <br />
+                                            <br />
+                                            <!--<button style="padding-left: 26px; padding-right: 26px;" class="btn btn-sm btn-outline-primary" @click="moveCodeDown">👇</button>-->
+                                            <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-primary" @click="moveArticleSectionDown(item)">
+                                                <span class="material-symbols-outlined">
+                                                    expand_more
+                                                </span>
+                                            </button>
+                                            <br />
+                                            <br />
+                                            <!--<button style="padding-left: 26px; padding-right: 26px;" class="btn btn-sm btn-outline-danger" @click="removeCode">🗑️</button>-->
+                                            <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-danger" @click="removeArticleSection(item)">
+                                                <span class="material-symbols-outlined">
+                                                    delete
+                                                </span>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!--<div class="row">
-                            <div class="col-12 text-right">
-                                <button style="padding-left: 26px; padding-right: 26px; bottom: 0; padding-bottom: 0px; border-radius: 70px !important;" class="mt-5 btn btn-sm btn-outline-primary">
-                                    <span class="material-symbols-outlined">
-                                        add
+
+                        <SkeletonLoader v-else></SkeletonLoader>
+                        </div>
+                        <br />
+                        <br />
+                        <br />
+                        <!--options-->
+                        <div class="row m-2">
+                            <div class="col-12 col-sm-12 col-md-6 col-xl-4 mt-4">
+
+                                <button class="option btn btn-outline-primary btn-block" @click="addTextToArticle()">
+                                    <span class="material-symbols-outlined" style="vertical-align: sub; font-size: 32px;">
+                                        format_align_left
+                                    </span>
+                                    <span class="ml-3" style="vertical-align: baseline;">Rich Text</span>
+                                </button>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-6 col-xl-4 mt-4">
+
+                                <button class="option btn btn-outline-primary btn-block" @click="addCodeBlockToArticle()">
+                                    <span class="material-symbols-outlined" style="vertical-align: sub; font-size: 32px;">
+                                        integration_instructions
+                                    </span>
+                                    <span class="ml-3" style="vertical-align: baseline;">
+                                        Code Block
                                     </span>
                                 </button>
                             </div>
-                        </div>-->
-                    </div>
+                            <div class="col-12 col-sm-12 col-md-6 col-xl-4 mt-4">
 
-                    <SkeletonLoader v-else></SkeletonLoader>
-                    </div>
-                    <br />
-                    <br />
-                    <br />
-                    <!--<div class="row">
-                        <div class="col-12">
-                            <p class="text-info">Save</p>
-                            <span>
-                                <kbd class="keyboard-shortcut">
-                                    CTRL
-                                </kbd>
-                            </span>
-                            <span class="ml-2 mr-2">
-                                +
-                            </span>
-                            <span>
-                                <kbd class="keyboard-shortcut">
-                                    S
-                                </kbd>
-                            </span>
-                        </div>
-                    </div>-->
-                    <!--options-->
-                    <div class="row m-2">
-                        <div class="col-12 col-sm-12 col-md-6 col-xl-4 mt-4">
+                                <button class="option btn btn-outline-primary btn-block" @click="addCodeBlockToArticle()">
+                                    <span class="material-symbols-outlined" style="vertical-align: sub; font-size: 32px;">
+                                        filter_frames
+                                    </span>
+                                    <span class="ml-3" style="vertical-align: baseline;">
+                                        iframe
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-6 col-xl-4 mt-4">
 
-                            <button class="option btn btn-outline-primary btn-block" @click="addTextToArticle()">
-                                <span class="material-symbols-outlined" style="vertical-align: sub; font-size: 32px;">
-                                    format_align_left
-                                </span>
-                                <span class="ml-3" style="vertical-align: baseline;">Rich Text</span>
-                            </button>
+                                <button class="option btn btn-outline-primary btn-block" @click="addCodeBlockToArticle()">
+                                    <span class="material-symbols-outlined" style="vertical-align: sub; font-size: 32px;">
+                                        info
+                                    </span>
+                                    <span class="ml-3" style="vertical-align: baseline;">
+                                        Banner
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-6 col-xl-4 mt-4">
+                                <button class="option btn btn-outline-primary btn-block" @click="addCodeBlockToArticle()">
+                                    <span class="material-symbols-outlined" style="vertical-align: sub; font-size: 32px;">
+                                        panorama
+                                    </span>
+                                    <span class="ml-3" style="vertical-align: baseline;">
+                                        Media
+                                    </span>
+                                </button>
+                            </div>
                         </div>
-                        <div class="col-12 col-sm-12 col-md-6 col-xl-4 mt-4">
-
-                            <button class="option btn btn-outline-primary btn-block" @click="addCodeBlockToArticle()">
-                                <span class="material-symbols-outlined" style="vertical-align: sub; font-size: 32px;">
-                                    integration_instructions
-                                </span>
-                                <span class="ml-3" style="vertical-align: baseline;">
-                                    Code Block
-                                </span>
-                            </button>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-6 col-xl-4 mt-4">
-
-                            <button class="option btn btn-outline-primary btn-block" @click="addCodeBlockToArticle()">
-                                <span class="material-symbols-outlined" style="vertical-align: sub; font-size: 32px;">
-                                    filter_frames
-                                </span>
-                                <span class="ml-3" style="vertical-align: baseline;">
-                                    iframe
-                                </span>
-                            </button>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-6 col-xl-4 mt-4">
-
-                            <button class="option btn btn-outline-primary btn-block" @click="addCodeBlockToArticle()">
-                                <span class="material-symbols-outlined" style="vertical-align: sub; font-size: 32px;">
-                                    info
-                                </span>
-                                <span class="ml-3" style="vertical-align: baseline;">
-                                    Banner
-                                </span>
-                            </button>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-6 col-xl-4 mt-4">
-                            <button class="option btn btn-outline-primary btn-block" @click="addCodeBlockToArticle()">
-                                <span class="material-symbols-outlined" style="vertical-align: sub; font-size: 32px;">
-                                    panorama
-                                </span>
-                                <span class="ml-3" style="vertical-align: baseline;">
-                                    Media
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                    <!--options end-->
-                    <br />
-                    <br />
-                    <br />
-                    <br />
+                        <!--options end-->
+                        <br />
+                        <br />
+                        <br />
+                        <br />
                 </div>
             </div>
          
             <div class="sidebar">
                 <div class="container mt-3">
-                    <div class="row mb-4">
+                    <div class="row">
                         <div class="col-12">
                             <button class="btn btn-outline-secondary btn-sm mr-4" href="#" style="vertical-align: baseline;">
                                 <span class="material-symbols-outlined" style="vertical-align: bottom;">
@@ -258,23 +224,23 @@
                             </button>
                             <br />
                             <br />
-                            <button class="btn btn-outline-success btn-block" href="#" style="vertical-align: baseline;">
+                            <button class="btn btn-outline-success btn-block" href="#" style="vertical-align: baseline;" @click="saveArticle()">
                                 <span class="material-symbols-outlined mr-1" style="vertical-align: bottom;">
                                     save
                                 </span>
                                 Save
                             </button>
                             <p class="text-info mt-1" style="font-size: 12px;">Saving to Netmine | Router Docs</p>
-                            <button class="btn btn-outline-secondary btn-sm mb-3" href="#" style="vertical-align: baseline;" @click="showEditorButtons = !showEditorButtons">
+
+                            <button class="btn btn-outline-secondary btn-sm mr-3" href="#" style="vertical-align: baseline;" @click="showEditorButtons = !showEditorButtons">
                                 <span v-if="showEditorButtons" class="material-symbols-outlined mr-1" style="vertical-align: bottom;">
                                     visibility
                                 </span>
                                 <span v-else class="material-symbols-outlined mr-1" style="vertical-align: bottom;">
                                     visibility_off
                                 </span>
-                                Editor Buttons
+                                Editor
                             </button>
-                            <br />
                             <button class="btn btn-outline-secondary btn-sm" href="#" style="vertical-align: baseline;" @click="showMoveButtons = !showMoveButtons">
                                 <span v-if="showMoveButtons" class="material-symbols-outlined mr-1" style="vertical-align: bottom;">
                                     visibility
@@ -282,13 +248,11 @@
                                 <span v-else class="material-symbols-outlined mr-1" style="vertical-align: bottom;">
                                     visibility_off
                                 </span>
-                                Move Buttons
+                                Move
                             </button>
                         </div>
                     </div>
-                    <div>
-                        <br />
-                        <div class="row" style="margin-top: -30px;">
+                        <div class="row">
                             <div class="col-12">
                                 <nav class="nav nav-pills nav-justified" id="test" style="overflow-x: hidden !important; height: 250px;">
                                     <div 
@@ -299,19 +263,6 @@
                                          @click="selectTag(tag)">
                                     {{tag}}
                                     </div>
-
-                                    <!--<a class="nav-link TagActive" href="#">Docs</a>
-                                    <a class="nav-link disabled" href="#">C#</a>
-                                    <a class="nav-link disabled" href="#">HTML</a>
-                                    <a class="nav-link disabled" href="#">CSS</a>
-                                    <a class="nav-link disabled" href="#">SQL</a>
-                                    <a class="nav-link disabled" href="#">Vue Js</a>
-                                    <a class="nav-link TagActive" href="#">React</a>
-                                    <a class="nav-link TagActive" href="#">Java</a>
-                                    <a class="nav-link disabled" href="#">Azure</a>
-                                    <a class="nav-link disabled" href="#">AWS</a>
-                                    <a class="nav-link disabled" href="#">Kubernetes</a>
-                                    <a class="nav-link TagActive" href="#">Cheat Sheet</a>-->
                                 </nav>
                             </div>
                         </div>
@@ -330,7 +281,6 @@
                                    />
                             <p class="text-info mt-1" style="font-size: 12px;">You can manage tags further in settings.</p>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -477,6 +427,9 @@
             };
         },
         methods: {
+            saveArticle() {
+                console.log(this.article);
+            },
             // move to zoomer component -------------------------
             zoomPageOut() {
                 this.currentZoomPercentage = this.currentZoomPercentage - 10;
@@ -590,10 +543,11 @@ return pivotIndex;
                 this.setUpArticleItemsListForView();
             },
             addBannerToArticle() {
-                console.log('add Banner');
+                console.log('not yet implemnted');
             },
             addMediaToArticle() {
-                console.log('add Media');
+                // vueDropzone
+                console.log('not yet implemnted');
             },
             // add sections to article ------------
 
@@ -706,22 +660,6 @@ return pivotIndex;
                 }
                 return 0;
             },
-            //saveStateInArticle() {
-            //    this.article.texts = [];
-            //    this.article.codeBlocks = [];
-
-            //    this.allArticleItemsByOrder;
-
-            //    for (var i = 0; i < this.allArticleItemsByOrder.length; i++) {
-            //        if (this.allArticleItemsByOrder[i].type == 'text') {
-            //            this.allArticleItemsByOrder[i].text = this.allArticleItemsByOrder[i].editor.getHTML();
-            //            this.article.texts.push(this.allArticleItemsByOrder[i]);
-            //        }
-            //        if (this.allArticleItemsByOrder[i].type == 'code') {
-            //            this.article.codeBlocks.push(this.allArticleItemsByOrder[i]);
-            //        }
-            //    }
-            //},
             setUpArticleItemsListForView() {
                 setTimeout(() => {
                     setTimeout(() => {

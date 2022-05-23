@@ -3,6 +3,7 @@
     "",
     "\\public",
     "\\src",
+    "\\src\\router",
     "\\src\\views"
   ],
   "SelectedNode": "\\src\\views\\CreateArticle.vue",
