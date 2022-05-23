@@ -36,11 +36,16 @@
 
                 <div class="row">
                 <div class="col-12 ml-4">
+                    <p class="text-info">somwhere here, 3 codeblocks, bottom klick up, it goes sort order -1</p>
+                    <div v-for="item in allArticleItemsByOrder">
+                        <p>Type: {{item.type}}</p>
+                        <p>Sort Order: {{item.sortOrder}}</p>
+                    </div>
                     <div v-if="allArticleItemsByOrder.length > 0" v-for="item in allArticleItemsByOrder">
                         <div v-if="item.type == 'text'">
                             <div class="container-fluid">
                                 <div class="row">
-                                    <div class="col-11" v-bind:class="{ active: showMoveButtons, 'col-12': !showMoveButtons }">
+                                    <div class="col-11">
                                         <!--<CustomEditor :showEditorButtons="showEditorButtons" :editor="editors.find(x => x.id == item.id).theEditor" />-->
                                         <CustomEditor :showEditorButtons="showEditorButtons" :editor="item.editor" :editId="item.id" @editor-changed="updateText"/>
                                     </div>
@@ -65,7 +70,7 @@
                                         <br />
                                         <br />
                                         <!--<button style="padding-left: 26px; padding-right: 26px;" class="btn btn-sm btn-outline-danger">🗑️</button>-->
-                                        <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-danger">
+                                        <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-danger" @click="removeArticleSection(item)">
                                             <span class="material-symbols-outlined">
                                                 delete
                                             </span>
@@ -122,7 +127,7 @@
                                         <br />
                                         <br />
                                         <!--<button style="padding-left: 26px; padding-right: 26px;" class="btn btn-sm btn-outline-danger" @click="removeCode">🗑️</button>-->
-                                        <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-danger" @click="removeCode">
+                                        <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-danger" @click="removeArticleSection(item)">
                                             <span class="material-symbols-outlined">
                                                 delete
                                             </span>
@@ -144,7 +149,7 @@
                         </div>-->
                     </div>
 
-                    <SkeletonLoader v-if="allArticleItemsByOrder.length < 1 && !isNew"></SkeletonLoader>
+                    <SkeletonLoader v-else></SkeletonLoader>
                     </div>
                     <br />
                     <br />
@@ -333,30 +338,12 @@
     </div>
 </template>
 
-
-
-
-
-<!--
-    
-    ///////////// revert to previous where it all works compare git.............................
-
-    save codeblock.vue bcz nice changes!!!!!!!!!
-    
-    
-    --> 
-
-
-
-
-
 <script>
     import { mapActions, mapState } from "vuex";
     import codeBlock from "@/components/mainContent/codeBlock.vue";
     import Card from "@/components/common/card.vue";
     import CustomEditor from "@/components/mainContent/customEditor.vue";
     import SkeletonLoader from "@/components/common/SkeletonLoader.vue";
-
 
     import { Editor, EditorContent } from '@tiptap/vue-3'
     import StarterKit from '@tiptap/starter-kit'
@@ -387,7 +374,6 @@
         },
         data: function () {
             return {
-                isNew: false,
                 currentZoomPercentage: 100,
                 createTagInput: '',
                 tags:
@@ -405,6 +391,7 @@
                         'Kubernetes',
                         'Cheat Sheet',
                     ],
+
                 article: {
                     title: 'HashSet<T> Class',
                     description: 'The following example demonstrates how to merge two disparate sets. This example creates two HashSet<T> objects, and populates them with even and odd numbers, respectively.',
@@ -475,7 +462,6 @@
 
                 showEditorButtons: false,
                 showMoveButtons: true,
-                codeBlockVisible: false,
 
                 allArticleItemsByOrder: [],
 
@@ -486,12 +472,12 @@
                     text: ``,
                     editor: null,
                     code: ``,
-                    lang: 'C#'
+                    lang: ''
                 },
-
             };
         },
         methods: {
+            // move to zoomer component -------------------------
             zoomPageOut() {
                 this.currentZoomPercentage = this.currentZoomPercentage - 10;
 
@@ -502,6 +488,9 @@
 
                 document.body.style.zoom = this.currentZoomPercentage + '%';
             },
+            // move to zoomer component -------------------------
+
+            // section update data ------------------
             updateCodeBlock(codeBlock) {
                 this.article.codeBlocks.find(x => x.id === codeBlock.id).code = codeBlock.code;
             },
@@ -512,12 +501,17 @@
                 }, 0);
 
             },
-            // options start
-            addTextToArticle() {
+            // section update data ------------------
 
-                const test = this.emptyArticleSection
-                test.type = 'text';
-                var newText = test;
+            // add sections to article ------------
+            addTextToArticle() {
+                var newText = {
+                    id: 0,
+                    type: 'text',
+                    sortOrder: 0,
+                    text: ``,
+                    editor: null,
+                };
 
                 if (this.allArticleItemsByOrder.length > 0) {
                     newText.id = this.allArticleItemsByOrder.at(-1).id + 1;
@@ -525,9 +519,9 @@
                     newText.id = 1;
                 }
 
-                newText.text = `<h2><strong>Examples</strong></h2>
-                        <p>The following example demonstrates how to merge two disparate sets. This example creates two HashSet&lt;T&gt; objects, and populates them with even and odd numbers, respectively. A third HashSet&lt;T&gt; object is created from the set that contains the even numbers. The example then calls the UnionWith method, which adds the odd number set to the third set.</p>`;
-
+                newText.text =
+                    `<h2><strong>Examples</strong></h2>
+                     <p>The following example demonstrates how to merge two disparate sets. This example creates two HashSet&lt;T&gt; objects, and populates them with even and odd numbers, respectively. A third HashSet&lt;T&gt; object is created from the set that contains the even numbers. The example then calls the UnionWith method, which adds the odd number set to the third set.</p>`;
 
                 var newEditor = null;
                 newEditor = new Editor({
@@ -558,34 +552,24 @@
 
                 this.article.texts.push(newText);
 
-                // resetting the empty text reference otherwise it saves the state for next textblock that is created
-                this.emptyArticleSection = {
-                    id: 0,
-                    type: '',
-                    sortOrder: 0,
-                    text: ``,
-                    editor: null,
-                    code: ``,
-                    lang: 'C#'
-                };
-
-                // this fixes save state of text when add but not for all.........
-                this.allArticleItemsByOrder.push(newText);
-
-                this.getArticleItems();
-
+                this.setUpArticleItemsListForView();
             },
             addCodeBlockToArticle() {
-                const test = this.emptyArticleSection;
-                test.type = 'code';
-                test.lang = 'C#';
-                var newCodeBlock = test;
+                var newCodeBlock = {
+                    id: 0,
+                    type: 'code',
+                    sortOrder: 0,
+                    code: ``,
+                    lang: 'JS'
+                };
+
 
                 if (this.allArticleItemsByOrder.length > 0) {
                     newCodeBlock.id = this.allArticleItemsByOrder.at(-1).id + 1;
                 } else {
                     newCodeBlock.id = 1;
                 }
+
 
                 newCodeBlock.code =
                     `
@@ -595,6 +579,7 @@ return pivotIndex;
 };
 `;
 
+
                 newCodeBlock.sortOrder = 0;
                 if (this.allArticleItemsByOrder.length > 0) {
                     newCodeBlock.sortOrder = this.allArticleItemsByOrder.at(-1).sortOrder + 1;
@@ -602,20 +587,7 @@ return pivotIndex;
 
                 this.article.codeBlocks.push(newCodeBlock);
 
-                // resetting the empty text reference otherwise it saves the state for next textblock that is created
-                this.emptyCodeBlock = {
-                    id: 0,
-                    type: '',
-                    sortOrder: 0,
-                    text: ``,
-                    editor: null,
-                    code: ``,
-                    lang: ''
-                };
-
-                this.allArticleItemsByOrder.push(newCodeBlock);
-
-                this.getArticleItems();
+                this.setUpArticleItemsListForView();
             },
             addBannerToArticle() {
                 console.log('add Banner');
@@ -623,8 +595,9 @@ return pivotIndex;
             addMediaToArticle() {
                 console.log('add Media');
             },
-            // options end
+            // add sections to article ------------
 
+            // tags methods --------------
             createNewTag() {
                 var tag = this.createTagInput;
 
@@ -642,124 +615,87 @@ return pivotIndex;
                     this.article.tags.splice(this.article.tags.indexOf(found), 1);
                 }
             },
+            // tags methods --------------
 
+            // move article sections -----------------------
             moveArticleSectionUp(item) {
                 if (item.sortOrder === 0) {
                     return;
                 }
 
-                var currItem = null;
-                var prevItem = null;
-
-                // curr items
-                if (item.type === 'code') { // if item code
-                    currItem = this.article.codeBlocks.find(x => x.id === item.id);
-                    this.article.codeBlocks.splice(this.article.codeBlocks.indexOf(currItem), 1);
-                } else { // if item text
-                    currItem = this.article.texts.find(x => x.id === item.id);
-                    //currItem.text = currItem.editor.getHTML();
-                    this.article.texts.splice(this.article.texts.indexOf(currItem), 1);
-                }
+                setTimeout(() => {
+                    var currItem = this.allArticleItemsByOrder.find(x => x.id === item.id);
+                    var prevItem = this.allArticleItemsByOrder.at((this.allArticleItemsByOrder.indexOf(currItem) - 1));
 
 
-                // search in texts
-                // search in codeblocks
-                // return only prev item
+                    if (currItem.type === 'code') {
+                        this.article.codeBlocks.find(x => x.id === currItem.id).sortOrder = this.article.codeBlocks.find(x => x.id === currItem.id).sortOrder - 1;
+                    }
+                    if (currItem.type === 'text') {
+                        this.article.texts.find(x => x.id === currItem.id).sortOrder = this.article.texts.find(x => x.id === currItem.id).sortOrder - 1;
+                    }
 
-                var prevCode = this.article.codeBlocks.find(x => x.sortOrder === (item.sortOrder - 1));
-                var prevText = this.article.texts.find(x => x.sortOrder === (item.sortOrder - 1));
+                    if (prevItem.type === 'code') {
+                        this.article.codeBlocks.find(x => x.id === prevItem.id).sortOrder = this.article.codeBlocks.find(x => x.id === prevItem.id).sortOrder + 1;
+                    }
+                    if (prevItem.type === 'text') {
+                        this.article.texts.find(x => x.id === prevItem.id).sortOrder = this.article.texts.find(x => x.id === prevItem.id).sortOrder + 1;
+                    }
 
-                if (prevCode === undefined) {
-                    prevItem = prevText;
-                    //prevItem.text = prevItem.editor.getHTML();
-                    this.article.texts.splice(this.article.texts.indexOf(prevItem), 1);
-                } else {
-                    prevItem = prevCode;
-                    this.article.codeBlocks.splice(this.article.codeBlocks.indexOf(prevItem), 1);
-                }
-
-
-                if (currItem.type === 'code') {
-                    currItem.sortOrder = (currItem.sortOrder - 1);
-                    this.article.codeBlocks.push(currItem);
-                } else {
-                    currItem.sortOrder = (currItem.sortOrder - 1);
-                    this.article.texts.push(currItem);
-                }
-
-                if (prevItem.type === 'text') {
-                    prevItem.sortOrder = (prevItem.sortOrder + 1);
-                    this.article.texts.push(prevItem);
-                } else {
-                    prevItem.sortOrder = (prevItem.sortOrder + 1);
-                    this.article.codeBlocks.push(prevItem);
-                }
-
-                this.allArticleItemsByOrder.length = 0;
-
-                this.getArticleItems();
+                    this.setUpArticleItemsListForView();
+                }, 0);
             },
             moveArticleSectionDown(item) {
-                // last crated text if more than 1 does not save state 
-                if ((item.sortOrder + 1) === this.allArticleItemsByOrder.length) {
+                if ((item.sortOrder) === this.allArticleItemsByOrder.length) {
                     return;
                 }
 
+                setTimeout(() => {
+                    var currItem = this.allArticleItemsByOrder.find(x => x.id === item.id);
+                    var prevItem = this.allArticleItemsByOrder.at(this.allArticleItemsByOrder.indexOf(currItem) + 1);
 
-                var currItem = null;
-                var prevItem = null;
+                    if (currItem.type === 'code') {
+                        this.article.codeBlocks.find(x => x.id === currItem.id).sortOrder = this.article.codeBlocks.find(x => x.id === currItem.id).sortOrder + 1;
+                    }
+                    if (currItem.type === 'text') {
+                        this.article.texts.find(x => x.id === currItem.id).sortOrder = this.article.texts.find(x => x.id === currItem.id).sortOrder + 1;
+                    }
 
-                // curr items
-                if (item.type === 'code') { // if item code
-                    currItem = this.article.codeBlocks.find(x => x.id === item.id);
-                    this.article.codeBlocks.splice(this.article.codeBlocks.indexOf(currItem), 1);
-                } else { // if item text
-                    currItem = this.article.texts.find(x => x.id === item.id);
-                    //currItem.text = currItem.editor.getHTML();
-                    this.article.texts.splice(this.article.texts.indexOf(currItem), 1);
-                }
+                    if (prevItem.type === 'code') {
+                        this.article.codeBlocks.find(x => x.id === prevItem.id).sortOrder = this.article.codeBlocks.find(x => x.id === prevItem.id).sortOrder - 1;
+                    }
+                    if (prevItem.type === 'text') {
+                        this.article.texts.find(x => x.id === prevItem.id).sortOrder = this.article.texts.find(x => x.id === prevItem.id).sortOrder - 1;
+                    }
 
+                    this.setUpArticleItemsListForView();
 
-                // search in texts
-                // search in codeblocks
-                // return only prev item
-
-                var prevCode = this.article.codeBlocks.find(x => x.sortOrder === (item.sortOrder + 1));
-                var prevText = this.article.texts.find(x => x.sortOrder === (item.sortOrder + 1));
-
-                if (prevCode === undefined) {
-                    prevItem = prevText;
-                    //prevItem.text = prevItem.editor.getHTML();
-                    this.article.texts.splice(this.article.texts.indexOf(prevItem), 1);
-                } else {
-                    prevItem = prevCode;
-                    this.article.codeBlocks.splice(this.article.codeBlocks.indexOf(prevItem), 1);
-                }
-
-
-                if (currItem.type === 'code') {
-                    currItem.sortOrder = (currItem.sortOrder + 1);
-                    this.article.codeBlocks.push(currItem);
-                } else {
-                    currItem.sortOrder = (currItem.sortOrder + 1);
-                    this.article.texts.push(currItem);
-                }
-
-                if (prevItem.type === 'text') {
-                    prevItem.sortOrder = (prevItem.sortOrder - 1);
-                    this.article.texts.push(prevItem);
-                } else {
-                    prevItem.sortOrder = (prevItem.sortOrder - 1);
-                    this.article.codeBlocks.push(prevItem);
-                }
-
-                this.allArticleItemsByOrder.length = 0;
-                // make chekcs if type code or text - 2 levels
-                this.getArticleItems();
+                }, 0);
             },
-            removeCode() {
-                console.log('remove');
+            removeArticleSection(item) {
+                setTimeout(() => {
+                    var itemIsTypeText = this.article.texts.find(x => x.id === item.id);
+                    var itemIsTypeCode = this.article.codeBlocks.find(x => x.id === item.id);
+
+                    if (itemIsTypeText !== undefined) {
+                        const textIndex = this.article.texts.indexOf(itemIsTypeText);
+                        if (textIndex > -1) {
+                            this.article.texts.splice(textIndex, 1);
+                        }
+                    }
+                    if (itemIsTypeCode !== undefined) {
+                        const codeIndex = this.article.codeBlocks.indexOf(itemIsTypeCode);
+                        if (codeIndex > -1) {
+                            this.article.codeBlocks.splice(codeIndex, 1);
+                        }
+                    }
+
+                    this.setUpArticleItemsListForView();
+                }, 0);
             },
+            // move article sections -----------------------
+
+
             // ---------------------
             compareSortOrder(a, b) {
                 if (a.sortOrder < b.sortOrder) {
@@ -770,81 +706,53 @@ return pivotIndex;
                 }
                 return 0;
             },
-            saveStateInArticle() {
-                this.article.texts = [];
-                this.article.codeBlocks = [];
+            //saveStateInArticle() {
+            //    this.article.texts = [];
+            //    this.article.codeBlocks = [];
 
-                this.allArticleItemsByOrder;
+            //    this.allArticleItemsByOrder;
 
-                for (var i = 0; i < this.allArticleItemsByOrder.length; i++) {
-                    if (this.allArticleItemsByOrder[i].type == 'text') {
-                        this.allArticleItemsByOrder[i].text = this.allArticleItemsByOrder[i].editor.getHTML();
-                        this.article.texts.push(this.allArticleItemsByOrder[i]);
-                    }
-                    if (this.allArticleItemsByOrder[i].type == 'code') {
-                        this.article.codeBlocks.push(this.allArticleItemsByOrder[i]);
-                    }
-                }
-            },
-            getArticleItems() {
-                if (this.article.texts.length < 1 && this.article.codeBlocks.length < 1) {
-                    this.isNew = true;
-                    return;
-                }
-
-                if (this.allArticleItemsByOrder.length > 0) {
-                    this.saveStateInArticle();
-                }
-
-                this.allArticleItemsByOrder = [];
+            //    for (var i = 0; i < this.allArticleItemsByOrder.length; i++) {
+            //        if (this.allArticleItemsByOrder[i].type == 'text') {
+            //            this.allArticleItemsByOrder[i].text = this.allArticleItemsByOrder[i].editor.getHTML();
+            //            this.article.texts.push(this.allArticleItemsByOrder[i]);
+            //        }
+            //        if (this.allArticleItemsByOrder[i].type == 'code') {
+            //            this.article.codeBlocks.push(this.allArticleItemsByOrder[i]);
+            //        }
+            //    }
+            //},
+            setUpArticleItemsListForView() {
                 setTimeout(() => {
+                    setTimeout(() => {
+                        this.allArticleItemsByOrder = [];
+                    }, 0);
+
+                    setTimeout(() => {
+                        for (var lal = 0; lal < this.article.codeBlocks.length; lal++) {
+                            //this.allArticleItemsByOrder.splice((this.article.codeBlocks[lal].sortOrder), 0, this.article.codeBlocks[lal]);
+                            this.allArticleItemsByOrder.push(this.article.codeBlocks[lal]);
+                        }
+                    }, 0);
+
+                    setTimeout(() => {
+                        for (var lel = 0; lel < this.article.texts.length; lel++) {
+                            // push
+                            this.allArticleItemsByOrder.push(this.article.texts[lel]);
+                            //this.allArticleItemsByOrder.splice((this.article.texts[lel].sortOrder), 0, this.article.texts[lel]);
+                        }
+                    }, 0);
 
 
-                    var codeBlocks = this.article.codeBlocks;
-                    for (var i = 0; i < this.article.codeBlocks.length; i++) {
-                        this.allArticleItemsByOrder.splice((codeBlocks[i].sortOrder), 0, codeBlocks[i]);
-                    }
+                    setTimeout(() => {
+                        this.allArticleItemsByOrder = this.allArticleItemsByOrder.sort(this.compareSortOrder);
+                    }, 0);
 
-                    var texts = this.article.texts;
-                    for (var i = 0; i < texts.length; i++) {
-
-                        var newEditor = null;
-                        newEditor = new Editor({
-                            content: texts[i].text,
-                            extensions: [
-                                StarterKit,
-                                Document,
-                                Paragraph,
-                                Text,
-                                TextAlign.configure({
-                                    types: ['heading', 'paragraph'],
-                                }),
-                                //Gapcursor,
-                                Table.configure({
-                                    resizable: true,
-                                }),
-                                TableRow,
-                                TableHeader,
-                                TableCell,
-                            ],
-                        });
-
-                        // new code
-
-                        // works but gotta find way to two way databind editor content and save it in .text with v-model or something
-                        this.article.texts.find(x => x.id === texts[i].id).editor = newEditor;
-                        this.allArticleItemsByOrder.splice((texts[i].sortOrder), 0, texts[i]);
-
-
-                        //var newEditorObject = { id: texts[i].id, theEditor: newEditor };
-                        //this.editors.push(newEditorObject);
-                    }
-
-                    this.allArticleItemsByOrder = this.allArticleItemsByOrder.sort(this.compareSortOrder);
-                }
-                    , 0);
+                }, 0);
             },
             // ---------------------
+
+            // style ------------ style --------------
             optionStyle() {
                 let bg = "background-color: " + this.style.currentMode.contentBg + "; ";
                 let color = "color: " + this.style.currentMode.color + "!important; ";
@@ -855,6 +763,7 @@ return pivotIndex;
                 let color = "color: " + this.style.currentMode.color + "!important; ";
                 return bg + color;
             },
+            // style ------------ style --------------
             ...mapActions({
                 setUsersPrefferedThemeOrDefault: "style/SET_PREFFERED_THEME_OR_DEFAULT",
             }),
@@ -877,29 +786,7 @@ return pivotIndex;
             document.addEventListener("keydown", this._keyListener.bind(this));
 
             this.setUsersPrefferedThemeOrDefault();
-            this.getArticleItems();
-
-            //            this.editor = new Editor({
-            //                content: `
-            //<h4>Parameters</h4>
-            //<div class="tableWrapper"><table style="min-width: 75px;"><colgroup><col><col><col></colgroup><tbody><tr><th colspan="1" rowspan="1"><p>Name</p></th><th colspan="1" rowspan="1"><p>Type</p></th><th colspan="1" rowspan="1"><p>Nullable</p></th></tr><tr><td colspan="1" rowspan="1"><p>Title</p></td><td colspan="1" rowspan="1"><p>string</p></td><td colspan="1" rowspan="1"><p>not null</p></td></tr><tr><td colspan="1" rowspan="1"><p>Description</p></td><td colspan="1" rowspan="1"><p>string</p></td><td colspan="1" rowspan="1"><p>null</p></td></tr></tbody></table></div>
-            //<h2><strong>Examples</strong></h2>
-            //<p>The following example demonstrates how to merge two disparate sets. This example creates two HashSet&lt;T&gt; objects, and populates them with even and odd numbers, respectively. A third HashSet&lt;T&gt; object is created from the set that contains the even numbers. The example then calls the UnionWith method, which adds the odd number set to the third set.</p>
-            //      `,
-            //                extensions: [
-            //                    StarterKit,
-            //                    Document,
-            //                    Paragraph,
-            //                    Text,
-            //                    Gapcursor,
-            //                    Table.configure({
-            //                        resizable: true,
-            //                    }),
-            //                    TableRow,
-            //                    TableHeader,
-            //                    TableCell,
-            //                ],
-            //            })
+            this.setUpArticleItemsListForView();
         },
         beforeUnmount() {
             //this.editor.destroy()
