@@ -97,9 +97,10 @@
             to="category1"
             type="folder"
             createdBy="Felicia Marin" />-->
-            <div class="folder mb-5 mt-5 card" :style="cardGlobalStyle()">
+            <!--<div class="folder mb-5 mt-5 card" :style="cardGlobalStyle()">
 
-            </div>
+            </div>-->
+            <FolderCard class="mb-5" />
         </div>
     </div>
     <br />
@@ -120,74 +121,6 @@
 </template>
 
 <style scoped>
-
-    /*
-
-        make new component folderCard
-
-    */
-
-
-    .card {
-        max-width: 900px;
-        width: 100%;
-        border: 0px;
-        border-radius: 10px;
-        border: 1px solid rgba(0, 123, 255, 0.4);
-        /* -webkit-box-shadow: 1px 2px 15px -5px rgba(0,0,0,0.35);
-        box-shadow: 1px 2px 15px -5px rgba(0,0,0,0.35);*/
-        /*box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;*/
-        /*box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;*/
-        -webkit-box-shadow: 0px 38px 50px -22px rgba(0,0,0,0.16);
-        box-shadow: 0px 38px 50px -22px rgba(0,0,0,0.16);
-    }
-
-        .card:hover {
-            background-color: rgba(0, 123, 255, 0.4) !important;
-        }
-
-    .card-description {
-        color: #fff !important
-    }
-
-    .card-last-edited {
-        color: #fff !important
-    }
-
-
-    .folder {
-        width: 360px;
-        height: 230px;
-        border-radius: 5px 25px 25px 25px;
-        /*filter: drop-shadow(0 0 0.75rem grey);*/
-        /*background-color: rgba(0, 123, 255, 0.7) !important;*/
-        background-color: #24252d !important;
-        border: 1px solid #007bff;
-        position: relative;
-    }
-
-        .folder::before {
-            content: '';
-            position: absolute;
-            top: -18px;
-            width: 200px;
-            height: 25px;
-            background: white;
-            border-radius: 25px 0 0 0;
-            clip-path: path('M 0 0 L 160 0 C 185 2, 175 16, 200 18 L 0 50 z');
-        }
-
-        .folder::after {
-            content: '';
-            position: absolute;
-            left: 40px;
-            width: 85px;
-            height: 5px;
-            top: -18px;
-            background: #7036E9;
-            border-radius: 0 0 5px 5px;
-        }
-
     .inputStyle {
         border-radius: 10px;
         border: 0px;
@@ -214,9 +147,9 @@
 
 <script>
     import Carousel from "@/components/common/Carousel.vue";
+    import FolderCard from "@/components/common/folderCard.vue";
 
     import loader from "@/components/common/loader.vue";
-    import card from "@/components/common/card.vue";
 
     import { mapActions, mapState } from "vuex";
 
@@ -226,9 +159,9 @@
         name: "HomeView",
         components: {
             loader,
-            card,
             Carousel,
-            GridListViewAlternator
+            GridListViewAlternator,
+            FolderCard
         },
         data: function () {
             return {
