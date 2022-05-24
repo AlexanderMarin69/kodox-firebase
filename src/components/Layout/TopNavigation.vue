@@ -129,7 +129,12 @@
                                    @blur="unFocusInputField"
                                    :style="inputInputStyle() + 'width: 100% !important; border-radius: 10px; border: 0px; '"
                                    class="form-control mr-sm-2"
-                                   type="text"/>
+                                   type="text"
+                                   ontouchstart="this.removeAttribute('readonly');"
+                                   onfocus="this.removeAttribute('readonly');"
+                                   autocomplete="on"
+                                   readonly
+                                   />
                         </div>
                     </div>
                 </a>
