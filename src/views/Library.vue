@@ -96,8 +96,7 @@
                   description="This library goes through all docs regarding setup and deployment of firebase projects"
                   to="category1"
                   type="folder"
-                  createdBy="Alexander Marin" />
-
+                  createdBy="Felicia Marin" />
         </div>
     </div>
 </template>

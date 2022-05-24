@@ -16,13 +16,19 @@
                 </span>
                 <span style="vertical-align: sub;" class="pl-1">Spaces</span>
             </li>
-            <li class="hoverable-list-item">
-                <span class="material-symbols-outlined" style="vertical-align: text-top;">
+            <!--<li class="hoverable-list-item">
+        <span class="material-symbols-outlined" style="vertical-align: text-top;">
+            folder
+        </span>
+        <span style="vertical-align: sub;" class="pl-1">Library</span>
+    </li>-->
+            <router-link style="all: unset;" class="hoverable-list-item" :to="'/library'">
+                <span class="material-symbols-outlined" style="vertical-align: text-top; color: #007bff; font-weight: bold">
                     folder
                 </span>
-                <span style="vertical-align: sub;" class="pl-1">Library</span>
-            </li>
-            <li class="hoverable-list-item">
+                <span style="vertical-align: sub; color: #007bff; font-weight: bold;" class="pl-1">Library</span>
+            </router-link>
+            <li class="hoverable-list-item" :to="'/article-view'">
                 <span class="material-symbols-outlined" style="vertical-align: text-top;">
                     delete
                 </span>
@@ -59,6 +65,22 @@
                 </span>
                 <span style="vertical-align: sub;" class="pl-1">Log out</span>
             </li>
+
+            <br />
+
+            <li>
+                <div class="p-1 quickNoteButton" style="width: 75px; height: 75px; border-radius: 10px; border: 1px solid rgba(0, 123, 255, 0.4);">
+                    <center>
+                        <span class="mt-2 material-symbols-outlined">
+                            add
+                        </span>
+                        <br />
+                        Quick Note
+                    </center>
+                </div>
+            </li>
+
+
         </ul>
 
     </div>
@@ -95,7 +117,13 @@
 
 
 <style scoped>
-
+    .quickNoteButton:hover {
+        background-color: rgba(0, 123, 255, 0.4);
+        border-radius: 10px;
+        -webkit-transition: 0.3s all ease;
+        -o-transition: 0.3s all ease;
+        transition: 0.3s all ease;
+    }
     .gradient-text {
         font-weight: bold;
         /* Fallback: Set a background color. */
@@ -112,7 +140,7 @@
         -moz-background-clip: text;
         -moz-text-fill-color: transparent;
     }
- 
+
     ul {
         padding-left: 0px;
     }

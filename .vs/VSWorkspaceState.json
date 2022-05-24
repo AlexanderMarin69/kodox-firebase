@@ -2,10 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\Repository",
-    "\\src\\store",
-    "\\src\\store\\style"
+    "\\src\\components",
+    "\\src\\components\\common",
+    "\\src\\views"
   ],
-  "SelectedNode": "\\src\\store\\style\\mutations.js",
   "PreviewInSolutionExplorer": false
 }

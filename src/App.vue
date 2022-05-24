@@ -10,12 +10,18 @@
             <p class="gradient-text ml-2" style="font-size: 10px; font-weight: bold; cursor: pointer;" @click="navigate('/')">The Code Docs Company.</p>
             <br />
             <ul>
-                <li class="hoverable-list-item" @click="navigate('/')">
+                <!--<li class="hoverable-list-item" @click="navigate('/')">
                     <span class="material-symbols-outlined" style="vertical-align: text-top; color: #007bff; font-weight: bold">
                         team_dashboard
                     </span>
                     <span style="vertical-align: sub; color: #007bff; font-weight: bold;" class="pl-1">Dashboard</span>
-                </li>
+                </li>-->
+                <router-link style="all: unset;" class="hoverable-list-item" :to="'/'">
+                    <span class="material-symbols-outlined" style="vertical-align: text-top; color: #007bff; font-weight: bold">
+                        team_dashboard
+                    </span>
+                    <span style="vertical-align: sub; color: #007bff; font-weight: bold;" class="pl-1">Dashboard</span>
+                </router-link>
                 <li class="hoverable-list-item">
                     <span class="material-symbols-outlined" style="vertical-align: text-top;">
                         grid_view
@@ -87,7 +93,7 @@
             <nav class="navbar" :style="appGlobalStyle()">
                 <TopNavigation :style="appGlobalStyle()" />
 
-                <router-view v-slot="{ Component }" >
+                <router-view v-slot="{ Component }">
                     <Transition name="page">
                         <Component :is="Component" />
                     </Transition>
@@ -159,8 +165,7 @@
 <style scoped>
     .page-enter-active,
     .page-leave-active {
-        transition: opacity 300ms ease,
-            transform 300ms ease;
+        transition: opacity 300ms ease, transform 300ms ease;
     }
 
     .page-enter-from,
@@ -170,7 +175,7 @@
     }
 
     .gradient-text {
-        font-weight:bold;
+        font-weight: bold;
         background-color: red;
         background-image: linear-gradient(45deg, #eaa16d, #af4261);
         background-size: 100%;
@@ -225,7 +230,7 @@
     }
 
 
-   
+
 
     .logo {
         margin-right: 50px;
@@ -290,6 +295,7 @@
     .navbar label {
         display: none;
     }
+
     .navbar {
         background-color: black;
         color: white;
@@ -308,6 +314,4 @@
         /*background: #d4f2c4;*/
         padding: 0px;
     }
-
- 
 </style>
