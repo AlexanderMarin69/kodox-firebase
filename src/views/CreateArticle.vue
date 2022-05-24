@@ -354,70 +354,71 @@
                     id: 1,
                     title: 'HashSet<T> Class',
                     description: 'The following example demonstrates how to merge two disparate sets. This example creates two HashSet<T> objects, and populates them with even and odd numbers, respectively.',
-                    codeBlocks: [
-                        //                        {
-                        //                            id: 234234234,
-                        //                            type: 'code',
-                        //                            sortOrder: 1,
-                        //                            code: `
-                        //function partition(arr, start, end){
-                        //// Taking the last element as the pivot
-                        //const pivotValue = arr[end];
-                        //let pivotIndex = start;
-                        //for (let i = start; i < end; i++) {
-                        //if (arr[i] < pivotValue) {
-                        //// Swapping elements
-                        //[arr[i], arr[pivotIndex]] = [arr[pivotIndex], arr[i]];
-                        //// Moving to next element
-                        //pivotIndex++;
-                        //}
-                        //}
-
-                        //// Putting the pivot value in the middle
-                        //[arr[pivotIndex], arr[end]] = [arr[end], arr[pivotIndex]]
-                        //return pivotIndex;
-                        //}; `,
-                        //                            lang: 'C#'
-                        //                        },
-                        //{
-                        //    id: 7367,
-                        //    type: 'code',
-                        //    sortOrder: 3,
-                        //    code: ``,
-                        //    lang: 'JS'
-                        //}
-                    ],
-                    texts: [
-                        //                        {
-                        //                            id: 888,
-                        //                            type: 'text',
-                        //                            sortOrder: 0,
-                        //                            text: `
-                        //<h4>Parameters 00000000</h4>
-                        //<div class="tableWrapper"><table style="min-width: 75px;"><colgroup><col><col><col></colgroup><tbody><tr><th colspan="1" rowspan="1"><p>Name</p></th><th colspan="1" rowspan="1"><p>Type</p></th><th colspan="1" rowspan="1"><p>Nullable</p></th></tr><tr><td colspan="1" rowspan="1"><p>Title</p></td><td colspan="1" rowspan="1"><p>string</p></td><td colspan="1" rowspan="1"><p>not null</p></td></tr><tr><td colspan="1" rowspan="1"><p>Description</p></td><td colspan="1" rowspan="1"><p>string</p></td><td colspan="1" rowspan="1"><p>null</p></td></tr></tbody></table></div>
-                        //<h2><strong>Examples</strong></h2>
-                        //<p>The following example demonstrates how to merge two disparate sets. This example creates two HashSet&lt;T&gt; objects, and populates them with even and odd numbers, respectively. A third HashSet&lt;T&gt; object is created from the set that contains the even numbers. The example then calls the UnionWith method, which adds the odd number set to the third set.</p>
-                        //      `,
-                        //                            editor: null
-                        //                        },
-                        //{
-                        //    id: 909090,
-                        //    type: 'text',
-                        //    sortOrder: 0,
-                        //    text: `
-                        //<h4>Parameters 22222222</h4>
-                        //<div class="tableWrapper"><table style="min-width: 75px;"><colgroup><col><col><col></colgroup><tbody><tr><th colspan="1" rowspan="1"><p>Name</p></th><th colspan="1" rowspan="1"><p>Type</p></th><th colspan="1" rowspan="1"><p>Nullable</p></th></tr><tr><td colspan="1" rowspan="1"><p>Title</p></td><td colspan="1" rowspan="1"><p>string</p></td><td colspan="1" rowspan="1"><p>not null</p></td></tr><tr><td colspan="1" rowspan="1"><p>Description</p></td><td colspan="1" rowspan="1"><p>string</p></td><td colspan="1" rowspan="1"><p>null</p></td></tr></tbody></table></div>
-                        //<h2><strong>Examples</strong></h2>
-                        //<p>The following example demonstrates how to merge two disparate sets. This example creates two HashSet&lt;T&gt; objects, and populates them with even and odd numbers, respectively. A third HashSet&lt;T&gt; object is created from the set that contains the even numbers. The example then calls the UnionWith method, which adds the odd number set to the third set.</p>
-                        //      `,
-                        //    editor: null
-                        //},
-                    ],
                     tags:
                         [
                             //'Docs', 'C#', 'AWS', 'SQL'
                         ],
                 },
+
+                articleCodeBlocks: [
+                    //                        {
+                    //                            id: 234234234,
+                    //                            type: 'code',
+                    //                            sortOrder: 1,
+                    //                            code: `
+                    //function partition(arr, start, end){
+                    //// Taking the last element as the pivot
+                    //const pivotValue = arr[end];
+                    //let pivotIndex = start;
+                    //for (let i = start; i < end; i++) {
+                    //if (arr[i] < pivotValue) {
+                    //// Swapping elements
+                    //[arr[i], arr[pivotIndex]] = [arr[pivotIndex], arr[i]];
+                    //// Moving to next element
+                    //pivotIndex++;
+                    //}
+                    //}
+
+                    //// Putting the pivot value in the middle
+                    //[arr[pivotIndex], arr[end]] = [arr[end], arr[pivotIndex]]
+                    //return pivotIndex;
+                    //}; `,
+                    //                            lang: 'C#'
+                    //                        },
+                    //{
+                    //    id: 7367,
+                    //    type: 'code',
+                    //    sortOrder: 3,
+                    //    code: ``,
+                    //    lang: 'JS'
+                    //}
+                ],
+                articleTexts: [
+                    //                        {
+                    //                            id: 888,
+                    //                            type: 'text',
+                    //                            sortOrder: 0,
+                    //                            text: `
+                    //<h4>Parameters 00000000</h4>
+                    //<div class="tableWrapper"><table style="min-width: 75px;"><colgroup><col><col><col></colgroup><tbody><tr><th colspan="1" rowspan="1"><p>Name</p></th><th colspan="1" rowspan="1"><p>Type</p></th><th colspan="1" rowspan="1"><p>Nullable</p></th></tr><tr><td colspan="1" rowspan="1"><p>Title</p></td><td colspan="1" rowspan="1"><p>string</p></td><td colspan="1" rowspan="1"><p>not null</p></td></tr><tr><td colspan="1" rowspan="1"><p>Description</p></td><td colspan="1" rowspan="1"><p>string</p></td><td colspan="1" rowspan="1"><p>null</p></td></tr></tbody></table></div>
+                    //<h2><strong>Examples</strong></h2>
+                    //<p>The following example demonstrates how to merge two disparate sets. This example creates two HashSet&lt;T&gt; objects, and populates them with even and odd numbers, respectively. A third HashSet&lt;T&gt; object is created from the set that contains the even numbers. The example then calls the UnionWith method, which adds the odd number set to the third set.</p>
+                    //      `,
+                    //                            editor: null
+                    //                        },
+                    //{
+                    //    id: 909090,
+                    //    type: 'text',
+                    //    sortOrder: 0,
+                    //    text: `
+                    //<h4>Parameters 22222222</h4>
+                    //<div class="tableWrapper"><table style="min-width: 75px;"><colgroup><col><col><col></colgroup><tbody><tr><th colspan="1" rowspan="1"><p>Name</p></th><th colspan="1" rowspan="1"><p>Type</p></th><th colspan="1" rowspan="1"><p>Nullable</p></th></tr><tr><td colspan="1" rowspan="1"><p>Title</p></td><td colspan="1" rowspan="1"><p>string</p></td><td colspan="1" rowspan="1"><p>not null</p></td></tr><tr><td colspan="1" rowspan="1"><p>Description</p></td><td colspan="1" rowspan="1"><p>string</p></td><td colspan="1" rowspan="1"><p>null</p></td></tr></tbody></table></div>
+                    //<h2><strong>Examples</strong></h2>
+                    //<p>The following example demonstrates how to merge two disparate sets. This example creates two HashSet&lt;T&gt; objects, and populates them with even and odd numbers, respectively. A third HashSet&lt;T&gt; object is created from the set that contains the even numbers. The example then calls the UnionWith method, which adds the odd number set to the third set.</p>
+                    //      `,
+                    //    editor: null
+                    //},
+                ],
 
                 showEditorButtons: false,
                 showMoveButtons: true,
@@ -442,13 +443,19 @@
 
                         console.log(result);
 
-                        this.article = result;
+                        this.article.title = result.title;
+                        this.article.description = result.description;
+                        this.article.id = result.id;
+
+
+                        this.articleTexts = result.texts;
+                        this.articleCodeBlocks = result.codeBlocks;
 
                         // settings editor bcz editor is null in db
-                        for (var i = 0; i < this.article.texts.length; i++) {
+                        for (var i = 0; i < this.articleTexts.length; i++) {
                             var newEditor = null;
                             newEditor = new Editor({
-                                content: this.article.texts[i].text,
+                                content: this.articleTexts[i].text,
                                 extensions: [
                                     StarterKit,
                                     Document,
@@ -466,17 +473,27 @@
                                 ],
                             });
 
-                            this.article.texts[i].editor = newEditor;
+                            this.articleTexts[i].editor = newEditor;
                         }
 
                         this.setUpArticleItemsListForView();
                     });
             },
-            saveArticle() {
-                for (var i = 0; i < this.article.texts.length; i++) {
-                    this.article.texts[i].editor = null;
+            async saveArticle() {
+                for (var i = 0; i < this.articleTexts.length; i++) {
+                    this.articleTexts[i].editor = null;
                 }
-                articleService.save(this.article);
+
+
+                var articleToSave = {
+                    codeBlocks: this.articleCodeBlocks,
+                    texts: this.articleTexts,
+                    id: this.article.id,
+                    description: this.article.description,
+                    title: this.article.title,
+                };
+
+                await articleService.save(articleToSave);
             },
             // move to zoomer component -------------------------
             zoomPageOut() {
@@ -493,12 +510,12 @@
 
             // section update data ------------------
             updateCodeBlock(codeBlock) {
-                this.article.codeBlocks.find(x => x.id === codeBlock.id).code = codeBlock.code;
+               this.articleCodeBlocks.find(x => x.id === codeBlock.id).code = codeBlock.code;
             },
             updateText(editorId) {
                 setTimeout(() => {
-                    const theTextToUpdateWith = this.article.texts.find(x => x.id === editorId).editor.getHTML();
-                    this.article.texts.find(x => x.id === editorId).text = theTextToUpdateWith;
+                    const theTextToUpdateWith = this.articleTexts.find(x => x.id === editorId).editor.getHTML();
+                    this.articleTexts.find(x => x.id === editorId).text = theTextToUpdateWith;
                 }, 0);
 
             },
@@ -552,7 +569,7 @@
                     newText.sortOrder = this.allArticleItemsByOrder.at(-1).sortOrder + 1;
                 }
 
-                this.article.texts.push(newText);
+                this.articleTexts.push(newText);
 
                 this.setUpArticleItemsListForView();
             },
@@ -588,7 +605,7 @@ return pivotIndex;
                     newCodeBlock.sortOrder = this.allArticleItemsByOrder.at(-1).sortOrder + 1;
                 }
 
-                this.article.codeBlocks.push(newCodeBlock);
+               this.articleCodeBlocks.push(newCodeBlock);
 
                 this.setUpArticleItemsListForView();
             },
@@ -633,17 +650,17 @@ return pivotIndex;
 
 
                     if (currItem.type === 'code') {
-                        this.article.codeBlocks.find(x => x.id === currItem.id).sortOrder = this.article.codeBlocks.find(x => x.id === currItem.id).sortOrder - 1;
+                       this.articleCodeBlocks.find(x => x.id === currItem.id).sortOrder =this.articleCodeBlocks.find(x => x.id === currItem.id).sortOrder - 1;
                     }
                     if (currItem.type === 'text') {
-                        this.article.texts.find(x => x.id === currItem.id).sortOrder = this.article.texts.find(x => x.id === currItem.id).sortOrder - 1;
+                        this.articleTexts.find(x => x.id === currItem.id).sortOrder = this.articleTexts.find(x => x.id === currItem.id).sortOrder - 1;
                     }
 
                     if (prevItem.type === 'code') {
-                        this.article.codeBlocks.find(x => x.id === prevItem.id).sortOrder = this.article.codeBlocks.find(x => x.id === prevItem.id).sortOrder + 1;
+                       this.articleCodeBlocks.find(x => x.id === prevItem.id).sortOrder =this.articleCodeBlocks.find(x => x.id === prevItem.id).sortOrder + 1;
                     }
                     if (prevItem.type === 'text') {
-                        this.article.texts.find(x => x.id === prevItem.id).sortOrder = this.article.texts.find(x => x.id === prevItem.id).sortOrder + 1;
+                        this.articleTexts.find(x => x.id === prevItem.id).sortOrder = this.articleTexts.find(x => x.id === prevItem.id).sortOrder + 1;
                     }
 
                     this.setUpArticleItemsListForView();
@@ -659,17 +676,17 @@ return pivotIndex;
                     var prevItem = this.allArticleItemsByOrder.at(this.allArticleItemsByOrder.indexOf(currItem) + 1);
 
                     if (currItem.type === 'code') {
-                        this.article.codeBlocks.find(x => x.id === currItem.id).sortOrder = this.article.codeBlocks.find(x => x.id === currItem.id).sortOrder + 1;
+                       this.articleCodeBlocks.find(x => x.id === currItem.id).sortOrder =this.articleCodeBlocks.find(x => x.id === currItem.id).sortOrder + 1;
                     }
                     if (currItem.type === 'text') {
-                        this.article.texts.find(x => x.id === currItem.id).sortOrder = this.article.texts.find(x => x.id === currItem.id).sortOrder + 1;
+                        this.articleTexts.find(x => x.id === currItem.id).sortOrder = this.articleTexts.find(x => x.id === currItem.id).sortOrder + 1;
                     }
 
                     if (prevItem.type === 'code') {
-                        this.article.codeBlocks.find(x => x.id === prevItem.id).sortOrder = this.article.codeBlocks.find(x => x.id === prevItem.id).sortOrder - 1;
+                       this.articleCodeBlocks.find(x => x.id === prevItem.id).sortOrder =this.articleCodeBlocks.find(x => x.id === prevItem.id).sortOrder - 1;
                     }
                     if (prevItem.type === 'text') {
-                        this.article.texts.find(x => x.id === prevItem.id).sortOrder = this.article.texts.find(x => x.id === prevItem.id).sortOrder - 1;
+                        this.articleTexts.find(x => x.id === prevItem.id).sortOrder = this.articleTexts.find(x => x.id === prevItem.id).sortOrder - 1;
                     }
 
                     this.setUpArticleItemsListForView();
@@ -678,19 +695,19 @@ return pivotIndex;
             },
             removeArticleSection(item) {
                 setTimeout(() => {
-                    var itemIsTypeText = this.article.texts.find(x => x.id === item.id);
-                    var itemIsTypeCode = this.article.codeBlocks.find(x => x.id === item.id);
+                    var itemIsTypeText = this.articleTexts.find(x => x.id === item.id);
+                    var itemIsTypeCode =this.articleCodeBlocks.find(x => x.id === item.id);
 
                     if (itemIsTypeText !== undefined) {
-                        const textIndex = this.article.texts.indexOf(itemIsTypeText);
+                        const textIndex = this.articleTexts.indexOf(itemIsTypeText);
                         if (textIndex > -1) {
-                            this.article.texts.splice(textIndex, 1);
+                            this.articleTexts.splice(textIndex, 1);
                         }
                     }
                     if (itemIsTypeCode !== undefined) {
-                        const codeIndex = this.article.codeBlocks.indexOf(itemIsTypeCode);
+                        const codeIndex =this.articleCodeBlocks.indexOf(itemIsTypeCode);
                         if (codeIndex > -1) {
-                            this.article.codeBlocks.splice(codeIndex, 1);
+                           this.articleCodeBlocks.splice(codeIndex, 1);
                         }
                     }
 
@@ -717,19 +734,19 @@ return pivotIndex;
                     }, 0);
 
                     setTimeout(() => {
-                        for (var lal = 0; lal < this.article.codeBlocks.length; lal++) {
-                            //this.allArticleItemsByOrder.splice((this.article.codeBlocks[lal].sortOrder), 0, this.article.codeBlocks[lal]);
-                            this.allArticleItemsByOrder.push(this.article.codeBlocks[lal]);
+                        for (var lal = 0; lal < this.articleCodeBlocks.length; lal++) {
+                            this.allArticleItemsByOrder.splice((this.articleCodeBlocks[lal].sortOrder), 0,this.articleCodeBlocks[lal]);
+                            //this.allArticleItemsByOrder.push(this.articleCodeBlocks[lal]);
                         }
                     }, 0);
 
                     // if this is before codeBlocks then wrong visual update when moving 2 texts close to eachoter
                     // still happens if they at the bottom tho......
+                    // stops happening if we slice in stuff so its kinda fixed now :)
                     setTimeout(() => {
-                        for (var lel = 0; lel < this.article.texts.length; lel++) {
-                            // push
-                            this.allArticleItemsByOrder.push(this.article.texts[lel]);
-                            //this.allArticleItemsByOrder.splice((this.article.texts[lel].sortOrder), 0, this.article.texts[lel]);
+                        for (var lel = 0; lel < this.articleTexts.length; lel++) {
+                            this.allArticleItemsByOrder.splice((this.articleTexts[lel].sortOrder), 0, this.articleTexts[lel]);
+                            //this.allArticleItemsByOrder.push(this.articleTexts[lel]);
                         }
                     }, 0);
 

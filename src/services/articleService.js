@@ -44,23 +44,53 @@ export default {
         // get codeBlocks by articleId
         // get texts by articleId
 
-        // create obejct with article, codeBlocks, texts
-        // send them to view
-        // in view put them in corresponding variable
-        // decouple them in view........
+        console.log('ran getTest');
 
-        console.log('downloaded');
+        var returnArticleObject = {
+            codeBlocks: [],
+            texts: [],
+            id: [],
+            description: [],
+            title: [],
+        };
 
-        var test = null;
-        await getDocs(articleCollection).then((article) => {
-            //for (let i = 0; i < article.docs.length; i++) {
-            //    console.log(article.docs[i].data());
-            //    console.log(article.docs[i].data().codeBlocks);
-            //}
-            test = article;
-        });
+        // woprks just return those separately :)
 
-        return test.docs[0].data();
+        //await getDocs
+        //    (articleTextsCollection).then((result) => {
+        //        //for (let i = 0; i < article.docs.length; i++) {
+        //        //    console.log(article.docs[i].data());
+        //        //    console.log(article.docs[i].data().codeBlocks);
+        //        //}
+
+        //        returnArticleObject.texts = result.docs[0].data().texts;
+                
+        //    });
+        //await getDocs
+        //    (articleCodeBlocksCollection).then((result) => {
+        //        //for (let i = 0; i < article.docs.length; i++) {
+        //        //    console.log(article.docs[i].data());
+        //        //    console.log(article.docs[i].data().codeBlocks);
+        //        //}
+
+        //        returnArticleObject.texts = result.docs[0].data().texts;
+
+        //    });
+
+        await getDocs
+            (articleCollection).then((result) => {
+                //for (let i = 0; i < article.docs.length; i++) {
+                //    console.log(article.docs[i].data());
+                //    console.log(article.docs[i].data().codeBlocks);
+                //}
+
+                returnArticleObject.id = result.docs[0].data().id;
+                returnArticleObject.description = result.docs[0].data().description;
+                returnArticleObject.title = result.docs[0].data().title;
+            });
+
+        console.log('returning getTest');
+        return returnArticleObject;
     },
 
     async save(payload) {
@@ -109,7 +139,13 @@ export default {
         //payload.codeBlocks = [];
         //payload.texts = [];
 
-        await addDoc(articleCollection, payload);
+        var articleToSave = {
+            id: payload.id,
+            description: payload.description,
+            title: payload.title,
+        };
+
+        await addDoc(articleCollection, articleToSave);
 
 
         //const Persons = collection(db, "Persons");
