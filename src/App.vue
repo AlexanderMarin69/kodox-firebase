@@ -10,18 +10,12 @@
             <p class="gradient-text ml-2" style="font-size: 10px; font-weight: bold; cursor: pointer;" @click="navigate('/')">The Code Docs Company.</p>
             <br />
             <ul>
-                <!--<li class="hoverable-list-item" @click="navigate('/')">
+                <li class="hoverable-list-item" @click="navigate('/')">
                     <span class="material-symbols-outlined" style="vertical-align: text-top; color: #007bff; font-weight: bold">
                         team_dashboard
                     </span>
                     <span style="vertical-align: sub; color: #007bff; font-weight: bold;" class="pl-1">Dashboard</span>
-                </li>-->
-                <router-link style="all: unset;" class="hoverable-list-item" :to="'/'">
-                    <span class="material-symbols-outlined" style="vertical-align: text-top; color: #007bff; font-weight: bold">
-                        team_dashboard
-                    </span>
-                    <span style="vertical-align: sub; color: #007bff; font-weight: bold;" class="pl-1">Dashboard</span>
-                </router-link>
+                </li>
                 <li class="hoverable-list-item">
                     <span class="material-symbols-outlined" style="vertical-align: text-top;">
                         grid_view
@@ -209,14 +203,33 @@
         cursor: pointer;
     }
 
-    .hoverable-list-item:hover {
-        background-color: rgba(0, 123, 255, 0.4);
-        border-radius: 7px;
-        font-weight: bold;
+    router-link {
+        list-style: none !important;
+        text-align: start !important;
+        padding: 12px !important;
+        padding-right: 0px !important;
+        padding-left: 4px !important;
+        width: 100% !important;
+        font-size: 12px !important;
+    }
+
+    .hoverable-list-item {
+        cursor: pointer;
+        background: transparent;
+        border: 0px !important;
         -webkit-transition: 0.1s all ease;
         -o-transition: 0.1s all ease;
         transition: 0.1s all ease;
     }
+
+        .hoverable-list-item:hover {
+            background-color: rgba(0, 123, 255, 0.4);
+            border-radius: 7px;
+            font-weight: bold;
+            -webkit-transition: 0.1s all ease;
+            -o-transition: 0.1s all ease;
+            transition: 0.1s all ease;
+        }
 
     #navWrapperSticky {
         position: -webkit-sticky;
