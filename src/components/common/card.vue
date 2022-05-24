@@ -34,7 +34,22 @@
                 </div>
              
                 <p class="card-text text-info card-description">{{ description }}</p>
-                <p style="margin-bottom: 0px;" class="text-secondary card-last-edited">16 articles | {{createdBy}} | {{edited}}</p>
+                <p style="margin-bottom: 0px;" class="text-secondary card-last-edited">
+                    <span class="material-symbols-outlined" style="vertical-align: bottom;">
+                        description
+                    </span>
+                    16 articles
+                    <br />
+                    <span class="material-symbols-outlined" style="vertical-align: bottom;">
+                        person
+                    </span>
+                    {{createdBy}}
+                    <br />
+                    <span class="material-symbols-outlined" style="vertical-align: bottom;">
+                        edit
+                    </span>
+                    {{edited}}
+                </p>
                 <slot></slot>
             </div>
         </div>

@@ -130,11 +130,10 @@
                                    :style="inputInputStyle() + 'width: 100% !important; border-radius: 10px; border: 0px; '"
                                    class="form-control mr-sm-2"
                                    type="text"
-                                   ontouchstart="this.removeAttribute('readonly');"
-                                   onfocus="this.removeAttribute('readonly');"
                                    autocomplete="on"
-                                   readonly
-                                   />
+                                   readonly />
+                                   <!--ontouchstart="this.removeAttribute('readonly');"
+                                   onfocus="this.removeAttribute('readonly');"-->
                         </div>
                     </div>
                 </a>
@@ -151,15 +150,15 @@
                         <div class="dropdown-menu" :style="appGlobalStyleContent() + 'border: 1px solid rgba(0, 123, 255, 0.4);' ">
                             <a class="dropdown-item" href="#" :style="appGlobalStyleContent() + 'background-color: #f3f4f5;'">
                                 <!--<span class="material-symbols-outlined mr-1" style="vertical-align: text-top;">
-                            person
-                        </span>-->
+                                    person
+                                </span>-->
                                 <span class="hoverText">Welcome to kodox!<wbr> Check outour Video <wbr> tutorials on how to use :)</span>
                             </a>
                             <hr />
                             <a class="dropdown-item" href="#" :style="appGlobalStyleContent() + 'vertical-align: sub;'">
                                 <!--<span class="material-symbols-outlined mr-1" style="vertical-align: text-top;">
-                            info
-                        </span>-->
+                                    info
+                                </span>-->
                                 <span class="hoverText">Help</span>
                             </a>
                         </div>
@@ -173,7 +172,7 @@
                                             <img src="../../assets/placeholder.jpg">
                                         </span>
                                     </div>
-                                    <div class="col-1 mt-1" style="padding-right: 0px;"> 
+                                    <div class="col-1 mt-1" style="padding-right: 0px;">
                                         <span style="vertical-align: super;">Alexander Marin</span>
                                         <span class="material-symbols-outlined" style="vertical-align: baseline;">
                                             expand_more
@@ -229,6 +228,7 @@
         watch: {
             isGlobalSearchBarFocused(newValue) {
                 if (newValue) {
+                    document.getElementById("globalSearchInputField").removeAttribute("readonly"); 1
                     document.getElementById("globalSearchInputField").focus();
                     this.isFocused = true;
                 } else {
@@ -297,9 +297,11 @@
         .space-card {
             margin-bottom: 12px;
         }
+
         .search-card {
             margin-bottom: 12px;
         }
+
         .user-card {
             padding: 0px !important;
             margin-left: -5% !important;
@@ -338,9 +340,9 @@
         margin-left: 50px;
     }
 
-        .openbtn:hover {
-            background-color: #444;
-        }
+    .openbtn:hover {
+        background-color: #444;
+    }
 
     #main-test {
         transition: margin-left .5s;
@@ -363,6 +365,7 @@
         .openbtn {
             display: block !important;
         }
+
         #main {
             display: block !important;
         }
@@ -371,8 +374,8 @@
 
     .dropdown-item:hover {
         background-color: rgba(0, 123, 255, 0.4) !important;
-        font-weight:bold;
-        cursor:pointer;
+        font-weight: bold;
+        cursor: pointer;
     }
 
     .dropdown-menu {
@@ -386,7 +389,7 @@
         cursor: pointer;
     }
 
-   
+
 
 
     /* MOVE TO COMPONENT WHEN BUILT */
@@ -419,7 +422,7 @@
 
 
 
-     
+
 
     .form-control:focus {
         box-shadow: none;
@@ -430,7 +433,7 @@
         margin-top: -4px;
     }
 
-   
+
 
     @keyframes highlight {
         100% {

@@ -85,13 +85,13 @@
             </div>
         </div>-->
     </div>
-    <div class="row mt-4">
+    <div class="row mt-5 text-center">
         <!--
 
             // just switch between col-md-4 and col-md-12
 
             -->
-        <div class="col-md-4 mb-4" v-for="tag in 10">
+        <div class="col-12 col-lg-4 mb-4 text-center" v-for="tag in 10">
             <!--<card title="Google Firebase Deploy Guide Docs"
             description="This library goes through all docs regarding setup and deployment of firebase projects"
             to="category1"
@@ -100,6 +100,21 @@
             <div class="folder mb-5 mt-5 card" :style="cardGlobalStyle()">
 
             </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10 text-center">
+                <h6 class="text-info">Reached the end of the list 🎉</h6>
+                <button class="btn btn-outline-primary mt-3">Create a new category</button>
+            </div>
+            <div class="col-1"></div>
         </div>
     </div>
 </template>
@@ -141,8 +156,8 @@
 
 
     .folder {
-        width: 380px;
-        height: 250px;
+        width: 360px;
+        height: 230px;
         border-radius: 5px 25px 25px 25px;
         /*filter: drop-shadow(0 0 0.75rem grey);*/
         /*background-color: rgba(0, 123, 255, 0.7) !important;*/
