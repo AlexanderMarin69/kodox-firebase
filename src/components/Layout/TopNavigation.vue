@@ -127,8 +127,8 @@
                                    id="globalSearchInputField"
                                    @focus.native="focusInputField"
                                    @blur="unFocusInputField"
-                                   :style="inputInputStyle() + 'width: 100% !important; border-radius: 10px; border: 0px; '"
-                                   class="form-control mr-sm-2"
+                                   :style="inputInputStyle()"
+                                   class="form-control mr-sm-2 inputStyle"
                                    type="text"
                                    autocomplete="on"
                                    readonly />
@@ -228,7 +228,7 @@
         watch: {
             isGlobalSearchBarFocused(newValue) {
                 if (newValue) {
-                    document.getElementById("globalSearchInputField").removeAttribute("readonly"); 1
+                    document.getElementById("globalSearchInputField").removeAttribute("readonly"); 
                     document.getElementById("globalSearchInputField").focus();
                     this.isFocused = true;
                 } else {
@@ -252,10 +252,12 @@
                 //document.getElementById("main-test").style.marginLeft = "0";
             },
             unFocusInputField() {
+                document.getElementById("globalSearchInputField").setAttribute('readonly', true);
                 this.isFocused = false;
                 this.setGlobalSearchBarFocusFalse();
             },
             focusInputField() {
+                document.getElementById("globalSearchInputField").removeAttribute("readonly");
                 this.isFocused = true;
             },
             inputInputStyle() {
@@ -293,6 +295,12 @@
 </script>
 
 <style scoped>
+    .inputStyle {
+        padding: 18px !important;
+        border-radius: 10px;
+        border: 0px;
+    }
+
     @media screen and (max-width: 679px) {
         .space-card {
             margin-bottom: 12px;
@@ -419,20 +427,6 @@
         }
     /* MOVE TO COMPONENT WHEN BUILT */
     /* member avatars of space */
-
-
-
-
-
-    .form-control:focus {
-        box-shadow: none;
-    }
-
-    input[type="text"], input {
-        padding: 18px;
-        margin-top: -4px;
-    }
-
 
 
     @keyframes highlight {

@@ -2,26 +2,33 @@
     <div :style="appGlobalStyle()">
         <!--content-->
         <div class="wrapper mt-5">
-            <div class="container pr-5">
+            <div class="container ">
 
                 <!--title-->
                 <div class="row">
-                    <div class="col-12 ml-4">
+                    <div class="col-1">
+                    </div>
+
+                    <div class="col-10">
                         <div class="input-group">
                             <input placeholder="Title"
                                    v-model="article.title"
-                                   :style="appGlobalStyle() + 'border:0px; font-size:35px;'"
+                                   :style="appGlobalStyle() + 'border:0px; font-size:30px;'"
                                    type="text"
                                    class="form-control"
                                    aria-label="Large"
                                    aria-describedby="inputGroup-sizing-sm">
                         </div>
                     </div>
+                    <div class="col-1">
+                    </div>
                 </div>
                 <!--title end-->
                 <!--description-->
                 <div class="row">
-                    <div class="col-12 ml-4">
+                    <div class="col-1">
+                    </div>
+                    <div class="col-10">
                         <div class="input-group">
                             <textarea placeholder="The following example demonstrates how to merge two disparate sets. This example creates two HashSet<T> objects, and populates them with even and odd numbers, respectively."
                                       v-model="article.description"
@@ -31,18 +38,21 @@
                                       aria-label="With textarea"></textarea>
                         </div>
                     </div>
+                    <div class="col-1">
+                    </div>
                 </div>
                 <!--description end-->
 
                 <div class="row">
-                    <div class="col-12 ml-4">
+                    <div class="col-1">
+                    </div>
+                    <div class="col-10">
                         <div v-if="allArticleItemsByOrder.length > 0" v-for="item in allArticleItemsByOrder">
-                            <div v-if="item.type == 'text'">
-                                <div class="container-fluid">
+                                <div class="container-fluid"  v-if="item.type == 'text'">
                                     <div class="row">
-                                        <div class="col-11">
+                                        <div class="col-11" v-bind:class="{ active: showMoveButtons, 'col-12': !showMoveButtons }">
                                             <!--<CustomEditor :showEditorButtons="showEditorButtons" :editor="editors.find(x => x.id == item.id).theEditor" />-->
-                                            <CustomEditor :showEditorButtons="showEditorButtons" :editor="item.editor" :editId="item.id" @editor-changed="updateText" />
+                                            <CustomEditor :showEditorButtons="showEditorButtons" :editor="item.editor" :editId="item.id" @editor-changed="updateText" style="width: 100% !important;"/>
                                         </div>
                                         <div class="col-1" v-if="showMoveButtons" style="position: relative;">
                                             <br />
@@ -73,9 +83,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div v-if="item.type == 'code'">
-                                <div class="container-fluid">
+                                <div class="container-fluid" v-if="item.type == 'code'">
                                     <div class="row">
                                         <div class="col-11" v-bind:class="{ active: showMoveButtons, 'col-12': !showMoveButtons }">
                                             <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -90,16 +98,16 @@
                                                     </a>
                                                 </li>
                                                 <!--<li class="nav-item">
-                                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">{{item.id}}</a>
-                                    </li>-->
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">{{item.id}}</a>
+                                </li>-->
                                             </ul>
                                             <div class="tab-content" id="myTabContent">
                                                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                                     <codeBlock :code="item.code" :editId="item.id" :langTeller="item.lang" @code-changed="updateCodeBlock" />
                                                 </div>
                                                 <!--<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                        <codeBlock :code="item.code" :langTeller="item.id" />
-                                    </div>-->
+                                    <codeBlock :code="item.code" :langTeller="item.id" />
+                                </div>-->
                                             </div>
                                         </div>
                                         <div class="col-1" v-if="showMoveButtons && item" style="position: relative;">
@@ -130,10 +138,11 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                         </div>
 
                         <SkeletonLoader v-else></SkeletonLoader>
+                    </div>
+                    <div class="col-1">
                     </div>
                     <br />
                     <br />
@@ -420,8 +429,8 @@
                     //},
                 ],
 
-                showEditorButtons: false,
-                showMoveButtons: true,
+                showEditorButtons: true,
+                showMoveButtons: false,
 
                 allArticleItemsByOrder: [],
 

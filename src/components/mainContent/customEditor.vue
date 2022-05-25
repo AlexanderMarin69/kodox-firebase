@@ -243,7 +243,7 @@
     };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .editorButton {
         /* background: transparent;
        color: white;*/

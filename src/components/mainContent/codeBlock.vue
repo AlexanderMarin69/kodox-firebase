@@ -158,7 +158,7 @@
         /* content bg is good */
         /* it was transparent but doesnt work in light mode */
         /* background-color: #313234; */
-        background-color: #212223;
+        background-color: #0d0d0d;
     }
 
     .preStyle {
