@@ -1,5 +1,5 @@
 <template>
-    <section class="carousel" aria-label="Gallery" style="height: 320px !important;">
+    <section class="carousel" aria-label="Gallery" style="height: 450px !important;">
         <ol class="carousel__viewport" style="background: transparent !important;">
             <li id="carousel__slide1"
                 tabindex="0"
