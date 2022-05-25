@@ -22,6 +22,10 @@ export default {
     mutations
 }
 
+// https://colorhunt.co/palettes/neon
+// bring in color palettes lmao
+// maybe choose own color
+
 
 /*
  

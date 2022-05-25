@@ -40,13 +40,6 @@
 
 <style scoped lang="scss">
 
-   /* .folder {
-        width: 360px;
-        height: 230px;
-        border-radius: 5px 25px 25px 25px;
-        position: relative;
-    }
-*/
     .folder::before {
         content: '';
         position: absolute;

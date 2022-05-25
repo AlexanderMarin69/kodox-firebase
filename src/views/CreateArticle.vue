@@ -429,7 +429,7 @@
                     //},
                 ],
 
-                showEditorButtons: true,
+                showEditorButtons: false,
                 showMoveButtons: false,
 
                 allArticleItemsByOrder: [],
