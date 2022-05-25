@@ -51,10 +51,13 @@
         content: '';
         position: absolute;
         top: -18px;
+        left: -1px;
         width: 200px;
         height: 25px;
-        background: white;
+        border: 1px solid rgba(0, 123, 255, 0.4);
+        background: v-bind('style.currentMode.contentBg');
         border-radius: 25px 0 0 0;
+        transition: ease-in-out 0.3s !important;
         clip-path: path('M 0 0 L 160 0 C 185 2, 175 16, 200 18 L 0 50 z');
     }
 
@@ -71,6 +74,10 @@
 
 
     .card:hover {
+        .folder::before {
+            background: rgba(0, 123, 255, 0.4) !important;
+        }
+
         background-color: rgba(0, 123, 255, 0.4) !important;
 
         .card-description {
@@ -115,10 +122,11 @@
                 return contentBg + color;
             },
         },
+       
         computed: {
             ...mapState({
                 style: (store) => store.style,
-            }),
+            })
         },
     };
 </script>
