@@ -39,6 +39,8 @@ const articleTextsCollection = collection(db, "articleTexts");
 
 export default {
     async getArticleById(articleId) {
+        console.log('articleId: ', articleId);
+
         var returnArticleObject = {
             codeBlocks: [],
             texts: [],
@@ -66,7 +68,9 @@ export default {
                     newCategory.text = result.docs[i].data().text;
                     newCategory.type = result.docs[i].data().type;
 
-                    returnArticleObject.texts.push(newCategory);
+                    if (newCategory.articleId === articleId) {
+                        returnArticleObject.texts.push(newCategory);
+                    }
                 }
             });
 
@@ -91,7 +95,9 @@ export default {
                     newcodeBlock.sortOrder = result.docs[i].data().sortOrder;
                     newcodeBlock.type = result.docs[i].data().type;
 
-                    returnArticleObject.codeBlocks.push(newcodeBlock);
+                    if (newcodeBlock.articleId === articleId) {
+                        returnArticleObject.codeBlocks.push(newcodeBlock);
+                    }
                 }
             });
 
@@ -100,7 +106,6 @@ export default {
                 var article = result.docs.find(x => x.id === articleId);
 
                 returnArticleObject.id = article.id;
-                console.log(returnArticleObject.id);
                 returnArticleObject.description = article.data().description;
                 returnArticleObject.title = article.data().title;
                 returnArticleObject.tags = article.data().tags;

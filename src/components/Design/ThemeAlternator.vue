@@ -42,8 +42,10 @@
             changeTheme(value) {
                 if (value) {
                     this.setGlobalDarkMode();
+                    document.body.style.backgroundColor = this.styleCurrentMode.bg;
                 } else {
                     this.setGlobalLightMode();
+                    document.body.style.backgroundColor = this.styleCurrentMode.bg;
                 }
             },
              ...mapActions({

@@ -55,7 +55,7 @@
                             </div>
                         </div>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" :style="appGlobalStyleContent() + 'border: 1px solid rgba(0, 123, 255, 0.4);' ">
-                            <p class="ml-5 text-info mt-2">Workspace Actions</p>
+                            <!--<p class="ml-5 text-info mt-2">Workspace Actions</p>
                             <div @click="navigate('article-view')" class="dropdown-item mb-2" href="#" :style="appGlobalStyleContent() + 'vertical-align: sub;'">
                                 <span class="material-symbols-outlined mr-1 hoverText" style="vertical-align: text-top;">
                                     add
@@ -80,7 +80,7 @@
                                 </span>
                                 <span class="hoverText">Space Details</span>
                             </div>
-                            <hr />
+                            <hr />-->
 
                             <p class="ml-5 text-info">My Workspaces</p>
 

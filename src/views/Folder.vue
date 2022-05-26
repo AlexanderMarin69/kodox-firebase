@@ -138,6 +138,9 @@
                     return 'transition: ease-in-out 0.3s !important; background-color:' + this.style.currentMode.contentBg + ' !important; color: ' + this.style.currentMode.color + ' !important; ';
                 }
             },
+            ...mapActions({
+                setUsersPrefferedThemeOrDefault: "style/SET_PREFFERED_THEME_OR_DEFAULT",
+            }),
         },
         computed: {
             ...mapState({
@@ -146,6 +149,7 @@
             }),
         },
         mounted() {
+            this.setUsersPrefferedThemeOrDefault();
             this.currentCategoryId = this.stateCategory.id;
             this.getCategoryArticles();
         },

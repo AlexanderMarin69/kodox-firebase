@@ -1,5 +1,5 @@
 ﻿<template>
-    <div class="container-xl" style="display: grid; grid-template-columns: 1fr minmax(10px, 92%); height: 100px; margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px;">
+    <div class="container-xl" :style="appGlobalStyle() + 'display: grid; grid-template-columns: 1fr minmax(10px, 92%); height: 100px; margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px;'">
         <aside :style="appGlobalStyle()">
             <div style="font-size: 23px; cursor: pointer;" @click="navigate('/')">
                 <span class="material-symbols-outlined" style="vertical-align: sub; font-size: 22px;">
@@ -70,7 +70,7 @@
                 <br />
 
                 <li>
-                    <div class="p-1 quickNoteButton" style="width: 75px; height: 75px; border-radius: 10px; border: 1px solid rgba(0, 123, 255, 0.4);">
+                    <div @click="quickNote('article-view')" class="p-1 quickNoteButton" style="width: 75px; height: 75px; border-radius: 10px; border: 1px solid rgba(0, 123, 255, 0.4);">
                         <center>
                             <span class="mt-2 material-symbols-outlined">
                                 add
@@ -109,9 +109,16 @@
             ThemeAlternator
         },
         data() {
-            return {};
+            return {
+                font: {
+                    weight: '#000000'
+                }
+            };
         },
         methods: {
+            quickNote(path) {
+                this.$router.push({ name: 'article-view', params: { id: 'new' } });
+            },
             navigate(path) {
                 this.$router.push(path);
             },
@@ -130,6 +137,9 @@
             }),
         },
         mounted() {
+            //body = document.getElementsByTagName('body')[0].style.color = "red";;
+            document.body.style.backgroundColor = this.style.currentMode.bg;
+
             //document.body.style.zoom = "90%";
 
             this._keyListener = function (e) {
@@ -153,7 +163,7 @@
 </script>
 
 
-<style scoped>
+<style lang="scss">
     .gradient-text {
         font-weight: bold;
         background-color: red;

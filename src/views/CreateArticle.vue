@@ -47,99 +47,103 @@
                     </div>
                     <div class="col-10">
                         <div v-if="allArticleItemsByOrder.length > 0" v-for="item in allArticleItemsByOrder">
-                                <div class="container-fluid"  v-if="item.type == 'text'">
-                                    <div class="row">
-                                        <div class="col-11" v-bind:class="{ active: showMoveButtons, 'col-12': !showMoveButtons }">
-                                            <!--<CustomEditor :showEditorButtons="showEditorButtons" :editor="editors.find(x => x.id == item.id).theEditor" />-->
-                                            <CustomEditor :showEditorButtons="showEditorButtons" :editor="item.editor" :editId="item.id" @editor-changed="updateText" style="width: 100% !important;"/>
-                                        </div>
-                                        <div class="col-1" v-if="showMoveButtons" style="position: relative;">
-                                            <br />
-                                            <br />
-                                            <br />
-                                            <!--<button style="padding-left: 26px; padding-right: 26px;" class="btn btn-sm btn-outline-primary" @click="moveCodeUp(item)">👆</button>-->
-                                            <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-primary" @click="moveArticleSectionUp(item)">
-                                                <span class="material-symbols-outlined">
-                                                    expand_less
-                                                </span>
-                                            </button>
-                                            <br />
-                                            <br />
-                                            <!--<button style="padding-left: 26px; padding-right: 26px;" class="btn btn-sm btn-outline-primary">👇</button>-->
-                                            <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-primary" @click="moveArticleSectionDown(item)">
-                                                <span class="material-symbols-outlined">
-                                                    expand_more
-                                                </span>
-                                            </button>
-                                            <br />
-                                            <br />
-                                            <!--<button style="padding-left: 26px; padding-right: 26px;" class="btn btn-sm btn-outline-danger">🗑️</button>-->
-                                            <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-danger" @click="removeArticleSection(item)">
-                                                <span class="material-symbols-outlined">
-                                                    delete
-                                                </span>
-                                            </button>
-                                        </div>
+                            <div class="container-fluid" v-if="item.type == 'text'">
+                                <div class="row">
+                                    <div class="col-11" v-bind:class="{ active: showMoveButtons, 'col-12': !showMoveButtons }">
+                                        <!--<CustomEditor :showEditorButtons="showEditorButtons" :editor="editors.find(x => x.id == item.id).theEditor" />-->
+                                        <CustomEditor :showEditorButtons="showEditorButtons" :editor="item.editor" :editId="item.id" @editor-changed="updateText" style="width: 100% !important;" />
+                                    </div>
+                                    <div class="col-1" v-if="showMoveButtons" style="position: relative;">
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <!--<button style="padding-left: 26px; padding-right: 26px;" class="btn btn-sm btn-outline-primary" @click="moveCodeUp(item)">👆</button>-->
+                                        <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-primary" @click="moveArticleSectionUp(item)">
+                                            <span class="material-symbols-outlined">
+                                                expand_less
+                                            </span>
+                                        </button>
+                                        <br />
+                                        <br />
+                                        <!--<button style="padding-left: 26px; padding-right: 26px;" class="btn btn-sm btn-outline-primary">👇</button>-->
+                                        <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-primary" @click="moveArticleSectionDown(item)">
+                                            <span class="material-symbols-outlined">
+                                                expand_more
+                                            </span>
+                                        </button>
+                                        <br />
+                                        <br />
+                                        <!--<button style="padding-left: 26px; padding-right: 26px;" class="btn btn-sm btn-outline-danger">🗑️</button>-->
+                                        <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-danger" @click="removeArticleSection(item)">
+                                            <span class="material-symbols-outlined">
+                                                delete
+                                            </span>
+                                        </button>
                                     </div>
                                 </div>
-                                <div class="container-fluid" v-if="item.type == 'code'">
-                                    <div class="row">
-                                        <div class="col-11" v-bind:class="{ active: showMoveButtons, 'col-12': !showMoveButtons }">
-                                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                                <li class="nav-item">
-                                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">{{item.lang}}</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
-                                                        <span class="material-symbols-outlined">
-                                                            add
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                                <!--<li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">{{item.id}}</a>
-                                </li>-->
-                                            </ul>
-                                            <div class="tab-content" id="myTabContent">
-                                                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                                    <codeBlock :code="item.code" :editId="item.id" :langTeller="item.lang" @code-changed="updateCodeBlock" />
-                                                </div>
-                                                <!--<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                    <codeBlock :code="item.code" :langTeller="item.id" />
-                                </div>-->
+                            </div>
+                            <div class="container-fluid" v-if="item.type == 'code'">
+                                <div class="row">
+                                    <div class="col-11" v-bind:class="{ active: showMoveButtons, 'col-12': !showMoveButtons }">
+                                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">{{item.lang}}</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
+                                                    <span class="material-symbols-outlined">
+                                                        add
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <!--<li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">{{item.id}}</a>
+                        </li>-->
+                                        </ul>
+                                        <div class="tab-content" id="myTabContent">
+                                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                                <codeBlock :code="item.code" :editId="item.id" :langTeller="item.lang" @code-changed="updateCodeBlock" />
                                             </div>
-                                        </div>
-                                        <div class="col-1" v-if="showMoveButtons && item" style="position: relative;">
-                                            <br />
-                                            <br />
-                                            <!--<button style="padding-left: 26px; padding-right: 26px;" class="btn btn-sm btn-outline-primary" @click="moveCodeUp(item)">👆</button>-->
-                                            <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-primary" @click="moveArticleSectionUp(item)">
-                                                <span class="material-symbols-outlined">
-                                                    expand_less
-                                                </span>
-                                            </button>
-                                            <br />
-                                            <br />
-                                            <!--<button style="padding-left: 26px; padding-right: 26px;" class="btn btn-sm btn-outline-primary" @click="moveCodeDown">👇</button>-->
-                                            <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-primary" @click="moveArticleSectionDown(item)">
-                                                <span class="material-symbols-outlined">
-                                                    expand_more
-                                                </span>
-                                            </button>
-                                            <br />
-                                            <br />
-                                            <!--<button style="padding-left: 26px; padding-right: 26px;" class="btn btn-sm btn-outline-danger" @click="removeCode">🗑️</button>-->
-                                            <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-danger" @click="removeArticleSection(item)">
-                                                <span class="material-symbols-outlined">
-                                                    delete
-                                                </span>
-                                            </button>
+                                            <!--<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <codeBlock :code="item.code" :langTeller="item.id" />
+                        </div>-->
                                         </div>
                                     </div>
+                                    <div class="col-1" v-if="showMoveButtons && item" style="position: relative;">
+                                        <br />
+                                        <br />
+                                        <!--<button style="padding-left: 26px; padding-right: 26px;" class="btn btn-sm btn-outline-primary" @click="moveCodeUp(item)">👆</button>-->
+                                        <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-primary" @click="moveArticleSectionUp(item)">
+                                            <span class="material-symbols-outlined">
+                                                expand_less
+                                            </span>
+                                        </button>
+                                        <br />
+                                        <br />
+                                        <!--<button style="padding-left: 26px; padding-right: 26px;" class="btn btn-sm btn-outline-primary" @click="moveCodeDown">👇</button>-->
+                                        <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-primary" @click="moveArticleSectionDown(item)">
+                                            <span class="material-symbols-outlined">
+                                                expand_more
+                                            </span>
+                                        </button>
+                                        <br />
+                                        <br />
+                                        <!--<button style="padding-left: 26px; padding-right: 26px;" class="btn btn-sm btn-outline-danger" @click="removeCode">🗑️</button>-->
+                                        <button style="padding-left: 26px; padding-right: 26px; padding-bottom: 0px;" class="btn btn-sm btn-outline-danger" @click="removeArticleSection(item)">
+                                            <span class="material-symbols-outlined">
+                                                delete
+                                            </span>
+                                        </button>
+                                    </div>
                                 </div>
+                            </div>
                         </div>
 
-                        <SkeletonLoader v-else></SkeletonLoader>
+                        <SkeletonLoader v-if="showSkeletonLoader"></SkeletonLoader>
+                        <div class="mt-2" v-if="!showSkeletonLoader && allArticleItemsByOrder.length < 1">
+                            <p class="text-secondary">Start adding your documentation be choosing below.</p>
+                            <img height="200" src="@/assets/image.svg" alt="Alternate Text" />
+                        </div>
                     </div>
                     <div class="col-1">
                     </div>
@@ -333,6 +337,7 @@
         },
         data: function () {
             return {
+                showSkeletonLoader: false,
                 currentZoomPercentage: 100,
                 createTagInput: '',
                 tags:
@@ -353,6 +358,7 @@
 
                 article: {
                     id: '',
+                    categoryId: '',
                     title: '',
                     description: '',
                     tags:
@@ -438,6 +444,7 @@
         },
         methods: {
             async getArticle(articleId) {
+                this.showSkeletonLoader = true;
                 await articleService.getArticleById(articleId)
                     .then((result) => {
 
@@ -448,9 +455,6 @@
 
                         this.articleTexts = result.texts;
                         this.articleCodeBlocks = result.codeBlocks;
-
-                        console.log('this.articleTexts: ', this.articleTexts);
-                        console.log('this.articleCodeBlocks : ', this.articleCodeBlocks );
 
                         // settings editor bcz editor is null in db
                         for (var i = 0; i < this.articleTexts.length; i++) {
@@ -479,6 +483,7 @@
 
                         this.setUpArticleItemsListForView();
                     });
+                this.showSkeletonLoader = false;
             },
             async saveArticle() {
                 for (var i = 0; i < this.articleTexts.length; i++) {
@@ -486,7 +491,7 @@
                 }
 
                 var categoryIdToSave = this.stateCategory.id;
-                if (categoryIdToSave === 0) {
+                if (!categoryIdToSave) {
                     categoryIdToSave = 'kodox_default_category';
                 }
 
@@ -788,6 +793,8 @@ return pivotIndex;
             }),
         },
         mounted() {
+            this.article.categoryId = this.$route.params.id;
+
             if (this.$route.params.id === 'new') {
                 // set up for new article
                 return;
