@@ -1,5 +1,114 @@
 ﻿<template>
     <div>
+
+
+
+
+
+        <div id="contextMenu" class="context-menu" style="display: none">
+            <ul class="menu">
+                <li class="share">
+                    <a href="#">
+                        <span class="material-symbols-outlined mr-2" style="vertical-align: baseline;">
+                            visibility
+                        </span>
+                        <span style="vertical-align: super;">
+                            Peek
+                        </span>
+                    </a>
+                </li>
+                <div style="width: 100%; border-top: 1px solid black;"></div>
+                <li class="share">
+                    <a href="#">
+                        <span class="material-symbols-outlined mr-2" style="vertical-align: baseline;">
+                            share
+                        </span>
+                        <span style="vertical-align: super;">
+                            Share
+                        </span>
+                    </a>
+                </li>
+                <li class="share">
+                    <a href="#">
+                        <span class="material-symbols-outlined mr-2" style="vertical-align: baseline;">
+                            drive_file_move_outline
+                        </span>
+                        <span style="vertical-align: super;">
+                            Move
+                        </span>
+                    </a>
+                </li>
+                <li class="share">
+                    <a href="#">
+                        <span class="material-symbols-outlined mr-2" style="vertical-align: baseline;">
+                            grade
+                        </span>
+                        <span style="vertical-align: super;">
+                            Favorite
+                        </span>
+                    </a>
+                </li>
+                <li class="share">
+                    <a href="#">
+                        <span class="material-symbols-outlined mr-2" style="vertical-align: baseline;">
+                            drive_file_rename_outline
+                        </span>
+                        <span style="vertical-align: super;">
+                            Rename
+                        </span>
+                    </a>
+                </li>
+                <li class="share">
+                    <a href="#">
+                        <span class="material-symbols-outlined mr-2" style="vertical-align: baseline;">
+                            info
+                        </span>
+                        <span style="vertical-align: super;">
+                            Details
+                        </span>
+                    </a>
+                </li>
+                <li class="share">
+                    <a href="#">
+                        <span class="material-symbols-outlined mr-2" style="vertical-align: baseline;">
+                            content_copy
+                        </span>
+                        <span style="vertical-align: super;">
+                            Copy
+                        </span>
+                    </a>
+                </li>
+                <div style="width: 100%; border-top: 1px solid black;"></div>
+                <li class="share">
+                    <a href="#">
+                        <span class="material-symbols-outlined mr-2" style="vertical-align: baseline;">
+                            delete
+                        </span>
+                        <span style="vertical-align: super;">
+                            Delete
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <div class="container-fluid mt-5" id="recentsMobile" style="display:none;">
             <div class="row">
                 <div class="col-12">
@@ -22,41 +131,41 @@
             </div>
             <div class="row mt-4">
                 <div class="col-md-6 col-lg-3 mb-2">
-                    <card title="SSMS fixes" createdBy="Alexander Marin" description="This library goes through all docs regarding setup and deployment of firebase projects" tag="history" to="category1" type="article" edited="Last edit 2022-05-03"/>
+                    <card title="SSMS fixes" createdBy="Alexander Marin" description="This library goes through all docs regarding setup and deployment of firebase projects" tag="history" to="category1" type="article" edited="Last edit 2022-05-03" />
                 </div>
                 <div class="col-md-6 col-lg-3 mb-2">
                     <card title="GitHub Commands" createdBy="Alexander Marin" description="This library goes through all docs regarding setup and deployment of firebase projects" tag="history" to="category1" type="article" edited="Last edit 2022-05-03">
                         <!--
-                            // if files 
-                            
-                        --> 
-                        <iframe class="responsive-iframe" src="https://www.youtube.com/embed/jS4aFq5-91M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        // if files
+
+                    -->
+                        <!--<iframe class="responsive-iframe" src="https://www.youtube.com/embed/jS4aFq5-91M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
                     </card>
                 </div>
                 <div class="col-md-6 col-lg-3 mb-2">
-                    <card title="Firestore Setup Guide" createdBy="Alexander Marin" description="This library goes through all docs regarding setup and deployment of firebase projects" tag="history" to="category1" type="article" edited="Last edit 2022-05-03"/>
+                    <card title="Firestore Setup Guide" createdBy="Alexander Marin" description="This library goes through all docs regarding setup and deployment of firebase projects" tag="history" to="category1" type="article" edited="Last edit 2022-05-03" />
                 </div>
                 <div class="col-md-6 col-lg-3 mb-2">
-                    <card title="Favorites" createdBy="Alexander Marin" description="This library goes through all docs regarding setup and deployment of firebase projects" tag="history" to="category1" type="folder" edited="Last edit 2022-05-03"/>
+                    <card title="Favorites" createdBy="Alexander Marin" description="This library goes through all docs regarding setup and deployment of firebase projects" tag="history" to="category1" type="folder" edited="Last edit 2022-05-03" />
                 </div>
             </div>
         </div>
         <!-- recents -->
         <br />
         <!-- Favorites -->
-        <div class="container-fluid">
-            <div class="row">
+        <div class="container-fluid" style="background: transparent !important;">
+            <div class="row" style="background: transparent !important;">
                 <div class="col-12">
-                    <h6 class="text-secondary" :style="appGlobalStyle()">Favorites</h6>
+                    <h6 class="text-secondary" :style="appGlobalStyle() + 'background: transparent !important;'">Favorites</h6>
                 </div>
             </div>
             <br />
             <div class="row">
                 <div class="col-md-12 col-lg-4 mb-2">
-                    <card title="Google Cloud Platform Docs" createdBy="Alexander Marin" description="This library goes through all docs regarding setup and deployment of firebase projects" tag="grade" to="category1" type="folder" edited="Last edit 2022-05-03"/>
+                    <card title="Google Cloud Platform Docs" createdBy="Alexander Marin" description="This library goes through all docs regarding setup and deployment of firebase projects" tag="grade" to="category1" type="folder" edited="Last edit 2022-05-03" />
                 </div>
                 <div class="col-md-12 col-lg-4 mb-2">
-                    <card title="GPC deploy Guide" createdBy="Alexander Marin" description="This library goes through all docs regarding setup and deployment of firebase projects" tag="grade" to="category1" type="article" edited="Last edit 2022-05-03"/>
+                    <card title="GPC deploy Guide" createdBy="Alexander Marin" description="This library goes through all docs regarding setup and deployment of firebase projects" tag="grade" to="category1" type="article" edited="Last edit 2022-05-03" />
                 </div>
                 <div class="col-md-12 col-lg-4 mb-2">
                     <card title="Vue Dropzone Docs" description="This library goes through all docs regarding setup and deployment of firebase projects" tag="grade" to="category1" edited="Last edit 2022-05-03" />
@@ -75,7 +184,7 @@
                         <h6 class="text-secondary" :style="appGlobalStyle() + 'background: transparent !important;'">Last edited article</h6>
                     </div>
                     <card title="Vue Dropzone parameters" type="article" description="This library goes through all docs regarding setup and deployment of firebase projects" tag="edit" to="category1">
-                        <p class="text-secondary">{{loremIpsum}}</p>
+                        <p class="text-secondary"></p>
                     </card>
                     <!-- Last edited article -->
                 </div>
@@ -146,7 +255,7 @@
 
     import { mapActions, mapState } from "vuex";
 
- 
+
     export default {
         name: "HomeView",
         components: {
@@ -158,7 +267,7 @@
         },
         data: function () {
             return {
-               
+
             };
         },
         methods: {
@@ -183,7 +292,8 @@
     };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+
     #navWrapperSticky {
         position: -webkit-sticky;
         position: sticky;
@@ -194,11 +304,12 @@
         border-bottom-right-radius: 32px;
     }
 
-    
+
     @media screen and (max-width: 679px) {
         #recentsMobile {
-            display:block !important;
+            display: block !important;
         }
+
         #recentsDesktop {
             display: none;
         }

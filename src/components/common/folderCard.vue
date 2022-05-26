@@ -1,15 +1,15 @@
 ﻿<template>
-    <div class="card folder" :style="cardGlobalStyle()" @click="navigate">
+    <div class="card folder" :style="cardGlobalStyle()" @click="visitCategory()">
         <div class="container p-3">
             <div class="row mt-4">
                 <div class="col-12 text-left">
-                    <h4 class="card-title">Kategori 1</h4>
+                    <h4 class="card-title">{{title}}</h4>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12 text-left">
                     <p class="card-description text-info">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+                        {{description}}
                     </p>
                 </div>
             </div>
@@ -17,25 +17,55 @@
                 <div class="col-12 text-left">
                     <p style="margin-bottom: 0px;" class="text-secondary card-last-edited">
                         <span class="material-symbols-outlined" style="vertical-align: bottom;">
-                            description
-                        </span>
-                        16 articles
-                        <br />
-                        <span class="material-symbols-outlined" style="vertical-align: bottom;">
                             person
                         </span>
-                        Alexander Marin
-                        <br />
-                        <span class="material-symbols-outlined" style="vertical-align: bottom;">
-                            edit
-                        </span>
-                        2022-05-17
+                        {{createdBy}}
                     </p>
                 </div>
             </div>
         </div>
     </div>
 </template>
+
+<script>
+    import { mapState, mapActions } from "vuex";
+
+    export default {
+        name: "card",
+        props: ["title", "description", "createdBy", "to"],
+        data: function () {
+            return {
+                hasMembers: false
+            };
+        },
+
+        methods: {
+            visitCategory() {
+                this.setCategoryState
+                    ({
+                        id: this.to ?? '',
+                        title: this.title ?? '',
+                        description: this.description ?? '',
+                        createdBy: this.createdBy ?? '',
+                    });
+                this.$router.push({ name: 'folder' });
+            },
+            cardGlobalStyle() {
+                let contentBg = 'cursor: pointer; transition: ease-in-out 0.3s !important; background-color: ' + this.style.currentMode.contentBg + '; background: ' + this.style.currentMode.contentBg + '; ';
+                let color = 'color: ' + this.style.currentMode.color + '; ';
+                return contentBg + color;
+            },
+            ...mapActions({
+                setCategoryState: "category/SET_CATEGORY",
+            }),
+        },
+        computed: {
+            ...mapState({
+                style: (store) => store.style,
+            })
+        },
+    };
+</script>
 
 
 <style scoped lang="scss">
@@ -83,6 +113,7 @@
     }
 
     .card {
+        min-width: 400px !important;
         max-width: 450px !important;
         width: 100%;
         border: 0px;
@@ -92,34 +123,3 @@
         box-shadow: 4px 7px 50px 15px rgba(0,0,0,0.24);
     }
 </style>
-
-<script>
-    import { mapState } from "vuex";
-
-    export default {
-        name: "card",
-        props: ["title", "description", "text", "tag", "to", "spaceType", "members", "type", "edited", "createdBy"],
-        data: function () {
-            return {
-                hasMembers: false
-            };
-        },
-
-        methods: {
-            navigate() {
-                alert(this.to)
-            },
-            cardGlobalStyle() {
-                let contentBg = 'cursor: pointer; transition: ease-in-out 0.3s !important; background-color: ' + this.style.currentMode.contentBg + '; background: ' + this.style.currentMode.contentBg + '; ';
-                let color = 'color: ' + this.style.currentMode.color + '; ';
-                return contentBg + color;
-            },
-        },
-       
-        computed: {
-            ...mapState({
-                style: (store) => store.style,
-            })
-        },
-    };
-</script>

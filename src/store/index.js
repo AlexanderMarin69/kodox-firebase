@@ -1,12 +1,13 @@
 import { createStore } from 'vuex'
 import styleModule from './style/index.js'
-import globalFunctions from './globalFunctions/index.js'
-
+import globalFunctionsModule from './globalFunctions/index.js'
+import categoryFunctionsModule from './category/index.js'
 
 export default createStore({
     modules: {
         style: styleModule,
-        functions: globalFunctions,
+        functions: globalFunctionsModule,
+        category: categoryFunctionsModule
     }
 })
 

@@ -56,12 +56,12 @@
                         </div>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" :style="appGlobalStyleContent() + 'border: 1px solid rgba(0, 123, 255, 0.4);' ">
                             <p class="ml-5 text-info mt-2">Workspace Actions</p>
-                            <router-link to="article-view" class="dropdown-item mb-2" href="#" :style="appGlobalStyleContent() + 'vertical-align: sub;'">
+                            <div @click="navigate('article-view')" class="dropdown-item mb-2" href="#" :style="appGlobalStyleContent() + 'vertical-align: sub;'">
                                 <span class="material-symbols-outlined mr-1 hoverText" style="vertical-align: text-top;">
                                     add
                                 </span>
                                 <span class="hoverText">Create new</span>
-                            </router-link>
+                            </div>
                             <div class="dropdown-item mb-2" :style="appGlobalStyleContent() + 'vertical-align: sub;'">
                                 <span class="material-symbols-outlined mr-1 hoverText" style="vertical-align: text-top;">
                                     folder
@@ -132,8 +132,8 @@
                                    type="text"
                                    autocomplete="on"
                                    readonly />
-                                   <!--ontouchstart="this.removeAttribute('readonly');"
-                                   onfocus="this.removeAttribute('readonly');"-->
+                            <!--ontouchstart="this.removeAttribute('readonly');"
+                            onfocus="this.removeAttribute('readonly');"-->
                         </div>
                     </div>
                 </a>
@@ -194,6 +194,12 @@
                                 </span>
                                 <span class="hoverText">Help</span>
                             </a>
+                            <router-link to="themes" class="dropdown-item mb-2" href="#" :style="appGlobalStyleContent() + 'vertical-align: sub;'">
+                                <span class="material-symbols-outlined mr-1 hoverText" style="vertical-align: text-top;">
+                                    format_paint
+                                </span>
+                                <span class="hoverText">Themes</span>
+                            </router-link>
                             <hr style="margin-top: 8px !important; margin-bottom: 8px !important;" />
                             <a class="dropdown-item" href="#" :style="appGlobalStyleContent() + 'vertical-align: sub;'">
                                 <span class="material-symbols-outlined mr-1 hoverText" style="vertical-align: text-top;">
@@ -228,7 +234,7 @@
         watch: {
             isGlobalSearchBarFocused(newValue) {
                 if (newValue) {
-                    document.getElementById("globalSearchInputField").removeAttribute("readonly"); 
+                    document.getElementById("globalSearchInputField").removeAttribute("readonly");
                     document.getElementById("globalSearchInputField").focus();
                     this.isFocused = true;
                 } else {
@@ -243,6 +249,9 @@
             }),
         },
         methods: {
+            navigate(path) { 
+                this.$router.push({ name: path});
+            },
             openNav() {
                 document.getElementById("mySidebar").style.width = "250px";
                 /*document.getElementById("main-test").style.marginLeft = "250px";*/

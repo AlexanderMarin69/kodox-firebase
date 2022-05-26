@@ -17,7 +17,6 @@ import {
     setDoc,
     addDoc,
 } from "firebase/firestore/lite";
-import firebase from "firebase/app";
 
 
 // initialize firebase
@@ -32,77 +31,99 @@ var firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const articleCollection = collection(db, "Articles");
-const articleCodeBlocksCollection = collection(db, "ArticleCodeBlocks");
-const articleTextsCollection = collection(db, "ArticleTexts");
+const articleCollection = collection(db, "articles");
+const articleCodeBlocksCollection = collection(db, "articleCodeBlocks");
+const articleTextsCollection = collection(db, "articleTexts");
 
 // when functioning somewhat, do user
 
 export default {
-    async getTest() {
-        // get by id
-        // get codeBlocks by articleId
-        // get texts by articleId
-
-        console.log('ran getTest');
-
+    async getArticleById(articleId) {
         var returnArticleObject = {
             codeBlocks: [],
             texts: [],
-            id: [],
-            description: [],
-            title: [],
+            id: '',
+            description: '',
+            title: '',
+            tags: [],
         };
 
-        // woprks just return those separately :)
+        await getDocs
+            (articleTextsCollection).then((result) => {
+                for (let i = 0; i < result.docs.length; i++) {
+                    var newCategory = {
+                        articleId: '',
+                        editor: null,
+                        id: 0,
+                        sortOrder: 0,
+                        text: '',
+                        type: '',
+                    };
 
-        //await getDocs
-        //    (articleTextsCollection).then((result) => {
-        //        //for (let i = 0; i < article.docs.length; i++) {
-        //        //    console.log(article.docs[i].data());
-        //        //    console.log(article.docs[i].data().codeBlocks);
-        //        //}
+                    newCategory.articleId = result.docs[i].data().articleId;
+                    newCategory.id = result.docs[i].data().id;
+                    newCategory.sortOrder = result.docs[i].data().sortOrder;
+                    newCategory.text = result.docs[i].data().text;
+                    newCategory.type = result.docs[i].data().type;
 
-        //        returnArticleObject.texts = result.docs[0].data().texts;
-                
-        //    });
-        //await getDocs
-        //    (articleCodeBlocksCollection).then((result) => {
-        //        //for (let i = 0; i < article.docs.length; i++) {
-        //        //    console.log(article.docs[i].data());
-        //        //    console.log(article.docs[i].data().codeBlocks);
-        //        //}
+                    returnArticleObject.texts.push(newCategory);
+                }
+            });
 
-        //        returnArticleObject.texts = result.docs[0].data().texts;
 
-        //    });
+
+        await getDocs
+            (articleCodeBlocksCollection).then((result) => {
+                for (let i = 0; i < result.docs.length; i++) {
+                    var newcodeBlock = {
+                        articleId: '',
+                        code: '',
+                        id: 0,
+                        lang: '',
+                        sortOrder: 0,
+                        type: '',
+                    };
+
+                    newcodeBlock.articleId = result.docs[i].data().articleId;
+                    newcodeBlock.code = result.docs[i].data().code;
+                    newcodeBlock.id = result.docs[i].data().id;
+                    newcodeBlock.lang = result.docs[i].data().lang;
+                    newcodeBlock.sortOrder = result.docs[i].data().sortOrder;
+                    newcodeBlock.type = result.docs[i].data().type;
+
+                    returnArticleObject.codeBlocks.push(newcodeBlock);
+                }
+            });
 
         await getDocs
             (articleCollection).then((result) => {
-                //for (let i = 0; i < article.docs.length; i++) {
-                //    console.log(article.docs[i].data());
-                //    console.log(article.docs[i].data().codeBlocks);
-                //}
+                var article = result.docs.find(x => x.id === articleId);
 
-                returnArticleObject.id = result.docs[0].data().id;
-                returnArticleObject.description = result.docs[0].data().description;
-                returnArticleObject.title = result.docs[0].data().title;
+                returnArticleObject.id = article.id;
+                console.log(returnArticleObject.id);
+                returnArticleObject.description = article.data().description;
+                returnArticleObject.title = article.data().title;
+                returnArticleObject.tags = article.data().tags;
             });
 
-        console.log('returning getTest');
         return returnArticleObject;
     },
 
-    async save(payload) {
-        console.log('posted');
+    async saveNewArticle(payload) {
+        var articleToSave = {
+            description: payload.description,
+            title: payload.title,
+            tags: payload.tags,
+            categoryId: payload.categoryId,
+        };
 
-        console.log(payload);
+        var theCreatedArticle = await addDoc(articleCollection, articleToSave);
 
-        // they get article Id
+
         for (var i = 0; i < payload.texts.length; i++) {
             var newText = {
                 id: payload.texts[i].id,
-                articleId: payload.id,
+                articleId: theCreatedArticle.id,
                 type: payload.texts[i].type,
                 sortOrder: payload.texts[i].sortOrder,
                 text: payload.texts[i].text,
@@ -114,7 +135,7 @@ export default {
 
             var newCodeBlock = {
                 id: payload.codeBlocks[i].id,
-                articleId: payload.id,
+                articleId: theCreatedArticle.id,
                 type: payload.codeBlocks[i].type,
                 sortOrder: payload.codeBlocks[i].sortOrder,
                 code: payload.codeBlocks[i].code,
@@ -123,69 +144,34 @@ export default {
 
             await addDoc(articleCodeBlocksCollection, newCodeBlock);
         }
-
-
-
-        //TODO:
-        // user/codeBlocks
-        // user/texts
-
-
-
-
-
-        // TODO: decouople in createView CodeBlocks And Texts from article so that they dont get saved on article below
-        // make different views for edit and create
-        //payload.codeBlocks = [];
-        //payload.texts = [];
-
-        var articleToSave = {
-            id: payload.id,
-            description: payload.description,
-            title: payload.title,
-        };
-
-        await addDoc(articleCollection, articleToSave);
-
-
-        //const Persons = collection(db, "Persons");
-        //const persons = collection(db, "persons");
-
-
-
-        //await getDocs(Persons).then((s) => {
-        //    //for (let i = 0; i < s.docs.length; i++) {
-        //    //    this.pers.age = s.docs[i].data().age;
-        //    //    this.pers.name = s.docs[i].data().name;
-        //    //    this.hej2.push(this.pers);
-        //    //}
-        //});
-
-        //await getDocs(persons).then((s) => {
-        //    //for (let i = 0; i < s.docs.length; i++) {
-        //    //    this.per.age = s.docs[i].data().age;
-        //    //    this.per.name = s.docs[i].data().name;
-        //    //    this.hej3.push(this.per);
-        //    //}
-        //});
-
-
-
-
-
-
-
-
-
-
-        //const ref = db.collection('users').collection('someList');
-
-        //ref.where('createdAt', '>=', today);
-
-        //const westCoastCities = citiesRef.where('regions', 'array-contains', 'west_coast').get();
-
     },
 
+    async getArticles() {
+        var articles = [];
+
+        await getDocs(articleCollection).then((result) => {
+
+            for (let i = 0; i < result.docs.length; i++) {
+                var newArticle = {
+                    id: '',
+                    title: '',
+                    description: '',
+                    createdBy: '',
+                };
+
+                newArticle.id = result.docs[i].id;
+                newArticle.title = result.docs[i].data().title;
+                newArticle.categoryId = result.docs[i].data().categoryId;
+                newArticle.description = result.docs[i].data().description;
+                newArticle.createdBy = result.docs[i].data().createdBy;
+
+                articles.push(newArticle);
+            }
+
+        });
+
+        return articles;
+    },
 }
 
 

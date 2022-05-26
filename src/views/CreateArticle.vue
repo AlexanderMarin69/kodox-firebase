@@ -8,7 +8,6 @@
                 <div class="row">
                     <div class="col-1">
                     </div>
-
                     <div class="col-10">
                         <div class="input-group">
                             <input placeholder="Title"
@@ -231,19 +230,11 @@
                                     add
                                 </span>
                             </button>
-                            <br />
-                            <br />
-                            <button class="btn btn-outline-success btn-block" href="#" style="vertical-align: baseline;" @click="saveArticle()">
+                            <button class="btn btn-outline-success btn-block mt-2" href="#" style="vertical-align: baseline;" @click="saveArticle()">
                                 <span class="material-symbols-outlined mr-1" style="vertical-align: bottom;">
                                     save
                                 </span>
                                 Save
-                            </button>
-                            <button class="btn btn-outline-primary btn-block" href="#" style="vertical-align: baseline;" @click="getArticle()">
-                                <span class="material-symbols-outlined mr-1" style="vertical-align: bottom;">
-                                    download
-                                </span>
-                                Get test
                             </button>
                             <p class="text-info mt-1" style="font-size: 12px;">Saving to Netmine | Router Docs</p>
 
@@ -320,6 +311,7 @@
     import TextAlign from '@tiptap/extension-text-align'
     import Document from '@tiptap/extension-document'
     import Paragraph from '@tiptap/extension-paragraph'
+
     //import Gapcursor from '@tiptap/extension-gapcursor'
 
     //alerts: [
@@ -360,12 +352,11 @@
                     ],
 
                 article: {
-                    id: 1,
-                    title: 'HashSet<T> Class',
-                    description: 'The following example demonstrates how to merge two disparate sets. This example creates two HashSet<T> objects, and populates them with even and odd numbers, respectively.',
+                    id: '',
+                    title: '',
+                    description: '',
                     tags:
                         [
-                            //'Docs', 'C#', 'AWS', 'SQL'
                         ],
                 },
 
@@ -446,19 +437,20 @@
             };
         },
         methods: {
-            async getArticle() {
-                await articleService.getTest()
+            async getArticle(articleId) {
+                await articleService.getArticleById(articleId)
                     .then((result) => {
-
-                        console.log(result);
 
                         this.article.title = result.title;
                         this.article.description = result.description;
+                        this.article.tags = result.tags;
                         this.article.id = result.id;
-
 
                         this.articleTexts = result.texts;
                         this.articleCodeBlocks = result.codeBlocks;
+
+                        console.log('this.articleTexts: ', this.articleTexts);
+                        console.log('this.articleCodeBlocks : ', this.articleCodeBlocks );
 
                         // settings editor bcz editor is null in db
                         for (var i = 0; i < this.articleTexts.length; i++) {
@@ -493,16 +485,21 @@
                     this.articleTexts[i].editor = null;
                 }
 
+                var categoryIdToSave = this.stateCategory.id;
+                if (categoryIdToSave === 0) {
+                    categoryIdToSave = 'kodox_default_category';
+                }
 
                 var articleToSave = {
                     codeBlocks: this.articleCodeBlocks,
                     texts: this.articleTexts,
-                    id: this.article.id,
                     description: this.article.description,
                     title: this.article.title,
+                    tags: this.article.tags,
+                    categoryId: categoryIdToSave
                 };
 
-                await articleService.save(articleToSave);
+                await articleService.saveNewArticle(articleToSave);
             },
             // move to zoomer component -------------------------
             zoomPageOut() {
@@ -519,7 +516,7 @@
 
             // section update data ------------------
             updateCodeBlock(codeBlock) {
-               this.articleCodeBlocks.find(x => x.id === codeBlock.id).code = codeBlock.code;
+                this.articleCodeBlocks.find(x => x.id === codeBlock.id).code = codeBlock.code;
             },
             updateText(editorId) {
                 setTimeout(() => {
@@ -614,7 +611,7 @@ return pivotIndex;
                     newCodeBlock.sortOrder = this.allArticleItemsByOrder.at(-1).sortOrder + 1;
                 }
 
-               this.articleCodeBlocks.push(newCodeBlock);
+                this.articleCodeBlocks.push(newCodeBlock);
 
                 this.setUpArticleItemsListForView();
             },
@@ -659,14 +656,14 @@ return pivotIndex;
 
 
                     if (currItem.type === 'code') {
-                       this.articleCodeBlocks.find(x => x.id === currItem.id).sortOrder =this.articleCodeBlocks.find(x => x.id === currItem.id).sortOrder - 1;
+                        this.articleCodeBlocks.find(x => x.id === currItem.id).sortOrder = this.articleCodeBlocks.find(x => x.id === currItem.id).sortOrder - 1;
                     }
                     if (currItem.type === 'text') {
                         this.articleTexts.find(x => x.id === currItem.id).sortOrder = this.articleTexts.find(x => x.id === currItem.id).sortOrder - 1;
                     }
 
                     if (prevItem.type === 'code') {
-                       this.articleCodeBlocks.find(x => x.id === prevItem.id).sortOrder =this.articleCodeBlocks.find(x => x.id === prevItem.id).sortOrder + 1;
+                        this.articleCodeBlocks.find(x => x.id === prevItem.id).sortOrder = this.articleCodeBlocks.find(x => x.id === prevItem.id).sortOrder + 1;
                     }
                     if (prevItem.type === 'text') {
                         this.articleTexts.find(x => x.id === prevItem.id).sortOrder = this.articleTexts.find(x => x.id === prevItem.id).sortOrder + 1;
@@ -685,14 +682,14 @@ return pivotIndex;
                     var prevItem = this.allArticleItemsByOrder.at(this.allArticleItemsByOrder.indexOf(currItem) + 1);
 
                     if (currItem.type === 'code') {
-                       this.articleCodeBlocks.find(x => x.id === currItem.id).sortOrder =this.articleCodeBlocks.find(x => x.id === currItem.id).sortOrder + 1;
+                        this.articleCodeBlocks.find(x => x.id === currItem.id).sortOrder = this.articleCodeBlocks.find(x => x.id === currItem.id).sortOrder + 1;
                     }
                     if (currItem.type === 'text') {
                         this.articleTexts.find(x => x.id === currItem.id).sortOrder = this.articleTexts.find(x => x.id === currItem.id).sortOrder + 1;
                     }
 
                     if (prevItem.type === 'code') {
-                       this.articleCodeBlocks.find(x => x.id === prevItem.id).sortOrder =this.articleCodeBlocks.find(x => x.id === prevItem.id).sortOrder - 1;
+                        this.articleCodeBlocks.find(x => x.id === prevItem.id).sortOrder = this.articleCodeBlocks.find(x => x.id === prevItem.id).sortOrder - 1;
                     }
                     if (prevItem.type === 'text') {
                         this.articleTexts.find(x => x.id === prevItem.id).sortOrder = this.articleTexts.find(x => x.id === prevItem.id).sortOrder - 1;
@@ -705,7 +702,7 @@ return pivotIndex;
             removeArticleSection(item) {
                 setTimeout(() => {
                     var itemIsTypeText = this.articleTexts.find(x => x.id === item.id);
-                    var itemIsTypeCode =this.articleCodeBlocks.find(x => x.id === item.id);
+                    var itemIsTypeCode = this.articleCodeBlocks.find(x => x.id === item.id);
 
                     if (itemIsTypeText !== undefined) {
                         const textIndex = this.articleTexts.indexOf(itemIsTypeText);
@@ -714,9 +711,9 @@ return pivotIndex;
                         }
                     }
                     if (itemIsTypeCode !== undefined) {
-                        const codeIndex =this.articleCodeBlocks.indexOf(itemIsTypeCode);
+                        const codeIndex = this.articleCodeBlocks.indexOf(itemIsTypeCode);
                         if (codeIndex > -1) {
-                           this.articleCodeBlocks.splice(codeIndex, 1);
+                            this.articleCodeBlocks.splice(codeIndex, 1);
                         }
                     }
 
@@ -744,7 +741,7 @@ return pivotIndex;
 
                     setTimeout(() => {
                         for (var lal = 0; lal < this.articleCodeBlocks.length; lal++) {
-                            this.allArticleItemsByOrder.splice((this.articleCodeBlocks[lal].sortOrder), 0,this.articleCodeBlocks[lal]);
+                            this.allArticleItemsByOrder.splice((this.articleCodeBlocks[lal].sortOrder), 0, this.articleCodeBlocks[lal]);
                             //this.allArticleItemsByOrder.push(this.articleCodeBlocks[lal]);
                         }
                     }, 0);
@@ -787,9 +784,17 @@ return pivotIndex;
         computed: {
             ...mapState({
                 style: (store) => store.style,
+                stateCategory: (store) => store.category.category
             }),
         },
         mounted() {
+            if (this.$route.params.id === 'new') {
+                // set up for new article
+                return;
+            } else {
+                this.getArticle(this.$route.params.id);
+            }
+
             this._keyListener = function (e) {
                 if (e.keyCode === 13) {
                     e.preventDefault();
@@ -802,7 +807,6 @@ return pivotIndex;
             document.addEventListener("keydown", this._keyListener.bind(this));
 
             this.setUsersPrefferedThemeOrDefault();
-            this.setUpArticleItemsListForView();
         },
         beforeUnmount() {
             //this.editor.destroy()

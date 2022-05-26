@@ -87,10 +87,7 @@
             <nav class="navbar" :style="appGlobalStyle()">
                 <TopNavigation :style="appGlobalStyle()" />
 
-                <router-view v-slot="{ Component }">
-                    <Transition name="page">
-                        <Component :is="Component" />
-                    </Transition>
+                <router-view>
                 </router-view>
             </nav>
         </main>
@@ -157,17 +154,6 @@
 
 
 <style scoped>
-    .page-enter-active,
-    .page-leave-active {
-        transition: opacity 300ms ease, transform 300ms ease;
-    }
-
-    .page-enter-from,
-    .page-leave-to {
-        transition: opacity 0;
-        transform: translateY(60px);
-    }
-
     .gradient-text {
         font-weight: bold;
         background-color: red;

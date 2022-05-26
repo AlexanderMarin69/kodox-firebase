@@ -1,6 +1,6 @@
 ﻿<template>
-    <div class="card" :style="cardGlobalStyle()">
-        <div v-if="to" @click="navigate" style="cursor:pointer;">
+    <div class="card" :style="cardGlobalStyle() + 'cursor:pointer;'" id="lmaoCard" @click="navigate()">
+    <!--<div class="card" :style="cardGlobalStyle()" id="lmaoCard">-->
             <div class="card-body">
                 <div class="row">
                     <!-- 7 -->
@@ -53,7 +53,6 @@
                 <slot></slot>
             </div>
         </div>
-    </div>
 </template>
 
 
@@ -95,6 +94,7 @@
     }
 
     .card {
+        min-width: 300px;
         max-width: 900px;
         width: 100%;
         border: 0px;
@@ -124,7 +124,7 @@
 
         methods: {
             navigate() {
-                alert(this.to)
+                this.$router.push({ name: 'article-view', params: { id: this.to } });
             },
             cardGlobalStyle() {
                 let contentBg = 'transition: ease-in-out 0.3s !important; background-color: ' + this.style.currentMode.contentBg + '; ';
