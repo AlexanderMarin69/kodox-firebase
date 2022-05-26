@@ -40,7 +40,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-12">
-                                <input type="text" :style="inputInputStyle()" class="form-control inputStyle" placeholder="Search categories" value="" />
+                                <input type="text" :style="inputInputStyle()" class="form-control inputStyle" placeholder="Search categories" v-model="filterCategoriesInput" @input="filterCategories()" />
                             </div>
                         </div>
                     </div>
@@ -68,7 +68,7 @@
         </div>
     </div>
     <div class="row mt-4">
-        <div class="col-md-6 col-md-3 mb-2" v-for="article in articles">
+        <div class="col-md-6 col-md-3 mb-2" v-for="article in filteredList.length > 0 ? filteredList : articles">
             <card :createdBy="article.createdBy ?? ''"
                   :to="article.id  ?? 'new'"
                   :description="article.description  ?? ''"
@@ -111,11 +111,20 @@
         },
         data: function () {
             return {
+                filterCategoriesInput: '',
                 currentCategoryId: '',
-                articles: []
+                articles: [],
+                filteredList: [],
             };
         },
         methods: {
+            filterCategories() {
+                if (this.filterCategoriesInput !== '') {
+                    this.filteredList = this.articles.filter(x => x.title.toUpperCase().includes(this.filterCategoriesInput.toUpperCase()))
+                } else {
+                    this.filteredList.length = 0;
+                }
+            },
             async getCategoryArticles() {
                 await articleService
                     .getArticles()
@@ -124,7 +133,7 @@
                     });
             },
             navigate(path) {
-                this.$router.push({ name: path, params: {id: 'new'}});
+                this.$router.push({ name: path, params: { id: 'new' } });
             },
             appGlobalStyle() {
                 let bg = "transition: ease-in-out 0.3s !important; background-color: " + this.style.currentMode.bg + "; ";

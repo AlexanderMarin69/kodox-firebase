@@ -113,8 +113,8 @@
     }
 
     .card {
-        min-width: 400px !important;
-        max-width: 450px !important;
+        min-width: 300px;
+        max-width: 900px;
         width: 100%;
         border: 0px;
         border-radius: 10px;

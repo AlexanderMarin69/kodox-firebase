@@ -146,7 +146,7 @@
                     <card title="Firestore Setup Guide" createdBy="Alexander Marin" description="This library goes through all docs regarding setup and deployment of firebase projects" tag="history" to="category1" type="article" edited="Last edit 2022-05-03" />
                 </div>
                 <div class="col-md-6 col-lg-3 mb-2">
-                    <card title="Favorites" createdBy="Alexander Marin" description="This library goes through all docs regarding setup and deployment of firebase projects" tag="history" to="category1" type="folder" edited="Last edit 2022-05-03" />
+                    <FolderCard title="Favorites" createdBy="Alexander Marin" description="This library goes through all docs regarding setup and deployment of firebase projects" tag="history" to="category1" type="folder" edited="Last edit 2022-05-03" />
                 </div>
             </div>
         </div>
@@ -250,6 +250,7 @@
     import TopNavigation from "@/components/Layout/TopNavigation.vue";
     import loader from "@/components/common/loader.vue";
     import card from "@/components/common/card.vue";
+    import FolderCard from "@/components/common/folderCard.vue";
     import codeBlock from "@/components/mainContent/codeBlock.vue";
     import mainContent from "@/components/mainContent/mainContent.vue";
 
@@ -263,7 +264,8 @@
             mainContent,
             card,
             codeBlock,
-            Carousel
+            Carousel,
+            FolderCard
         },
         data: function () {
             return {
