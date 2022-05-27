@@ -2,8 +2,16 @@
     <div class="card folder" :style="cardGlobalStyle()" @click="visitCategory()">
         <div class="container p-3">
             <div class="row mt-4">
-                <div class="col-12 text-left">
-                    <h4 class="card-title">{{title}}</h4>
+                <div class="col-10 text-left">
+                    <h6 class="card-title">
+                        <span class="material-symbols-outlined" style="background: transparent !important; vertical-align: bottom;">grade</span>
+                        {{title}}
+                    </h6>
+                </div>
+                <div class="col-2">
+                        <span class="material-symbols-outlined">
+                            more_vert
+                        </span>
                 </div>
             </div>
             <div class="row">
