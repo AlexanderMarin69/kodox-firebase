@@ -163,7 +163,7 @@
 </script>
 
 
-<style lang="scss">
+<style scoped lang="scss">
     .gradient-text {
         font-weight: bold;
         background-color: red;
