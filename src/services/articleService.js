@@ -16,6 +16,8 @@ import {
     getDocs,
     setDoc,
     addDoc,
+    query,
+    where
 } from "firebase/firestore/lite";
 
 
@@ -36,6 +38,12 @@ const articleCodeBlocksCollection = collection(db, "articleCodeBlocks");
 const articleTextsCollection = collection(db, "articleTexts");
 
 // when functioning somewhat, do user
+
+// query
+const articleQuery = query(articleCollection, where("categoryId", "==", "asdfewrqgdfg"));
+//const articleQuery = (articleId) => query(articleCollection, where("categoryId", "==", articleId));
+//await getDocs
+//    (articleQuery(someArticleId)).then((result) => {
 
 export default {
     async getArticleById(articleId) {

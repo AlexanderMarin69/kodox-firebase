@@ -4,7 +4,8 @@
     "\\public",
     "\\src",
     "\\src\\store",
-    "\\src\\store\\category"
+    "\\src\\store\\style"
   ],
+  "SelectedNode": "\\src\\store\\style\\index.js",
   "PreviewInSolutionExplorer": false
 }
