@@ -1,11 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\public",
     "\\src",
-    "\\src\\store",
+    "\\src\\services",
     "\\src\\store\\style"
   ],
-  "SelectedNode": "\\src\\store\\style\\index.js",
+  "SelectedNode": "\\src\\services\\articleService.js",
   "PreviewInSolutionExplorer": false
 }

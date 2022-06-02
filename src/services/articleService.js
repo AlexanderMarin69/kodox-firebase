@@ -45,6 +45,20 @@ const articleQuery = query(articleCollection, where("categoryId", "==", "asdfewr
 //await getDocs
 //    (articleQuery(someArticleId)).then((result) => {
 
+
+
+// smart map
+
+//onSnapshot(colRef, (snapshot) => {
+//    let books = [];
+//    snapshot.docs.forEach((doc) => {
+//        books.push({...doc.data(), id: doc.id});
+//    });
+//    console.log(books);
+//});
+
+
+
 export default {
     async getArticleById(articleId) {
         console.log('articleId: ', articleId);
