@@ -2,9 +2,7 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\services",
-    "\\src\\store\\style"
+    "\\src\\services"
   ],
-  "SelectedNode": "\\src\\services\\articleService.js",
   "PreviewInSolutionExplorer": false
 }
