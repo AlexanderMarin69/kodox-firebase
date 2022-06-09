@@ -2,6 +2,7 @@
     <div class="container-fluid mt-3" style="display:block !important;">
         <div class="row">
             <div class="col-12 col-md-6" style="padding-right: 0px;">
+                <span><span style="border: 0px; padding-left: 0px;" class="btn btn-outline-warning">Netmine</span></span>
                 <h1>Library</h1>
             </div>
             <div class="col-12 col-md-4">
