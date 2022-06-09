@@ -122,7 +122,7 @@
             <div class="col-12 col-lg-5 mt-1 search-card">
                 <a href="#">
                     <div>
-                        <div id="globalSearchInput">
+                        <div id="globalSearchInput" class="input-group">
                             <input placeholder="Search for everyting"
                                    id="globalSearchInputField"
                                    @focus.native="focusInputField"
@@ -132,8 +132,22 @@
                                    type="text"
                                    autocomplete="on"
                                    readonly />
+                            <div class="input-group-append" :style="inputInputStyle()" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                <span :style="inputInputStyle() + 'border: 1px solid #fff; margin-left: -10px; border-top-right-radius !important;' "
+                                      class="input-group-text" id="basic-addon2">
+                                    <span class="material-symbols-outlined">
+                                        tune
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="collapse" id="collapseExample">
+                                <div class="card card-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                                </div>
+                            </div>
+
                             <!--ontouchstart="this.removeAttribute('readonly');"
-                            onfocus="this.removeAttribute('readonly');"-->
+    onfocus="this.removeAttribute('readonly');"-->
                         </div>
                     </div>
                 </a>
@@ -249,8 +263,8 @@
             }),
         },
         methods: {
-            navigate(path) { 
-                this.$router.push({ name: path});
+            navigate(path) {
+                this.$router.push({ name: path });
             },
             openNav() {
                 document.getElementById("mySidebar").style.width = "250px";

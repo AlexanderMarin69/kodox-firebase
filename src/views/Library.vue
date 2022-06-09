@@ -1,34 +1,59 @@
 ﻿<template>
     <div class="container-fluid mt-3" style="display:block !important;">
         <div class="row">
-
             <div class="col-12 col-md-6" style="padding-right: 0px;">
                 <h1>Library</h1>
             </div>
             <div class="col-12 col-md-4">
             </div>
             <div class="col-12 col-md-2 text-right text-lg-right mt-2" style="padding-left: 0px;">
-                <button class="btn btn-outline-primary" @click="showCreateNewCategoryFields = !showCreateNewCategoryFields">Create new</button>
+                <!--<button class="btn btn-outline-primary" @click="showCreateNewCategoryFields = !showCreateNewCategoryFields">Create new</button>-->
             </div>
-
         </div>
         <div class="row mt-3">
-            <div class="col-12 col-md-4 text-center text-lg-left">
+            <div class="col-12 col-md-2 text-center text-lg-left">
+                <button class="btn btn-outline-primary"
+                        @click="showCreateNewCategoryFields = !showCreateNewCategoryFields">
+                    Create new
+                </button>
+            </div>
+
+            <div class="col-12 col-md-2 text-center text-lg-left">
                 <div class="btn-group">
                     <div :style="appGlobalStyle()" class="btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="container">
                             <div class="row">
                                 <div class="col-6">
-                                    <span style="vertical-align: super; font-size: 16px;">Filter</span>
-                                    <span class="material-symbols-outlined" style="vertical-align: baseline;">
-                                        expand_more
-                                    </span>
+                                    <div style=" background-color: #24252d; width: 100px; border-radius: 10px;"
+                                         class="pl-4 pb-1 pt-1">
+                                        <div class="row">
+                                            <span class="material-symbols-outlined" style="font-size: 18px; margin-top: 2px;">
+                                                filter_alt
+                                            </span>
+
+                                            <span style="font-size: 16px;">Filter</span>
+
+                                            <span class="material-symbols-outlined ml-1">
+                                                expand_more
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-6">
-                                    <span style="vertical-align: super; font-size: 16px;">Sort</span>
-                                    <span class="material-symbols-outlined" style="vertical-align: baseline;">
-                                        expand_more
-                                    </span>
+                                    <div style=" background-color: #24252d; width: 100px; border-radius: 10px;"
+                                         class="pl-4 pb-1 pt-1">
+                                        <div class="row">
+                                            <span class="material-symbols-outlined" style="font-size: 18px; margin-top: 2px;">
+                                                sort
+                                            </span>
+
+                                            <span style="font-size: 16px;">Sort</span>
+
+                                            <span class="material-symbols-outlined ml-1">
+                                                expand_more
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -56,9 +81,9 @@
                             <div class="col-6">
                                 <!--
 
-                            switch for tags
+                                switch for tags
 
-                                -->
+                                    -->
                                 <GridListViewAlternator />
                             </div>
                         </div>
@@ -91,26 +116,26 @@
             </div>
         </div>
         <!--<div class="row">
-        <div class="col-12 col-lg-3 text-center text-lg-left">
-            <div class="btn-group">
-                <div :style="appGlobalStyle()" class="btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12 pt-2 pl-2 pr-2 pb-4" style="overflow-x: scroll; width: 10%">
-                                <span class="p-2 disabled mr-1"
-                                      :style="appGlobalStyle() + 'cursor:pointer;'"
-                                      :class="{ TagActive: selectedTags.find(x => x === tag) }"
-                                      v-for="tag in tags"
-                                      @click="selectTag(tag)">
-                                    {{tag}}
-                                </span>
+            <div class="col-12 col-lg-3 text-center text-lg-left">
+                <div class="btn-group">
+                    <div :style="appGlobalStyle()" class="btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 pt-2 pl-2 pr-2 pb-4" style="overflow-x: scroll; width: 10%">
+                                    <span class="p-2 disabled mr-1"
+                                          :style="appGlobalStyle() + 'cursor:pointer;'"
+                                          :class="{ TagActive: selectedTags.find(x => x === tag) }"
+                                          v-for="tag in tags"
+                                          @click="selectTag(tag)">
+                                        {{tag}}
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>-->
+        </div>-->
     </div>
     <div class="row mt-5 text-center">
         <div class="col-12 col-lg-6 mb-4 text-center" v-for="category in categories">
